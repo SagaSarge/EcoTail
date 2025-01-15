@@ -4,20 +4,6 @@ import { Link } from 'react-router-dom'
 import { PageLayout } from '../components/layout/PageLayout'
 
 export function Home() {
-  const { scrollY } = useScroll()
-  
-  // Transform for the hero images sliding left
-  const heroImagesX = useTransform(scrollY, 
-    [0, 400], 
-    ['0%', '-20%']
-  )
-  
-  // Transform for the navigation opacity
-  const navOpacity = useTransform(scrollY,
-    [0, 100],
-    [0, 1]
-  )
-
   return (
     <PageLayout>
       <div className="relative">
@@ -60,23 +46,6 @@ export function Home() {
                 Gamified rewards, and real-time eco-insights—all designed to make going green effortless.
               </p>
             </div>
-          </div>
-        </div>
-
-        {/* Below the Fold Section */}
-        <div className="relative bg-gradient-to-b from-white to-gray-50">
-          {/* Content Section */}
-          <div className="relative z-10 max-w-6xl mx-auto pt-48 px-4">
-            <motion.div 
-              style={{ x: heroImagesX }}
-              className="flex flex-col"
-            >
-              <h2 className="text-[80px] leading-tight font-bold">
-                <span className="block mb-4">Discover</span>
-                <span className="block mb-4">the latest</span>
-                <span className="block text-[64px]">from EcoTail</span>
-              </h2>
-            </motion.div>
           </div>
         </div>
       </div>

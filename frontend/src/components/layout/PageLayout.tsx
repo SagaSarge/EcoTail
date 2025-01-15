@@ -28,11 +28,6 @@ export function PageLayout({ children }: PageLayoutProps) {
             <Link to="/by-self-labs" className="text-gray-600 hover:text-gray-900">By Self Labs</Link>
             <Link to="/education" className="text-gray-600 hover:text-gray-900">Education</Link>
           </div>
-
-          {/* Download Button */}
-          <div>
-            <Button>Download EcoTail</Button>
-          </div>
         </nav>
       </header>
 
