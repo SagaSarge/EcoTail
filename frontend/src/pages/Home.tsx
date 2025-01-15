@@ -152,114 +152,59 @@ export function Home() {
               </p>
             </motion.div>
 
-            {/* Video/Animation Section */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="max-w-4xl mx-auto mb-24 rounded-2xl overflow-hidden bg-white shadow-xl"
-            >
-              <div className="aspect-video relative bg-gray-50">
-                {/* Placeholder for video - replace src with actual video */}
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-full object-cover"
-                  poster="/video-poster.webp"
-                >
-                  <source src="/ecotail-demo.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-
-                {/* Play button overlay */}
-                <div className="absolute inset-0 flex items-center justify-center bg-black/5 group">
-                  <button className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center shadow-lg transform transition-all group-hover:scale-110 group-hover:bg-white">
-                    <svg className="w-8 h-8 text-gray-900" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </button>
-                </div>
-
-                {/* Caption */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/50 to-transparent">
-                  <p className="text-white text-sm font-medium">
-                    See EcoTail in action: Smart waste management for a sustainable future
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {/* AI-Powered Sorting */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+              {/* Market Need */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow"
+                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow"
               >
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                  <span className="text-2xl">🤖</span>
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
+                  <span className="text-2xl">📊</span>
                 </div>
-                <h3 className="text-xl font-semibold mb-2">AI-Powered Sorting</h3>
-                <p className="text-gray-600">Advanced machine learning ensures accurate waste classification and optimal recycling.</p>
+                <h3 className="text-xl font-semibold mb-4">Market Demand</h3>
+                <p className="text-gray-600">Premium waste management solutions with advanced features are in high demand, especially in the $50-$100 range.</p>
               </motion.div>
 
-              {/* Reusable Canisters */}
+              {/* Eco-Friendly Revolution */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow"
+                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow"
               >
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                  <span className="text-2xl">♻️</span>
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
+                  <span className="text-2xl">🌱</span>
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Reusable Canisters</h3>
-                <p className="text-gray-600">Durable, smart containers designed for long-term use and efficient waste management.</p>
+                <h3 className="text-xl font-semibold mb-4">Eco-Friendly Revolution</h3>
+                <p className="text-gray-600">Transform waste management with AI sorting, analytics, and guidance toward greener habits.</p>
               </motion.div>
 
-              {/* Gamified Rewards */}
+              {/* High Engagement */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow"
+                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow"
               >
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                  <span className="text-2xl">🎮</span>
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
+                  <span className="text-2xl">📱</span>
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Gamified Rewards</h3>
-                <p className="text-gray-600">Earn points and rewards for your sustainable choices and recycling achievements.</p>
-              </motion.div>
-
-              {/* Real-Time Tracking */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow"
-              >
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                  <span className="text-2xl">📊</span>
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Real-Time Tracking</h3>
-                <p className="text-gray-600">Monitor your environmental impact with detailed analytics and progress tracking.</p>
+                <h3 className="text-xl font-semibold mb-4">High Engagement</h3>
+                <p className="text-gray-600">Smart home integration, AI-driven suggestions, and gamified rewards keep users actively involved.</p>
               </motion.div>
             </div>
           </div>
         </section>
 
-        {/* How It Works Section */}
+        {/* Product Journey Section */}
         <section 
           className="py-16 md:py-24 bg-white"
-          aria-label="Step-by-step guide to using EcoTail"
+          aria-label="EcoTail's product evolution journey"
         >
           <div className="max-w-7xl mx-auto px-4">
             <motion.div
@@ -277,102 +222,152 @@ export function Home() {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12 relative">
-              {/* Connecting Line (Desktop) */}
-              <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-green-100 via-green-200 to-green-100 transform -translate-y-1/2" />
-
-              {/* Step 1: Scan & Sort */}
+            <div className="space-y-12 md:space-y-24">
+              {/* V1 - Disruptive Launch */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="relative"
+                transition={{ duration: 0.6 }}
+                className="grid md:grid-cols-2 gap-8 items-center"
               >
-                <div className="bg-white rounded-2xl p-6 text-center relative z-10">
-                  <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
-                    <span className="text-3xl">📸</span>
+                <div>
+                  <div className="inline-flex items-center px-4 py-2 rounded-full bg-green-100 text-green-600 text-sm font-medium mb-4">
+                    V1 – Available Now
                   </div>
-                  <div className="w-8 h-8 rounded-full bg-green-500 text-white flex items-center justify-center mx-auto absolute -top-4 right-1/2 transform translate-x-1/2">
-                    1
+                  <h3 className="text-2xl font-semibold mb-4">Disruptive Launch ✨</h3>
+                  <ul className="space-y-4">
+                    <li className="flex items-start gap-3">
+                      <span className="text-green-500 mt-1">✓</span>
+                      <div>
+                        <span className="font-medium">AI Sorting & Analytics</span>
+                        <p className="text-gray-600 mt-1">Real-time categorization of waste with basic app integration</p>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-green-500 mt-1">✓</span>
+                      <div>
+                        <span className="font-medium">13 Gallon Capacity</span>
+                        <p className="text-gray-600 mt-1">Perfect size for household use</p>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-green-500 mt-1">✓</span>
+                      <div>
+                        <span className="font-medium">Basic Rewards System</span>
+                        <p className="text-gray-600 mt-1">Earn points for correct sorting</p>
+                      </div>
+                    </li>
+                  </ul>
+                  <Button className="mt-8 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-500 hover:to-green-400">
+                    Pre-order V1 Now
+                  </Button>
+                </div>
+                <div className="relative">
+                  <div className="bg-gradient-to-br from-green-50 to-gray-50 rounded-2xl p-8 aspect-square flex items-center justify-center">
+                    <span className="text-8xl">🤖</span>
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">Scan & Sort</h3>
-                  <p className="text-gray-600">Built-in AI camera identifies waste category instantly and accurately.</p>
+                  <div className="absolute -bottom-4 -right-4 bg-white rounded-xl shadow-lg p-4">
+                    <p className="text-sm font-medium text-gray-900">Starting at</p>
+                    <p className="text-2xl font-bold text-green-600">$99/mo</p>
+                  </div>
                 </div>
               </motion.div>
 
-              {/* Step 2: Reusable Canister Swap */}
+              {/* V2 - Advanced Evolution */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="relative"
+                transition={{ duration: 0.6 }}
+                className="grid md:grid-cols-2 gap-8 items-center"
               >
-                <div className="bg-white rounded-2xl p-6 text-center relative z-10">
-                  <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
-                    <span className="text-3xl">♻️</span>
+                <div className="order-2 md:order-1">
+                  <div className="inline-flex items-center px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-sm font-medium mb-4">
+                    V2 – Coming Q3 2025
                   </div>
-                  <div className="w-8 h-8 rounded-full bg-green-500 text-white flex items-center justify-center mx-auto absolute -top-4 right-1/2 transform translate-x-1/2">
-                    2
+                  <h3 className="text-2xl font-semibold mb-4">Advanced Evolution 🔧</h3>
+                  <ul className="space-y-4">
+                    <li className="flex items-start gap-3">
+                      <span className="text-gray-400 mt-1">○</span>
+                      <div>
+                        <span className="font-medium">Enhanced Sensors & Analytics</span>
+                        <p className="text-gray-600 mt-1">Detect partial-product disposal and provide waste reduction recommendations</p>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-gray-400 mt-1">○</span>
+                      <div>
+                        <span className="font-medium">Voice Assistant Integration</span>
+                        <p className="text-gray-600 mt-1">Works with Alexa, Google Home, and Apple HomeKit</p>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-gray-400 mt-1">○</span>
+                      <div>
+                        <span className="font-medium">Premium Subscription</span>
+                        <p className="text-gray-600 mt-1">Access advanced AI features and deeper analytics</p>
+                      </div>
+                    </li>
+                  </ul>
+                  <button className="mt-8 text-gray-600 hover:text-gray-900">
+                    Join Waitlist →
+                  </button>
+                </div>
+                <div className="order-1 md:order-2">
+                  <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 aspect-square flex items-center justify-center opacity-75">
+                    <span className="text-8xl">🔧</span>
                   </div>
-                  <h3 className="text-xl font-semibold mb-3">Reusable Canister Swap</h3>
-                  <p className="text-gray-600">Say goodbye to single-use bags with our smart canister system.</p>
                 </div>
               </motion.div>
 
-              {/* Step 3: Track Progress */}
+              {/* V3 - Subscription & Reusability */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="relative"
+                transition={{ duration: 0.6 }}
+                className="grid md:grid-cols-2 gap-8 items-center"
               >
-                <div className="bg-white rounded-2xl p-6 text-center relative z-10">
-                  <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
-                    <span className="text-3xl">📱</span>
+                <div>
+                  <div className="inline-flex items-center px-4 py-2 rounded-full bg-gray-100 text-gray-600 text-sm font-medium mb-4">
+                    V3 – Vision for 2026
                   </div>
-                  <div className="w-8 h-8 rounded-full bg-green-500 text-white flex items-center justify-center mx-auto absolute -top-4 right-1/2 transform translate-x-1/2">
-                    3
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3">Track Progress</h3>
-                  <p className="text-gray-600">Get instant feedback and personalized waste reduction tips.</p>
+                  <h3 className="text-2xl font-semibold mb-4">Subscription & Reusability ♻️</h3>
+                  <ul className="space-y-4">
+                    <li className="flex items-start gap-3">
+                      <span className="text-gray-400 mt-1">○</span>
+                      <div>
+                        <span className="font-medium">Reusable Canisters</span>
+                        <p className="text-gray-600 mt-1">Weekly canister swaps with professional cleaning</p>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-gray-400 mt-1">○</span>
+                      <div>
+                        <span className="font-medium">Premium App Experience</span>
+                        <p className="text-gray-600 mt-1">Carbon footprint tracking and advanced gamification</p>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-gray-400 mt-1">○</span>
+                      <div>
+                        <span className="font-medium">Concierge Recycling</span>
+                        <p className="text-gray-600 mt-1">On-demand pickups and integrated recycling solutions</p>
+                      </div>
+                    </li>
+                  </ul>
+                  <button className="mt-8 text-gray-600 hover:text-gray-900">
+                    Learn More →
+                  </button>
                 </div>
-              </motion.div>
-
-              {/* Step 4: Earn Rewards */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="relative"
-              >
-                <div className="bg-white rounded-2xl p-6 text-center relative z-10">
-                  <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
-                    <span className="text-3xl">🎯</span>
+                <div className="relative">
+                  <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 aspect-square flex items-center justify-center opacity-75">
+                    <span className="text-8xl">♻️</span>
                   </div>
-                  <div className="w-8 h-8 rounded-full bg-green-500 text-white flex items-center justify-center mx-auto absolute -top-4 right-1/2 transform translate-x-1/2">
-                    4
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3">Earn Rewards</h3>
-                  <p className="text-gray-600">Accumulate points and unlock rewards for eco-friendly habits.</p>
                 </div>
               </motion.div>
             </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mt-12"
-            >
-              <Button className="w-full md:w-auto text-lg py-4 px-8">
-                Start Your EcoTail Journey
-              </Button>
-            </motion.div>
           </div>
         </section>
 
@@ -397,114 +392,138 @@ export function Home() {
               </p>
             </motion.div>
 
-            <div className="space-y-12">
-              {/* AI-Powered Efficiency */}
+            <div className="space-y-16">
+              {/* Technical Stack */}
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="grid md:grid-cols-2 gap-8 items-center"
+                className="grid md:grid-cols-3 gap-8"
               >
-                <div className="order-2 md:order-1">
-                  <h3 className="text-2xl font-semibold mb-4">AI-Powered Efficiency</h3>
-                  <p className="text-gray-600 mb-6">
-                    Our advanced machine learning algorithms instantly identify and sort waste items, 
-                    preventing contamination and ensuring optimal recycling efficiency.
-                  </p>
-                  <div className="flex items-center gap-8">
-                    <div>
-                      <p className="text-3xl font-bold text-green-600">99%</p>
-                      <p className="text-sm text-gray-600">Sorting Accuracy</p>
-                    </div>
-                    <div>
-                      <p className="text-3xl font-bold text-green-600">0.5s</p>
-                      <p className="text-sm text-gray-600">Recognition Speed</p>
-                    </div>
+                {/* Frontend */}
+                <div className="bg-white rounded-2xl p-8 shadow-lg">
+                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
+                    <span className="text-2xl">🌐</span>
                   </div>
-                  {/* Testimonial */}
-                  <blockquote className="mt-6 border-l-4 border-green-500 pl-4 italic text-gray-600">
-                    "The AI sorting is incredibly accurate and makes recycling effortless!"
-                    <footer className="text-sm text-gray-500 mt-2">- Sarah M., Early Adopter</footer>
-                  </blockquote>
+                  <h3 className="text-xl font-semibold mb-4">Smart Interface</h3>
+                  <ul className="space-y-3 text-gray-600">
+                    <li className="flex items-center gap-2">
+                      <span className="text-green-500">✓</span>
+                      React + Tailwind CSS
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="text-green-500">✓</span>
+                      Real-time updates
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="text-green-500">✓</span>
+                      Mobile-first design
+                    </li>
+                  </ul>
                 </div>
-                <div className="order-1 md:order-2">
-                  <div className="bg-white rounded-2xl shadow-lg p-6 aspect-square flex items-center justify-center">
-                    <span className="text-6xl">🤖</span>
+
+                {/* Backend */}
+                <div className="bg-white rounded-2xl p-8 shadow-lg">
+                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
+                    <span className="text-2xl">🖥️</span>
                   </div>
+                  <h3 className="text-xl font-semibold mb-4">Powerful Backend</h3>
+                  <ul className="space-y-3 text-gray-600">
+                    <li className="flex items-center gap-2">
+                      <span className="text-green-500">✓</span>
+                      Node.js & Express
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="text-green-500">✓</span>
+                      Firebase integration
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="text-green-500">✓</span>
+                      Secure authentication
+                    </li>
+                  </ul>
+                </div>
+
+                {/* IoT & AI */}
+                <div className="bg-white rounded-2xl p-8 shadow-lg">
+                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
+                    <span className="text-2xl">🤖</span>
+                  </div>
+                  <h3 className="text-xl font-semibold mb-4">IoT & AI</h3>
+                  <ul className="space-y-3 text-gray-600">
+                    <li className="flex items-center gap-2">
+                      <span className="text-green-500">✓</span>
+                      TensorFlow Lite
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="text-green-500">✓</span>
+                      MQTT protocol
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="text-green-500">✓</span>
+                      Edge optimization
+                    </li>
+                  </ul>
                 </div>
               </motion.div>
 
-              {/* Gamification & Rewards */}
+              {/* Mobile App Features */}
               <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="grid md:grid-cols-2 gap-8 items-center"
+                className="bg-gradient-to-br from-green-50 to-gray-50 rounded-3xl p-8 md:p-12"
               >
-                <div className="order-2">
-                  <h3 className="text-2xl font-semibold mb-4">Gamification & Rewards</h3>
-                  <p className="text-gray-600 mb-6">
-                    Turn your eco-friendly habits into rewards with our engaging gamification system. 
-                    Earn points, unlock achievements, and redeem real-world benefits.
-                  </p>
-                  <div className="flex items-center gap-8">
-                    <div>
-                      <p className="text-3xl font-bold text-green-600">50+</p>
-                      <p className="text-sm text-gray-600">Achievements</p>
-                    </div>
-                    <div>
-                      <p className="text-3xl font-bold text-green-600">$100+</p>
-                      <p className="text-sm text-gray-600">Monthly Rewards</p>
-                    </div>
-                  </div>
-                  {/* Testimonial */}
-                  <blockquote className="mt-6 border-l-4 border-green-500 pl-4 italic text-gray-600">
-                    "The rewards program keeps me motivated to maintain sustainable habits!"
-                    <footer className="text-sm text-gray-500 mt-2">- Mike R., Premium User</footer>
-                  </blockquote>
-                </div>
-                <div className="order-1">
-                  <div className="bg-white rounded-2xl shadow-lg p-6 aspect-square flex items-center justify-center">
-                    <span className="text-6xl">🎮</span>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Real-Time Insights */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="grid md:grid-cols-2 gap-8 items-center"
-              >
-                <div className="order-2 md:order-1">
-                  <h3 className="text-2xl font-semibold mb-4">Real-Time Insights & Analytics</h3>
-                  <p className="text-gray-600 mb-6">
-                    Track your environmental impact in real-time with detailed analytics and personalized 
-                    recommendations for improving your sustainability habits.
-                  </p>
-                  <div className="flex items-center gap-8">
-                    <div>
-                      <p className="text-3xl font-bold text-green-600">24/7</p>
-                      <p className="text-sm text-gray-600">Monitoring</p>
-                    </div>
-                    <div>
-                      <p className="text-3xl font-bold text-green-600">30%</p>
-                      <p className="text-sm text-gray-600">Avg. Waste Reduction</p>
+                <div className="grid md:grid-cols-2 gap-8 items-center">
+                  <div>
+                    <h3 className="text-2xl font-semibold mb-6">Mobile Application</h3>
+                    <div className="space-y-6">
+                      <div>
+                        <h4 className="font-medium mb-2 flex items-center gap-2">
+                          <span className="text-green-500">●</span>
+                          Real-Time Insights
+                        </h4>
+                        <p className="text-gray-600">Fill-level alerts, usage stats, and sorting accuracy feedback with personalized monthly reports.</p>
+                      </div>
+                      <div>
+                        <h4 className="font-medium mb-2 flex items-center gap-2">
+                          <span className="text-green-500">●</span>
+                          Gamification & Rewards
+                        </h4>
+                        <p className="text-gray-600">Earn points for correct sorting, unlock achievements, and compete on community leaderboards.</p>
+                      </div>
+                      <div>
+                        <h4 className="font-medium mb-2 flex items-center gap-2">
+                          <span className="text-green-500">●</span>
+                          Smart Recommendations
+                        </h4>
+                        <p className="text-gray-600">Get personalized tips, auto-reordering suggestions, and seasonal waste reduction strategies.</p>
+                      </div>
                     </div>
                   </div>
-                  {/* Testimonial */}
-                  <blockquote className="mt-6 border-l-4 border-green-500 pl-4 italic text-gray-600">
-                    "The insights helped me reduce my waste by 40% in just two months!"
-                    <footer className="text-sm text-gray-500 mt-2">- Alex K., Business Owner</footer>
-                  </blockquote>
-                </div>
-                <div className="order-1 md:order-2">
-                  <div className="bg-white rounded-2xl shadow-lg p-6 aspect-square flex items-center justify-center">
-                    <span className="text-6xl">📊</span>
+                  <div className="relative">
+                    <img
+                      src="/app-preview.webp"
+                      alt="EcoTail mobile app interface preview"
+                      className="rounded-2xl shadow-xl"
+                    />
+                    <div className="absolute -bottom-4 -right-4 bg-white rounded-xl shadow-lg p-4">
+                      <div className="flex gap-1">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <svg
+                            key={star}
+                            className="w-5 h-5 text-yellow-400"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                          </svg>
+                        ))}
+                      </div>
+                      <p className="text-sm text-gray-600 mt-1">4.9 App Store Rating</p>
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -512,10 +531,10 @@ export function Home() {
           </div>
         </section>
 
-        {/* Testimonials Section */}
+        {/* Impact Section */}
         <section 
           className="py-16 md:py-24 bg-white"
-          aria-label="Customer testimonials and success stories"
+          aria-label="Environmental impact and sustainability achievements"
         >
           <div className="max-w-7xl mx-auto px-4">
             <motion.div
@@ -526,216 +545,80 @@ export function Home() {
               className="text-center mb-12 md:mb-16"
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6">
-                {SECTION_HEADINGS.testimonials.title}
+                {SECTION_HEADINGS.impact.title}
               </h2>
               <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
-                {SECTION_HEADINGS.testimonials.subtitle}
+                {SECTION_HEADINGS.impact.subtitle}
               </p>
             </motion.div>
 
-            {/* Featured Success Story */}
+            {/* Impact Stats */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-gradient-to-br from-green-50 to-gray-50 rounded-3xl p-8 mb-12"
+              className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16"
             >
-              <div className="grid md:grid-cols-2 gap-8 items-center">
-                <div>
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-16 h-16 rounded-full bg-white shadow-lg flex items-center justify-center">
-                      <img
-                        src="/testimonials/green-cafe.webp"
-                        alt="Green Café"
-                        className="w-12 h-12 rounded-full object-cover"
-                      />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-xl">Green Café</h3>
-                      <p className="text-gray-600">San Francisco, CA</p>
-                    </div>
-                  </div>
-                  <blockquote className="text-xl text-gray-800 mb-6">
-                    "EcoTail revolutionized our waste management. The AI sorting and real-time analytics 
-                    helped us reduce waste by 60% and cut costs significantly."
-                  </blockquote>
-                  <div className="grid grid-cols-3 gap-4 text-center">
-                    <div className="bg-white rounded-xl p-4">
-                      <p className="text-2xl font-bold text-green-600">60%</p>
-                      <p className="text-sm text-gray-600">Waste Reduction</p>
-                    </div>
-                    <div className="bg-white rounded-xl p-4">
-                      <p className="text-2xl font-bold text-green-600">$12K</p>
-                      <p className="text-sm text-gray-600">Annual Savings</p>
-                    </div>
-                    <div className="bg-white rounded-xl p-4">
-                      <p className="text-2xl font-bold text-green-600">95%</p>
-                      <p className="text-sm text-gray-600">Staff Adoption</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="relative">
-                  <img
-                    src="/testimonials/cafe-impact.webp"
-                    alt="Green Café Impact"
-                    className="rounded-2xl shadow-lg w-full"
-                  />
-                  <div className="absolute -bottom-4 -right-4 bg-white rounded-xl shadow-lg p-3">
-                    <div className="flex gap-1">
-                      {[1, 2, 3, 4, 5].map((star) => (
-                        <svg
-                          key={star}
-                          className="w-5 h-5 text-yellow-400"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                        </svg>
-                      ))}
-                    </div>
-                  </div>
-                </div>
+              <div className="text-center">
+                <p className="text-4xl font-bold text-green-600 mb-2">10K+</p>
+                <p className="text-sm text-gray-600">Pounds of Waste<br />Diverted Monthly</p>
+              </div>
+              <div className="text-center">
+                <p className="text-4xl font-bold text-green-600 mb-2">30%</p>
+                <p className="text-sm text-gray-600">Average Waste<br />Reduction</p>
+              </div>
+              <div className="text-center">
+                <p className="text-4xl font-bold text-green-600 mb-2">5K+</p>
+                <p className="text-sm text-gray-600">Trees Saved<br />Annually</p>
+              </div>
+              <div className="text-center">
+                <p className="text-4xl font-bold text-green-600 mb-2">50K</p>
+                <p className="text-sm text-gray-600">CO₂ Reduction<br />(lbs)</p>
               </div>
             </motion.div>
 
-            {/* User Testimonials Grid */}
-            <div className="grid md:grid-cols-3 gap-8">
-              {/* Individual User 1 */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="bg-white rounded-2xl p-6 shadow-lg"
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <img
-                    src="/testimonials/user1.webp"
-                    alt="Emily Chen"
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
-                  <div>
-                    <h3 className="font-semibold">Emily Chen</h3>
-                    <p className="text-sm text-gray-600">Homeowner</p>
-                  </div>
-                </div>
-                <blockquote className="text-gray-600 mb-4">
-                  "As a busy mom, EcoTail made it easy to teach my kids about recycling. 
-                  The gamification aspect got them excited about being eco-friendly!"
-                </blockquote>
-                <div className="flex items-center justify-between">
-                  <div className="flex gap-1">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <svg
-                        key={star}
-                        className="w-4 h-4 text-yellow-400"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <span className="text-green-600 font-semibold">45% Reduction</span>
-                </div>
-              </motion.div>
-
-              {/* Individual User 2 */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="bg-white rounded-2xl p-6 shadow-lg"
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <img
-                    src="/testimonials/user2.webp"
-                    alt="Marcus Johnson"
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
-                  <div>
-                    <h3 className="font-semibold">Marcus Johnson</h3>
-                    <p className="text-sm text-gray-600">Apartment Resident</p>
-                  </div>
-                </div>
-                <blockquote className="text-gray-600 mb-4">
-                  "The real-time tracking helped me understand my waste patterns. 
-                  I've earned over $200 in rewards just by being more mindful!"
-                </blockquote>
-                <div className="flex items-center justify-between">
-                  <div className="flex gap-1">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <svg
-                        key={star}
-                        className="w-4 h-4 text-yellow-400"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <span className="text-green-600 font-semibold">$200+ Earned</span>
-                </div>
-              </motion.div>
-
-              {/* Individual User 3 */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="bg-white rounded-2xl p-6 shadow-lg"
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <img
-                    src="/testimonials/user3.webp"
-                    alt="Sofia Rodriguez"
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
-                  <div>
-                    <h3 className="font-semibold">Sofia Rodriguez</h3>
-                    <p className="text-sm text-gray-600">Small Business Owner</p>
-                  </div>
-                </div>
-                <blockquote className="text-gray-600 mb-4">
-                  "EcoTail's AI sorting is a game-changer for my shop. We've reduced 
-                  contamination in our recycling and saved on waste management costs."
-                </blockquote>
-                <div className="flex items-center justify-between">
-                  <div className="flex gap-1">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <svg
-                        key={star}
-                        className="w-4 h-4 text-yellow-400"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <span className="text-green-600 font-semibold">35% Cost Savings</span>
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Trust Badges */}
+            {/* Sustainability Vision */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="mt-16 text-center"
+              className="bg-gradient-to-br from-green-50 to-gray-50 rounded-3xl p-8 md:p-12"
             >
-              <p className="text-sm text-gray-600 mb-6">Trusted by Leading Organizations</p>
-              <div className="flex flex-wrap justify-center items-center gap-8 opacity-70">
-                <img src="/logos/cert1.svg" alt="Certification 1" className="h-12" />
-                <img src="/logos/cert2.svg" alt="Certification 2" className="h-12" />
-                <img src="/logos/cert3.svg" alt="Certification 3" className="h-12" />
-                <img src="/logos/cert4.svg" alt="Certification 4" className="h-12" />
+              <div className="grid md:grid-cols-2 gap-12">
+                <div>
+                  <h3 className="text-2xl font-semibold mb-6">Our Vision for Sustainability</h3>
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-medium mb-2">Closed-Loop Recycling</h4>
+                      <p className="text-gray-600">Our canister swap program ensures minimal waste and optimal recycling efficiency.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-medium mb-2">Carbon Footprint Tracking</h4>
+                      <p className="text-gray-600">Real-time monitoring and feedback help users understand and reduce their environmental impact.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-medium mb-2">Community Impact</h4>
+                      <p className="text-gray-600">Partnerships with local organizations and municipalities create lasting environmental change.</p>
+                    </div>
+                  </div>
+                  <Button className="mt-8 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-500 hover:to-green-400">
+                    Join Our Mission
+                  </Button>
+                </div>
+                <div className="relative">
+                  <img
+                    src="/sustainability-vision.webp"
+                    alt="EcoTail's vision for sustainable waste management"
+                    className="rounded-2xl shadow-xl"
+                  />
+                  <div className="absolute -bottom-4 -right-4 bg-white rounded-xl shadow-lg p-4">
+                    <p className="text-sm font-medium text-gray-900">2025 Goal</p>
+                    <p className="text-2xl font-bold text-green-600">100K+</p>
+                    <p className="text-xs text-gray-600">Households Impacted</p>
+                  </div>
+                </div>
               </div>
             </motion.div>
 
@@ -749,14 +632,17 @@ export function Home() {
             >
               <div className="max-w-2xl mx-auto">
                 <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                  Ready to Transform Your Waste Management?
+                  Ready to Make a Difference?
                 </h3>
                 <p className="text-gray-600 mb-8">
-                  Join thousands of satisfied users who are making a difference with EcoTail.
+                  Join thousands of households transforming waste management with EcoTail.
                 </p>
-                <Button className="w-full md:w-auto text-lg py-4 px-8">
-                  Download EcoTail Today
-                </Button>
+                <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+                  <Button className="w-full md:w-auto text-lg py-4 px-8 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-500 hover:to-green-400">
+                    Pre-order Now
+                  </Button>
+                  <span className="text-gray-500">Starting at $99/month</span>
+                </div>
               </div>
             </motion.div>
           </div>
