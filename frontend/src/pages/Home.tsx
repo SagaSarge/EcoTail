@@ -1,36 +1,121 @@
+import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+
+// Animation variants for staggered animations
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+}
 
 export function Home() {
   return (
     <div className="space-y-16 pb-16">
       {/* Hero Section */}
-      <section className="relative -mt-6 bg-gradient-to-b from-primary-600 to-primary-800 py-24 text-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-6xl lg:text-[64px] lg:leading-[1.1]">
-              Effortless Sustainability
-            </h1>
-            <h2 className="mt-4 text-base font-medium tracking-tight text-primary-50 sm:text-xl md:text-2xl lg:text-[32px] lg:leading-[1.3]">
-              AI Rewards Zero Waste
-            </h2>
-            <p className="mx-auto mt-6 max-w-2xl text-sm text-primary-100 sm:text-base md:text-lg lg:text-[18px] lg:leading-[1.6]">
-              Experience next-level waste management with AI-powered sorting, gamified rewards, and real-time eco-insights—all designed to make going green second nature.
-            </p>
-            <div className="mt-10 flex justify-center gap-4">
-              <Link
-                to="/download"
-                className="rounded-lg bg-white px-6 py-3 text-base font-semibold text-primary-600 shadow-sm transition hover:bg-primary-50 sm:text-lg"
+      <section className="relative -mt-6">
+        {/* Background with gradient overlay */}
+        <div className="absolute inset-0 bg-[#1A2421]">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#02402C]/90 to-[#1A2421]/90" />
+        </div>
+
+        {/* Hero Content */}
+        <div className="relative">
+          <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
+            <div className="text-center">
+              {/* Main Headline */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
               >
-                Download EcoTail
-              </Link>
-              <Link
-                to="/learn-more"
-                className="rounded-lg border border-white px-6 py-3 text-base font-medium text-white transition hover:bg-white/10 sm:text-lg"
+                <h1 className="bg-gradient-to-r from-[#7DD8C6] to-white bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl md:text-6xl lg:text-[64px] lg:leading-[1.1]">
+                  Effortless Sustainability
+                </h1>
+              </motion.div>
+
+              {/* Subheading */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
               >
-                Learn more about EcoTail
-              </Link>
+                <h2 className="mt-4 text-base font-medium tracking-tight text-[#7DD8C6] sm:text-xl md:text-2xl lg:text-[32px] lg:leading-[1.3]">
+                  AI Rewards Zero Waste
+                </h2>
+              </motion.div>
+
+              {/* Supporting Text */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="mx-auto mt-6 max-w-2xl text-sm text-[#5E7D7E] sm:text-base md:text-lg lg:text-[18px] lg:leading-[1.6]"
+              >
+                Experience next-level waste management with AI-powered sorting, gamified rewards, and
+                real-time eco-insights—all designed to make going green second nature.
+              </motion.p>
+
+              {/* CTAs */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
+              >
+                {/* Primary CTA */}
+                <Link
+                  to="/download"
+                  className="group relative w-full overflow-hidden rounded-lg bg-[#7DD8C6] px-8 py-4 text-lg font-semibold text-[#1A2421] shadow-lg transition sm:w-auto"
+                >
+                  <span className="relative z-10">Download EcoTail</span>
+                  <div className="absolute inset-0 z-0 h-full w-full translate-y-full bg-[#02402C] transition-transform duration-300 group-hover:translate-y-0" />
+                </Link>
+
+                {/* Secondary CTA */}
+                <Link
+                  to="/learn-more"
+                  className="group relative w-full overflow-hidden rounded-lg border border-[#7DD8C6] px-8 py-4 text-lg font-medium text-[#7DD8C6] transition sm:w-auto"
+                >
+                  <span className="relative z-10 transition-colors duration-300 group-hover:text-[#1A2421]">
+                    Learn more about EcoTail
+                  </span>
+                  <div className="absolute inset-0 z-0 h-full w-full translate-y-full bg-[#7DD8C6] transition-transform duration-300 group-hover:translate-y-0" />
+                </Link>
+              </motion.div>
             </div>
           </div>
+
+          {/* Decorative Elements */}
+          <div className="absolute left-0 top-0 -z-10 h-full w-full overflow-hidden">
+            {/* Gradient Orbs */}
+            <div className="absolute -left-40 -top-40 h-80 w-80 rounded-full bg-[#7DD8C6]/20 blur-3xl" />
+            <div className="absolute -right-40 top-40 h-80 w-80 rounded-full bg-[#02402C]/20 blur-3xl" />
+          </div>
+        </div>
+
+        {/* Wave Separator */}
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden">
+          <svg
+            className="relative block w-full"
+            style={{ transform: 'rotate(180deg)' }}
+            viewBox="0 0 1440 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 50L48 45.8333C96 41.6667 192 33.3333 288 29.1667C384 25 480 25 576 33.3333C672 41.6667 768 58.3333 864 62.5C960 66.6667 1056 58.3333 1152 45.8333C1248 33.3333 1344 16.6667 1392 8.33333L1440 0V100H1392C1344 100 1248 100 1152 100C1056 100 960 100 864 100C768 100 672 100 576 100C480 100 384 100 288 100C192 100 96 100 48 100H0V50Z"
+              fill="#F7F4EC"
+            />
+          </svg>
         </div>
       </section>
 
@@ -127,112 +212,167 @@ export function Home() {
       </section>
 
       {/* Value Proposition Section */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-            A New Era in Waste Management
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600 dark:text-gray-300">
-            EcoTail revolutionizes waste management by combining AI technology with sustainable practices,
-            making recycling not just a responsibility, but a rewarding experience.
-          </p>
-          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              {
-                title: 'AI-Powered Sorting',
-                description: 'Smart technology that automatically identifies and sorts waste',
-                icon: '🤖',
-              },
-              {
-                title: 'Reusable Canisters',
-                description: 'Eco-friendly containers that reduce plastic waste',
-                icon: '♻️',
-              },
-              {
-                title: 'Gamified Rewards',
-                description: 'Earn points and rewards for sustainable choices',
-                icon: '🎮',
-              },
-              {
-                title: 'Real-Time Tracking',
-                description: 'Monitor your environmental impact instantly',
-                icon: '📊',
-              },
-            ].map((feature) => (
-              <div
-                key={feature.title}
-                className="rounded-lg bg-white p-6 shadow-sm dark:bg-gray-800"
-              >
-                <div className="text-3xl">{feature.icon}</div>
-                <h3 className="mt-4 text-lg font-semibold text-gray-900 dark:text-white">
-                  {feature.title}
-                </h3>
-                <p className="mt-2 text-gray-600 dark:text-gray-300">{feature.description}</p>
-              </div>
-            ))}
+      <section className="relative overflow-hidden bg-[#F7F4EC] py-24">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
+        >
+          <div className="text-center">
+            <motion.h2
+              variants={itemVariants}
+              className="text-3xl font-bold tracking-tight text-[#1A2421] sm:text-4xl lg:text-5xl"
+            >
+              A New Era in Waste Management
+            </motion.h2>
+            <motion.p
+              variants={itemVariants}
+              className="mx-auto mt-6 max-w-2xl text-lg text-[#5E7D7E]"
+            >
+              EcoTail revolutionizes waste management by combining AI technology with sustainable
+              practices, making recycling not just a responsibility, but a rewarding experience.
+            </motion.p>
+
+            {/* Feature Grid */}
+            <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                {
+                  title: 'AI-Powered Sorting',
+                  description: 'Smart technology that automatically identifies and sorts waste',
+                  icon: '🤖',
+                  color: 'bg-[#7DD8C6]',
+                },
+                {
+                  title: 'Reusable Canisters',
+                  description: 'Eco-friendly containers that reduce plastic waste',
+                  icon: '♻️',
+                  color: 'bg-[#02402C]',
+                },
+                {
+                  title: 'Gamified Rewards',
+                  description: 'Earn points and rewards for sustainable choices',
+                  icon: '🎮',
+                  color: 'bg-[#7DD8C6]',
+                },
+                {
+                  title: 'Real-Time Tracking',
+                  description: 'Monitor your environmental impact instantly',
+                  icon: '📊',
+                  color: 'bg-[#02402C]',
+                },
+              ].map((feature, index) => (
+                <motion.div
+                  key={feature.title}
+                  variants={itemVariants}
+                  className="group relative overflow-hidden rounded-2xl bg-white p-8 shadow-lg transition-shadow hover:shadow-xl"
+                >
+                  <div
+                    className={`absolute -right-4 -top-4 h-16 w-16 rounded-full ${feature.color} opacity-10 transition-transform group-hover:scale-150`}
+                  />
+                  <div className="relative">
+                    <div className="mb-4 text-4xl">{feature.icon}</div>
+                    <h3 className="mb-2 text-xl font-semibold text-[#1A2421]">{feature.title}</h3>
+                    <p className="text-[#5E7D7E]">{feature.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* How It Works Section */}
-      <section className="bg-gray-50 py-16 dark:bg-gray-900/50">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="relative py-24">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
+        >
           <div className="text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+            <motion.h2
+              variants={itemVariants}
+              className="text-3xl font-bold tracking-tight text-[#1A2421] sm:text-4xl lg:text-5xl"
+            >
               How EcoTail Simplifies Your Routine
-            </h2>
-            <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-              {[
-                {
-                  step: '01',
-                  title: 'Scan & Sort',
-                  description: 'Use our AI to identify waste type instantly',
-                  icon: '📱',
-                },
-                {
-                  step: '02',
-                  title: 'Smart Disposal',
-                  description: 'Place items in designated smart bins',
-                  icon: '🗑️',
-                },
-                {
-                  step: '03',
-                  title: 'Track Progress',
-                  description: 'Monitor your impact in real-time',
-                  icon: '📈',
-                },
-                {
-                  step: '04',
-                  title: 'Earn Rewards',
-                  description: 'Get points for sustainable choices',
-                  icon: '🎁',
-                },
-              ].map((step) => (
-                <div
-                  key={step.step}
-                  className="relative rounded-lg bg-white p-6 shadow-sm dark:bg-gray-800"
-                >
-                  <div className="absolute -top-4 left-6 rounded-full bg-primary-600 px-4 py-1 text-sm font-bold text-white">
-                    {step.step}
-                  </div>
-                  <div className="text-3xl">{step.icon}</div>
-                  <h3 className="mt-4 text-lg font-semibold text-gray-900 dark:text-white">
-                    {step.title}
-                  </h3>
-                  <p className="mt-2 text-gray-600 dark:text-gray-300">{step.description}</p>
+            </motion.h2>
+
+            {/* Steps */}
+            <div className="mt-16">
+              <div className="grid gap-8 lg:grid-cols-4">
+                {[
+                  {
+                    step: '01',
+                    title: 'Scan & Sort',
+                    description: 'Built-in AI camera identifies waste category instantly',
+                    icon: '📱',
+                  },
+                  {
+                    step: '02',
+                    title: 'Reusable Canister Swap',
+                    description: 'No more single-use bags, just swap and go',
+                    icon: '🔄',
+                  },
+                  {
+                    step: '03',
+                    title: 'Track Progress',
+                    description: 'Receive instant feedback and waste reduction tips',
+                    icon: '📈',
+                  },
+                  {
+                    step: '04',
+                    title: 'Earn Rewards',
+                    description: 'Accumulate points for eco-friendly habits',
+                    icon: '🎁',
+                  },
+                ].map((step, index) => (
+                  <motion.div
+                    key={step.step}
+                    variants={itemVariants}
+                    className="relative rounded-2xl bg-white p-8 shadow-lg"
+                  >
+                    <div className="absolute -top-4 left-8 rounded-full bg-[#7DD8C6] px-4 py-1 text-sm font-bold text-[#1A2421]">
+                      {step.step}
+                    </div>
+                    <div className="mb-4 text-4xl">{step.icon}</div>
+                    <h3 className="mb-2 text-xl font-semibold text-[#1A2421]">{step.title}</h3>
+                    <p className="text-[#5E7D7E]">{step.description}</p>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Progress Line (Desktop) */}
+              <div className="relative mt-8 hidden lg:block">
+                <div className="absolute left-0 top-1/2 h-0.5 w-full -translate-y-1/2 bg-[#7DD8C6]/20">
+                  <motion.div
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, delay: 0.5 }}
+                    className="h-full origin-left bg-[#7DD8C6]"
+                  />
                 </div>
-              ))}
+              </div>
             </div>
-            <div className="mt-12">
+
+            {/* CTA */}
+            <motion.div
+              variants={itemVariants}
+              className="mt-16 flex justify-center"
+            >
               <Link
                 to="/signup"
-                className="rounded-lg bg-primary-600 px-6 py-3 text-lg font-semibold text-white shadow-sm hover:bg-primary-700"
+                className="group relative overflow-hidden rounded-lg bg-[#02402C] px-8 py-4 text-lg font-semibold text-white shadow-lg transition-shadow hover:shadow-xl"
               >
-                Start Your EcoTail Journey
+                <span className="relative z-10">Start Your EcoTail Journey</span>
+                <div className="absolute inset-0 -z-10 translate-y-full bg-[#7DD8C6] transition-transform duration-300 group-hover:translate-y-0" />
               </Link>
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Testimonials Section */}
