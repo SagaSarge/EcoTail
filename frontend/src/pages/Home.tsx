@@ -6,25 +6,25 @@ import { PageLayout } from '../components/layout/PageLayout'
 // SEO-optimized section headings
 const SECTION_HEADINGS = {
   hero: {
-    title: "Effortless Sustainability",
-    subtitle: "AI Rewards Zero Waste",
-    description: "Smart waste management powered by AI technology"
+    title: "Smart Waste Management",
+    subtitle: "AI-Powered • Eco-Friendly • Rewarding",
+    description: "Transform your daily waste management with AI-powered sorting, real-time analytics, and eco-rewards."
   },
   valueProposition: {
-    title: "A New Era in Waste Management",
-    subtitle: "Transform your daily waste management into an intelligent, rewarding experience."
+    title: "Why Choose EcoTail?",
+    subtitle: "Join the eco-friendly revolution in waste management with our innovative smart solution."
   },
-  howItWorks: {
-    title: "How EcoTail Simplifies Your Routine",
-    subtitle: "Experience a seamless journey towards sustainable living with our intelligent waste management system."
+  journey: {
+    title: "Your EcoTail Journey",
+    subtitle: "Experience the evolution of smart waste management, from basic AI sorting to premium closed-loop recycling."
   },
   features: {
-    title: "Features That Make a Difference",
-    subtitle: "Discover how EcoTail's innovative features transform waste management into an engaging, rewarding experience."
+    title: "Revolutionary Features",
+    subtitle: "Discover how EcoTail's cutting-edge technology makes sustainable living effortless and rewarding."
   },
-  testimonials: {
-    title: "Join Our Growing Community",
-    subtitle: "See how individuals and businesses are transforming their waste management with EcoTail."
+  impact: {
+    title: "Make a Real Impact",
+    subtitle: "Track your environmental savings and join a community of eco-conscious households."
   }
 }
 
@@ -34,7 +34,7 @@ export function Home() {
       <div className="relative">
         {/* Hero Section */}
         <section 
-          className="min-h-screen flex flex-col items-center justify-center relative"
+          className="min-h-screen flex flex-col items-center justify-center relative bg-gradient-to-b from-white via-green-50 to-white"
           aria-label="Hero section introducing EcoTail's smart waste management solution"
         >
           {/* Fixed QR Code */}
@@ -55,7 +55,7 @@ export function Home() {
 
           {/* Logo Circle */}
           <div 
-            className="w-24 md:w-32 h-24 md:h-32 rounded-full bg-gray-100 flex items-center justify-center mb-8 md:mb-12"
+            className="w-24 md:w-32 h-24 md:h-32 rounded-full bg-gradient-to-br from-green-100 to-green-50 flex items-center justify-center mb-8 md:mb-12 shadow-lg"
             aria-hidden="true"
           >
             <span className="text-3xl md:text-4xl">🌱</span>
@@ -63,24 +63,72 @@ export function Home() {
 
           {/* Main Hero Content */}
           <div className="max-w-4xl mx-auto text-center px-4">
-            <h1 className="text-4xl md:text-[72px] leading-[1.1] font-bold mb-4 md:mb-6">
-              <span className="block">{SECTION_HEADINGS.hero.title}</span>
-              <span className="block text-green-600">{SECTION_HEADINGS.hero.subtitle}</span>
-            </h1>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h1 className="text-4xl md:text-6xl lg:text-7xl leading-[1.1] font-bold mb-4 md:mb-6">
+                <span className="block bg-clip-text text-transparent bg-gradient-to-r from-green-600 to-green-400">
+                  {SECTION_HEADINGS.hero.title}
+                </span>
+                <span className="block text-sm md:text-xl text-gray-600 mt-4 font-normal">
+                  {SECTION_HEADINGS.hero.subtitle}
+                </span>
+              </h1>
 
-            <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-2xl mx-auto">
-              {SECTION_HEADINGS.hero.description}
-            </p>
+              <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-2xl mx-auto">
+                {SECTION_HEADINGS.hero.description}
+              </p>
 
-            <div className="flex flex-col items-center gap-4 mb-4">
-              <Button className="w-full md:w-auto text-lg py-4 px-8">
-                Download EcoTail Now
-              </Button>
-              <button className="text-gray-600 hover:text-gray-900 text-sm md:text-base">
-                Learn More About EcoTail
-              </button>
-            </div>
+              <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-8">
+                <Button className="w-full md:w-auto text-lg py-4 px-8 bg-gradient-to-r from-green-600 to-green-500 hover:from-green-500 hover:to-green-400">
+                  Pre-order Now
+                </Button>
+                <span className="text-gray-500">Starting at $99/month</span>
+              </div>
+
+              <div className="flex items-center justify-center gap-8 text-sm text-gray-600">
+                <div className="flex items-center gap-2">
+                  <span className="text-green-500">✓</span>
+                  AI-Powered Sorting
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-green-500">✓</span>
+                  Real-Time Analytics
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-green-500">✓</span>
+                  Eco Rewards
+                </div>
+              </div>
+            </motion.div>
           </div>
+
+          {/* Stats Banner */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="absolute bottom-0 left-0 right-0 bg-white/80 backdrop-blur-sm border-t border-gray-100"
+          >
+            <div className="max-w-7xl mx-auto px-4 py-6">
+              <div className="grid grid-cols-3 gap-8 text-center">
+                <div>
+                  <p className="text-3xl font-bold text-green-600">10,000+</p>
+                  <p className="text-sm text-gray-600">Pounds of Waste Diverted</p>
+                </div>
+                <div>
+                  <p className="text-3xl font-bold text-green-600">4.9/5</p>
+                  <p className="text-sm text-gray-600">Customer Rating</p>
+                </div>
+                <div>
+                  <p className="text-3xl font-bold text-green-600">30%</p>
+                  <p className="text-sm text-gray-600">Average Waste Reduction</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </section>
 
         {/* Value Proposition Section */}
