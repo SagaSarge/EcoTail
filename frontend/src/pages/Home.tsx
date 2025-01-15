@@ -270,10 +270,10 @@ export function Home() {
               className="text-center mb-12 md:mb-16"
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6">
-                {SECTION_HEADINGS.howItWorks.title}
+                {SECTION_HEADINGS.journey.title}
               </h2>
               <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
-                {SECTION_HEADINGS.howItWorks.subtitle}
+                {SECTION_HEADINGS.journey.subtitle}
               </p>
             </motion.div>
 
