@@ -1,30 +1,26 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { useAppStore } from './stores/useAppStore'
+import { PageLayout } from './components/layout/PageLayout'
 
 function App() {
-  const isLoading = useAppStore((state) => state.isLoading)
-
   return (
     <Router>
-      <div className="min-h-screen bg-gray-100">
-        {isLoading && (
-          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="text-white">Loading...</div>
-          </div>
-        )}
+      <PageLayout>
         <Routes>
-          <Route path="/" element={
-            <div className="container mx-auto px-4 py-8">
-              <h1 className="text-4xl font-bold text-gray-900">
-                EcoTail Smart Trash
-              </h1>
-              <p className="mt-4 text-gray-600">
-                Welcome to the future of waste management
-              </p>
-            </div>
-          } />
+          <Route 
+            path="/" 
+            element={
+              <div className="space-y-6 text-center">
+                <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
+                  Welcome to EcoTail
+                </h1>
+                <p className="text-gray-600 dark:text-gray-300">
+                  The future of smart waste management
+                </p>
+              </div>
+            } 
+          />
         </Routes>
-      </div>
+      </PageLayout>
     </Router>
   )
 }
