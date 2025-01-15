@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from '../ui/Button'
 
@@ -7,6 +7,26 @@ interface PageLayoutProps {
 }
 
 export function PageLayout({ children }: PageLayoutProps) {
+  const [email, setEmail] = useState('')
+  const [subscribeSuccess, setSubscribeSuccess] = useState(false)
+  const [preOrderSuccess, setPreOrderSuccess] = useState(false)
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (email) {
+      setSubscribeSuccess(true)
+      setEmail('')
+      // Reset success message after 3 seconds
+      setTimeout(() => setSubscribeSuccess(false), 3000)
+    }
+  }
+
+  const handlePreOrder = () => {
+    setPreOrderSuccess(true)
+    // Reset success message after 3 seconds
+    setTimeout(() => setPreOrderSuccess(false), 3000)
+  }
+
   return (
     <div className="min-h-screen flex flex-col">
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
@@ -184,22 +204,34 @@ export function PageLayout({ children }: PageLayoutProps) {
               <p className="mt-2 text-sm text-gray-600">
                 Be the first to experience smart waste management. Get exclusive updates and early access.
               </p>
-              <div className="mt-4 flex flex-col sm:flex-row gap-3 justify-center">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="min-w-0 flex-auto rounded-lg border-0 px-4 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 text-sm"
-                />
-                <button
-                  type="submit"
-                  className="flex-none rounded-lg bg-green-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
-                >
-                  Subscribe
-                </button>
-              </div>
+              <form onSubmit={handleSubscribe} className="mt-4">
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email"
+                    className="min-w-0 flex-auto rounded-lg border-0 px-4 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 text-sm"
+                    required
+                  />
+                  <button
+                    type="submit"
+                    className="flex-none rounded-lg bg-green-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+                  >
+                    Subscribe
+                  </button>
+                </div>
+                {/* Success Message for Subscribe */}
+                <div className={`mt-2 transition-all duration-300 ${subscribeSuccess ? 'opacity-100' : 'opacity-0'}`}>
+                  <p className="text-sm text-green-600">
+                    ✓ Thank you for subscribing! Check your email for updates.
+                  </p>
+                </div>
+              </form>
               <div className="mt-6">
                 <button
                   type="button"
+                  onClick={handlePreOrder}
                   className="inline-flex items-center gap-x-2 rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                 >
                   <span>Pre-order Now</span>
@@ -207,6 +239,12 @@ export function PageLayout({ children }: PageLayoutProps) {
                     <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
                   </svg>
                 </button>
+                {/* Success Message for Pre-order */}
+                <div className={`mt-2 transition-all duration-300 ${preOrderSuccess ? 'opacity-100' : 'opacity-0'}`}>
+                  <p className="text-sm text-green-600">
+                    ✓ Pre-order received! We'll contact you soon.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
