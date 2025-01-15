@@ -18,38 +18,19 @@ const cardStyles = cva(
   }
 )
 
-interface CardProps
-  extends HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof cardStyles> {
-  title?: string
-  description?: string
+interface CardProps {
+  title: string;
+  children: React.ReactNode;
+  className?: string;
 }
 
-export const Card = ({
-  className,
-  padding,
-  title,
-  description,
-  children,
-  ...props
-}: CardProps) => {
+export function Card({ title, children, className = '' }: CardProps) {
   return (
-    <div className={cardStyles({ padding, className })} {...props}>
-      {(title || description) && (
-        <div className="mb-4">
-          {title && (
-            <h3 className="text-lg font-medium text-gray-900 dark:text-white">
-              {title}
-            </h3>
-          )}
-          {description && (
-            <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-              {description}
-            </p>
-          )}
-        </div>
-      )}
+    <div className={`rounded-lg bg-white p-6 shadow-sm dark:bg-gray-800 ${className}`}>
+      <h3 className="mb-4 text-lg font-medium text-gray-900 dark:text-white">
+        {title}
+      </h3>
       {children}
     </div>
-  )
+  );
 } 

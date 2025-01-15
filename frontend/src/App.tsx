@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { PageLayout } from './components/layout/PageLayout'
+import { SmartBins } from './pages/SmartBins'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
               </div>
             } 
           />
+          <Route path="/bins" element={<SmartBins />} />
         </Routes>
       </PageLayout>
     </Router>
