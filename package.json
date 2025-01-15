@@ -1,0 +1,19 @@
+{
+    "name": "ecotail",
+    "private": true,
+    "workspaces": ["frontend", "backend", "functions"],
+    "scripts": {
+      "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+      "format": "prettier --write .",
+      "test": "npm run test --workspaces",
+      "build": "npm run build --workspaces"
+    },
+    "devDependencies": {
+      "eslint": "^8.43.0",
+      "prettier": "^2.8.8",
+      "husky": "^8.0.2",
+      "lint-staged": "^13.2.3",
+      "typescript": "^5.1.6"
+    }
+  }
+  
