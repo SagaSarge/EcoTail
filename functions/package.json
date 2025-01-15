@@ -1,0 +1,16 @@
+{
+  "name": "ecotail-functions",
+  "version": "1.0.0",
+  "description": "Firebase Functions for EcoTail",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w",
+    "serve": "firebase emulators:start --only functions",
+    "deploy": "firebase deploy --only functions"
+  },
+  "engines": {
+    "node": "18"
+  }
+}

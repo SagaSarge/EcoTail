@@ -12,7 +12,12 @@
       "baseUrl": ".",
       "paths": {
         "@/*": ["src/*"]
-      }
+      },
+      "types": ["node", "jest", "express", "cors", "supertest"]
+    },
+    "ts-node": {
+      "esm": true,
+      "experimentalSpecifierResolution": "node"
     },
     "include": ["src/**/*"],
     "exclude": ["node_modules", "dist", "**/*.test.ts"]

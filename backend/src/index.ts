@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { logger } from './middleware/logger.js';
@@ -8,7 +8,7 @@ import sampleRoute from './routes/sampleRoute.js';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = Number(process.env.PORT) || 3000;
 
 // Middleware
 app.use(cors());
@@ -18,7 +18,7 @@ app.use(logger);
 // Routes
 app.use('/api', sampleRoute);
 
-app.get('/', (req: express.Request, res: express.Response) => {
+app.get('/', (req: Request, res: Response) => {
   res.send('EcoTail Backend is running!');
 });
 

@@ -4,7 +4,7 @@ import { formatResponse } from '../utils/responseFormatter.js';
 const router = Router();
 
 // Example route
-router.get('/status', (req: Request, res: Response) => {
+router.get('/status', (_req: Request, res: Response) => {
   res.json(formatResponse({ status: 'EcoTail API is healthy!' }));
 });
 
