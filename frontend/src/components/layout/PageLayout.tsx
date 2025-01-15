@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
+import { Button } from '../ui/Button'
 
 interface PageLayoutProps {
   children: ReactNode
@@ -7,46 +8,35 @@ interface PageLayoutProps {
 
 export function PageLayout({ children }: PageLayoutProps) {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <header className="bg-white shadow-sm dark:bg-gray-800">
-        <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between">
-            <div className="flex items-center">
-              <Link to="/" className="text-xl font-bold text-primary-600 dark:text-primary-500">
-                EcoTail
-              </Link>
-              <div className="ml-10 flex items-baseline space-x-4">
-                <Link
-                  to="/ai-innovations"
-                  className="rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
-                >
-                  AI Innovations
-                </Link>
-                <Link
-                  to="/clean"
-                  className="rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
-                >
-                  Clean
-                </Link>
-                <Link
-                  to="/by-self-labs"
-                  className="rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
-                >
-                  By Self Labs
-                </Link>
-                <Link
-                  to="/education"
-                  className="rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
-                >
-                  Education
-                </Link>
+    <div className="min-h-screen flex flex-col">
+      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <nav className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            {/* Logo Circle */}
+            <Link to="/" className="flex items-center gap-2">
+              <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
+                <span className="text-xl">🌱</span>
               </div>
-            </div>
+              <span className="font-medium text-gray-900">EcoTail</span>
+            </Link>
+          </div>
+
+          {/* Navigation Links */}
+          <div className="flex items-center gap-8">
+            <Link to="/ai-innovations" className="text-gray-600 hover:text-gray-900">AI Innovations</Link>
+            <Link to="/clean" className="text-gray-600 hover:text-gray-900">Clean</Link>
+            <Link to="/by-self-labs" className="text-gray-600 hover:text-gray-900">By Self Labs</Link>
+            <Link to="/education" className="text-gray-600 hover:text-gray-900">Education</Link>
+          </div>
+
+          {/* Download Button */}
+          <div>
+            <Button>Download EcoTail</Button>
           </div>
         </nav>
       </header>
 
-      <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <main className="flex-1">
         {children}
       </main>
 
