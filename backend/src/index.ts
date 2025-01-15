@@ -1,32 +1,28 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { logger } from './middleware/logger.js';
-import sampleRoute from './routes/sampleRoute.js';
 
 // Load environment variables
 dotenv.config();
 
 const app = express();
-const PORT = Number(process.env.PORT) || 3000;
+const port = 3000;
 
-// Middleware
 app.use(cors());
 app.use(express.json());
-app.use(logger);
 
-// Routes
-app.use('/api', sampleRoute);
-
-app.get('/', (req: Request, res: Response) => {
+app.get('/', (req, res) => {
   res.send('EcoTail Backend is running!');
 });
 
-// Start the server
-if (process.env.NODE_ENV !== 'test') {
-  app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+app.get('/api/status', (req, res) => {
+  res.json({
+    success: true,
+    message: 'EcoTail API is healthy!',
+    timestamp: new Date().toISOString()
   });
-}
+});
 
-export default app; 
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+}); 
