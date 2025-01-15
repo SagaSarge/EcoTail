@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { Button } from '../components/ui/Button'
 
 // Animation variants for staggered animations
 const containerVariants = {
@@ -69,30 +70,59 @@ export function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
+                className="mt-10 flex justify-center"
               >
-                {/* Primary CTA */}
-                <Link
-                  to="/download"
-                  className="group relative w-full overflow-hidden rounded-lg bg-[#7DD8C6] px-8 py-4 text-lg font-semibold text-[#1A2421] shadow-lg transition sm:w-auto"
-                >
-                  <span className="relative z-10">Download EcoTail</span>
-                  <div className="absolute inset-0 z-0 h-full w-full translate-y-full bg-[#02402C] transition-transform duration-300 group-hover:translate-y-0" />
-                </Link>
-
-                {/* Secondary CTA */}
-                <Link
-                  to="/learn-more"
-                  className="group relative w-full overflow-hidden rounded-lg border border-[#7DD8C6] px-8 py-4 text-lg font-medium text-[#7DD8C6] transition sm:w-auto"
-                >
-                  <span className="relative z-10 transition-colors duration-300 group-hover:text-[#1A2421]">
-                    Learn more about EcoTail
-                  </span>
-                  <div className="absolute inset-0 z-0 h-full w-full translate-y-full bg-[#7DD8C6] transition-transform duration-300 group-hover:translate-y-0" />
-                </Link>
+                <Button onClick={() => window.location.href = '/buy'}>
+                  Buy Now
+                </Button>
               </motion.div>
             </div>
           </div>
+
+          {/* Image Showcase Grid - Matching Google Chrome's Layout */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="mx-auto mt-16 grid max-w-[1200px] grid-cols-1 gap-6 px-4 sm:grid-cols-2 lg:grid-cols-4"
+          >
+            {[
+              {
+                src: '/placeholder-1.jpg',
+                alt: 'EcoTail mobile interface showing waste scanning',
+                className: 'aspect-[4/3] rounded-xl shadow-lg',
+              },
+              {
+                src: '/placeholder-2.jpg',
+                alt: 'EcoTail dashboard with sustainability metrics',
+                className: 'aspect-[4/3] rounded-xl shadow-lg',
+              },
+              {
+                src: '/placeholder-3.jpg',
+                alt: 'EcoTail rewards and achievements interface',
+                className: 'aspect-[4/3] rounded-xl shadow-lg',
+              },
+              {
+                src: '/placeholder-4.jpg',
+                alt: 'EcoTail community impact visualization',
+                className: 'aspect-[4/3] rounded-xl shadow-lg',
+              },
+            ].map((image, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 * index }}
+                className="overflow-hidden"
+              >
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className={`${image.className} w-full object-cover transition-transform duration-300 hover:scale-105`}
+                />
+              </motion.div>
+            ))}
+          </motion.div>
 
           {/* Decorative Elements */}
           <div className="absolute left-0 top-0 -z-10 h-full w-full overflow-hidden">
@@ -164,52 +194,144 @@ export function Home() {
         </div>
       </section>
 
-      {/* Latest Updates Section */}
+      {/* Latest Updates Section - Matching Google's Layout */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 className="text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-3xl lg:text-[36px]">
-          Discover the latest <span className="text-primary-600">EcoTail updates</span>
-        </h2>
-        <div className="mt-12 grid gap-8 sm:grid-cols-2">
-          {[
-            {
-              label: 'UPDATES',
-              title: 'Automatic updates',
-              description:
-                'Stay current with the latest features and improvements. EcoTail updates automatically to ensure you always have the best experience.',
-              link: '/updates',
-              linkText: 'Learn about automatic updates',
-            },
-            {
-              label: 'LATEST',
-              title: "What's New from EcoTail",
-              description:
-                'Explore our newest features designed to make waste management even more efficient, sustainable, and rewarding.',
-              link: '/whats-new',
-              linkText: "Learn what's new on EcoTail",
-            },
-          ].map((card) => (
-            <div
-              key={card.label}
-              className="rounded-lg bg-primary-50/50 p-6 dark:bg-primary-900/10"
-            >
-              <div className="text-sm font-semibold text-primary-600 dark:text-primary-400">
-                {card.label}
-              </div>
-              <h3 className="mt-2 text-xl font-semibold text-gray-900 dark:text-white">
-                {card.title}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center"
+        >
+          <h2 className="text-[40px] font-medium leading-tight text-[#1A2421] lg:text-[52px]">
+            Discover the latest{' '}
+            <span className="inline-flex items-center rounded-full bg-[#E6F7F3] px-4 py-1">
+              <img src="/eco-icon.svg" alt="" className="mr-2 h-6 w-6" />
+              <span className="text-[#02402C]">updates</span>
+            </span>{' '}
+            from EcoTail
+          </h2>
+        </motion.div>
+
+        <div className="mt-16 grid gap-6 lg:grid-cols-2">
+          {/* Updates Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="group relative overflow-hidden rounded-3xl bg-[#E6F7F3] p-8 lg:p-12"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[#7DD8C6]/10" />
+            <div className="relative">
+              <div className="text-sm font-medium uppercase tracking-wider text-[#02402C]">UPDATES</div>
+              <h3 className="mt-4 text-2xl font-medium text-[#1A2421] lg:text-3xl">
+                Automatic updates
               </h3>
-              <p className="mt-4 text-base text-gray-600 dark:text-gray-300">{card.description}</p>
+              <p className="mt-4 text-[#5E7D7E] lg:text-lg">
+                New features roll out every two weeks, ensuring you always have the latest in sustainable waste management technology.
+              </p>
               <Link
-                to={card.link}
-                className="mt-4 inline-flex items-center text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300"
+                to="/updates"
+                className="mt-6 inline-flex items-center text-[#02402C] hover:underline"
               >
-                {card.linkText}
+                Learn about automatic updates
                 <span className="ml-2">→</span>
               </Link>
+              
+              {/* Preview Image */}
+              <div className="mt-8 overflow-hidden rounded-xl bg-white shadow-lg">
+                <img
+                  src="/updates-preview.webp"
+                  alt="EcoTail updates interface"
+                  className="w-full"
+                  loading="lazy"
+                />
+              </div>
             </div>
-          ))}
+          </motion.div>
+
+          {/* Latest Features Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="group relative overflow-hidden rounded-3xl bg-[#F7F4EC] p-8 lg:p-12"
+          >
+            <div className="relative">
+              <div className="text-sm font-medium uppercase tracking-wider text-[#02402C]">LATEST</div>
+              <h3 className="mt-4 text-2xl font-medium text-[#1A2421] lg:text-3xl">
+                New from EcoTail
+              </h3>
+              <p className="mt-4 text-[#5E7D7E] lg:text-lg">
+                EcoTail regularly updates with tools and features that make sustainable living easier and more rewarding.
+              </p>
+              <Link
+                to="/whats-new"
+                className="mt-6 inline-flex items-center text-[#02402C] hover:underline"
+              >
+                Learn what's new on EcoTail
+                <span className="ml-2">→</span>
+              </Link>
+
+              {/* EcoTail Logo */}
+              <div className="mt-12 flex justify-center">
+                <img
+                  src="/ecotail-logo.svg"
+                  alt="EcoTail Logo"
+                  className="h-24 w-24"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </motion.div>
         </div>
+
+        {/* Make it yours Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-24 text-center"
+        >
+          <h2 className="text-[40px] font-medium leading-tight text-[#1A2421] lg:text-[52px]">
+            Make it{' '}
+            <span className="inline-flex items-center rounded-full bg-[#E6F7F3] px-4 py-1">
+              <img src="/eco-icon.svg" alt="" className="mr-2 h-6 w-6" />
+              <span className="text-[#02402C]">yours</span>
+            </span>{' '}
+            and take it with you
+          </h2>
+
+          {/* Large Feature Image */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="mt-12 overflow-hidden rounded-3xl"
+          >
+            <img
+              src="/eco-dashboard.webp"
+              alt="EcoTail Dashboard"
+              className="w-full"
+              loading="lazy"
+            />
+          </motion.div>
+        </motion.div>
       </section>
+
+      {/* Footer Wave */}
+      <div className="relative mt-24">
+        <svg
+          className="relative block w-full"
+          viewBox="0 0 1440 100"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0 50L48 45.8333C96 41.6667 192 33.3333 288 29.1667C384 25 480 25 576 33.3333C672 41.6667 768 58.3333 864 62.5C960 66.6667 1056 58.3333 1152 45.8333C1248 33.3333 1344 16.6667 1392 8.33333L1440 0V100H1392C1344 100 1248 100 1152 100C1056 100 960 100 864 100C768 100 672 100 576 100C480 100 384 100 288 100C192 100 96 100 48 100H0V50Z"
+            fill="#E6F7F3"
+          />
+        </svg>
+      </div>
 
       {/* Value Proposition Section */}
       <section className="relative overflow-hidden bg-[#F7F4EC] py-24">
