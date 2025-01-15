@@ -42,14 +42,6 @@ export function PageLayout({ children }: PageLayoutProps) {
                 </Link>
               </div>
             </div>
-            <div>
-              <Link
-                to="/contact"
-                className="rounded-md px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
-              >
-                Contact Us
-              </Link>
-            </div>
           </div>
         </nav>
       </header>
@@ -79,6 +71,14 @@ export function PageLayout({ children }: PageLayoutProps) {
                     className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                   >
                     Smart Bins
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/contact"
+                    className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+                  >
+                    Contact Us
                   </Link>
                 </li>
               </ul>
