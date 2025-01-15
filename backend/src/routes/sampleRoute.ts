@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import { formatResponse } from '../utils/responseFormatter';
+import { formatResponse } from '../utils/responseFormatter.js';
 
 const router = Router();
 

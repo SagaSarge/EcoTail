@@ -6,13 +6,18 @@
   "type": "module",
   "scripts": {
     "start": "node dist/index.js",
-    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "dev": "tsx watch src/index.ts",
     "build": "tsc",
     "test": "jest",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"src/**/*.ts\""
   },
-  "keywords": ["ecotail", "waste-management", "iot", "smart-trash"],
+  "keywords": [
+    "ecotail",
+    "waste-management",
+    "iot",
+    "smart-trash"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -34,8 +39,7 @@
     "prettier": "^3.1.1",
     "supertest": "^6.3.3",
     "ts-jest": "^29.1.1",
-    "ts-node-dev": "^2.0.0",
+    "tsx": "^4.7.0",
     "typescript": "^5.3.3"
   }
 }
-  

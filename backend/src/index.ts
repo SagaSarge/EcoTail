@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { logger } from './middleware/logger';
-import sampleRoute from './routes/sampleRoute';
+import { logger } from './middleware/logger.js';
+import sampleRoute from './routes/sampleRoute.js';
 
 // Load environment variables
 dotenv.config();
@@ -18,7 +18,7 @@ app.use(logger);
 // Routes
 app.use('/api', sampleRoute);
 
-app.get('/', (req, res) => {
+app.get('/', (req: express.Request, res: express.Response) => {
   res.send('EcoTail Backend is running!');
 });
 
