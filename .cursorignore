@@ -1,0 +1,68 @@
+
+---
+
+### **Updates for `.cursorignore`**
+Here’s the updated `.cursorignore` file to exclude irrelevant files and directories based on this structure:
+
+```plaintext
+# Ignore node modules and dependencies
+node_modules/
+
+# Ignore build and distribution files
+dist/
+build/
+
+# Ignore logs and temporary files
+*.log
+*.tmp
+*.bak
+
+# Ignore environment files
+.env
+.env.*
+
+# Ignore Firebase artifacts
+firebase-debug.log
+
+# Ignore test coverage outputs
+coverage/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore editor-specific files
+.vscode/
+.idea/
+
+# Ignore CI/CD output or temporary folders
+*.cache/
+artifacts/
+
+# Ignore generated documentation
+docs/build/
+
+# Ignore static assets used only for development previews
+assets/dev-previews/
+
+# Ignore serverless and deployment builds
+functions/lib/
+functions/node_modules/
+
+# Ignore IoT-specific debug or temporary data
+iot/mqtt/logs/
+iot/sensors/debug/
+
+# Ignore AI training temporary files
+ai/training/tmp/
+ai/models/tmp/
+
+# Ignore shared temporary files
+shared/tmp/
+
+# Ignore test outputs
+tests/**/__snapshots__/
+tests/**/coverage/
+
+# Ignore Docker-related temporary files
+.docker/
