@@ -67,16 +67,14 @@ export function Home() {
             AI Rewards Zero Waste
           </h2>
 
-          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-            Experience next-level waste management with AI-powered sorting, gamified rewards, 
-            and real-time eco-insights—all designed to make going green second nature.
-          </p>
-
-          <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-col items-center gap-4 mb-4">
             <Button>Buy Now</Button>
             <button className="text-gray-600 hover:text-gray-900 text-sm">
               Submit a Request
             </button>
+            <p className="text-sm text-gray-600 max-w-xl">
+              Gamified rewards, and real-time eco-insights—all designed to make going green effortless.
+            </p>
           </div>
         </div>
       </div>
@@ -107,26 +105,44 @@ export function Home() {
         </motion.nav>
 
         {/* Content Section */}
-        <div className="relative z-10 max-w-6xl mx-auto pt-32 px-4">
+        <div className="relative z-10 max-w-6xl mx-auto pt-48 px-4">
           <motion.div 
             style={{ x: heroImagesX }}
-            className="flex items-start"
+            className="flex flex-col"
           >
-            {/* Persistent Hero Elements */}
-            <div className="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center mr-8">
-              <span className="text-3xl">🌱</span>
-            </div>
-
-            <div>
-              <h2 className="text-6xl font-bold">
-                <span className="block">Discover the latest</span>
-                <div className="flex items-center gap-4 mt-4">
-                  <span className="inline-block">from EcoTail</span>
-                </div>
-              </h2>
-            </div>
+            <h2 className="text-[80px] leading-tight font-bold">
+              <span className="block mb-4">Discover</span>
+              <span className="block mb-4">the latest</span>
+              <span className="block text-[64px]">from EcoTail</span>
+            </h2>
           </motion.div>
         </div>
+
+        {/* Footer */}
+        <footer className="max-w-7xl mx-auto px-4 py-16">
+          <div className="grid grid-cols-3 gap-8">
+            <div>
+              <h3 className="font-medium mb-4">Quick Links</h3>
+              <ul className="space-y-2">
+                <li><Link to="/" className="text-gray-600 hover:text-gray-900">Home</Link></li>
+                <li><Link to="/smart-bins" className="text-gray-600 hover:text-gray-900">Smart Bins</Link></li>
+                <li><Link to="/contact" className="text-gray-600 hover:text-gray-900">Contact Us</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-medium mb-4">Resources</h3>
+              <ul className="space-y-2">
+                <li><Link to="/terms" className="text-gray-600 hover:text-gray-900">Terms of Service</Link></li>
+                <li><Link to="/privacy" className="text-gray-600 hover:text-gray-900">Privacy Policy</Link></li>
+                <li><Link to="/faqs" className="text-gray-600 hover:text-gray-900">FAQs</Link></li>
+              </ul>
+            </div>
+            <div className="text-right">
+              <p className="text-gray-600">© 2025 EcoTail.</p>
+              <p className="text-gray-600">All rights reserved.</p>
+            </div>
+          </div>
+        </footer>
       </div>
     </div>
   )
