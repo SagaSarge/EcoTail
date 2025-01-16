@@ -30,30 +30,36 @@ function useScrollAnimation() {
     const progress = Math.min(scrollY / maxScroll, 1);
     
     // Final scale for all images when aligned
-    const finalScale = 0.75; // 75% of original size
-    const scaleProgress = 1 - (progress * 0.25); // Scale down to 75%
+    const finalScale = 0.75;
+    const scaleProgress = 1 - (progress * 0.25);
+    
+    // Calculate slide-off movement
+    const slideRight = progress * 1200; // All images slide right
     
     return {
       // First image movement
       firstMoveDown: progress * 300,
+      firstMoveRight: slideRight,
       firstScale: scaleProgress,
 
       // Third image movement
       moveDown: progress * 600,
-      moveLeft: progress * 300,
+      moveRight: slideRight,
       thirdScale: scaleProgress,
       
-      // Fourth image movement
+      // Fourth image movement - moves towards center
       moveUp: progress * 250,
-      moveFourthLeft: progress * 50,
+      moveFourthRight: slideRight * 0.5, // Moves less right to end up near center
       fourthScale: scaleProgress,
 
       // Center image movement
       centerMoveUp: progress * 60,
+      centerMoveRight: slideRight * 0.8,
       centerScale: scaleProgress,
 
-      // Fifth image movement - position between first and center
+      // Fifth image movement
       fifthMoveUp: progress * 400,
+      fifthMoveRight: slideRight,
       fifthScale: scaleProgress
     };
   };
@@ -72,7 +78,7 @@ function LandingHero() {
           <div className="absolute left-0 w-[740px] h-[400px] bg-gray-300 rounded-r-3xl transform -translate-x-1/2 shadow-xl border-2 border-gray-400 transition-all duration-700"
                style={{ 
                  top: `calc(32rem + ${transforms.firstMoveDown}px)`,
-                 transform: `translateX(-50%) scale(${transforms.firstScale})`
+                 transform: `translateX(calc(-50% + ${transforms.firstMoveRight}px)) scale(${transforms.firstScale})`
                }}
           />
 
@@ -80,7 +86,7 @@ function LandingHero() {
           <div className="absolute w-[225px] h-[450px] bg-gray-300 rounded-3xl shadow-xl border-2 border-gray-400 transition-all duration-700"
                style={{ 
                  top: `calc(70rem - ${transforms.fifthMoveUp}px)`,
-                 left: 'calc(50% - 600px)', // Adjusted position with more space
+                 left: `calc(50% - 600px + ${transforms.fifthMoveRight}px)`,
                  transform: `scale(${transforms.fifthScale})`
                }}
           />
@@ -89,7 +95,7 @@ function LandingHero() {
           <div className="absolute w-[225px] h-[450px] bg-gray-300 rounded-3xl shadow-xl border-2 border-gray-400 transition-all duration-700"
                style={{ 
                  top: `calc(24rem + ${transforms.moveDown}px)`,
-                 left: `calc(50% + 650px - ${transforms.moveLeft}px)`, // Moved further right
+                 left: `calc(50% + 650px + ${transforms.moveRight}px)`,
                  transform: `scale(${transforms.thirdScale})`
                }}
           />
@@ -98,7 +104,7 @@ function LandingHero() {
           <div className="absolute right-0 w-[225px] h-[450px] bg-gray-300 rounded-l-3xl shadow-xl border-2 border-gray-400 transition-all duration-700"
                style={{ 
                  top: `calc(52rem - ${transforms.moveUp}px)`,
-                 right: `calc(0px + ${transforms.moveFourthLeft}px)`,
+                 right: `calc(0px - ${transforms.moveFourthRight}px)`,
                  transform: `translateX(25%) scale(${transforms.fourthScale})`
                }}
           />
@@ -137,8 +143,7 @@ function LandingHero() {
             <div 
               className="mt-32 h-[400px] bg-gray-300 rounded-xl shadow-lg border-2 border-gray-400 max-w-2xl mx-auto transition-all duration-700"
               style={{
-                transform: `translateY(-${transforms.centerMoveUp}px) scale(${transforms.centerScale})`,
-                marginLeft: '100px' // Shift center image right
+                transform: `translateY(-${transforms.centerMoveUp}px) translateX(${transforms.centerMoveRight}px) scale(${transforms.centerScale})`
               }}
             />
           </div>
