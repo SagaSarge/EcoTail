@@ -6,6 +6,10 @@ import { useAuth } from './contexts/auth-context';
 import { StickyProductCard } from './components/common/StickyProductCard';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { ContactPage } from './components/pages/ContactPage';
+import { AiInnovationsPage } from './components/pages/AiInnovationsPage';
+import { CleanPage } from './components/pages/CleanPage';
+import { LabsPage } from './components/pages/LabsPage';
+import { EducationPage } from './components/pages/EducationPage';
 
 function LandingHero() {
   return (
@@ -54,6 +58,10 @@ function AppContent() {
       <Navbar />
       <main className="flex-grow">
         <Routes>
+          <Route path="/ai-innovations" element={<AiInnovationsPage />} />
+          <Route path="/clean" element={<CleanPage />} />
+          <Route path="/labs" element={<LabsPage />} />
+          <Route path="/education" element={<EducationPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/" element={
             !user ? <LandingHero /> : (
