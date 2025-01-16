@@ -16,7 +16,6 @@ export const StickyProductCard: React.FC = () => {
 
   const handleClose = () => {
     setIsClosing(true);
-    // Wait for animation to complete before removing from DOM
     setTimeout(() => {
       setIsClosed(true);
     }, 2000);
@@ -25,7 +24,7 @@ export const StickyProductCard: React.FC = () => {
   if (!isVisible || isClosed) return null;
 
   return (
-    <div className={`fixed right-4 top-1/3 z-40 w-64 transform transition-all duration-500 
+    <div className={`fixed right-4 top-24 z-40 w-64 transform transition-all duration-500 
                     ${isClosing ? 'animate-shoot-to-left' : 'animate-fade-in-right'}`}>
       <div className="relative bg-white/80 backdrop-blur-lg rounded-2xl shadow-xl border border-primary-100 p-6 
                     hover:shadow-2xl hover:border-primary-200 transition-all hover:translate-x-2">

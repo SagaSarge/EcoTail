@@ -19,6 +19,10 @@ function LandingHero() {
              style={{ top: '32rem' }}
         />
         
+        <div className="absolute left-[calc(50%+336px)] w-[150px] h-[300px] bg-gray-300 rounded-3xl shadow-xl border-2 border-gray-400"
+             style={{ top: '24rem' }}
+        />
+        
         <div className="text-center px-4 sm:px-6 lg:px-8 max-w-3xl">
           <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
             <span className="block mb-2">Effortless</span>
@@ -48,6 +52,8 @@ function LandingHero() {
           <p className="mt-8 text-base text-gray-500 sm:text-lg md:text-xl max-w-2xl mx-auto">
             Experience next-level waste management with AI-powered sorting, gamified rewards, and real-time eco-insights—all designed to make going green second nature.
           </p>
+
+          <div className="mt-8 h-[200px] bg-gray-300 rounded-xl shadow-lg border-2 border-gray-400 max-w-2xl mx-auto" />
         </div>
       </div>
     </div>
