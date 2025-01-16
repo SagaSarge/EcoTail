@@ -1,54 +1,54 @@
-import { type InputHTMLAttributes, forwardRef } from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
+import { forwardRef } from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
 
-const inputStyles = cva(
-  'w-full rounded-md border transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
+const inputVariants = cva(
+  'flex w-full rounded-md border bg-transparent px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
   {
     variants: {
       variant: {
-        default: 'border-gray-300 focus:border-primary-500 focus:ring-primary-500',
-        error: 'border-red-500 focus:border-red-500 focus:ring-red-500',
-      },
-      size: {
-        sm: 'h-8 px-3 text-sm',
-        md: 'h-10 px-4 text-base',
-        lg: 'h-12 px-6 text-lg',
+        default: 'border-input',
+        error: 'border-destructive',
       },
     },
     defaultVariants: {
       variant: 'default',
-      size: 'md',
     },
   }
-)
+);
 
-interface InputProps
-  extends InputHTMLAttributes<HTMLInputElement>,
-    VariantProps<typeof inputStyles> {
-  label?: string
-  error?: string
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement>,
+    VariantProps<typeof inputVariants> {
+  error?: string;
+  label?: string;
 }
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ className, variant, size, label, error, ...props }, ref) => {
+const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ className, type, error, label, variant, ...props }, ref) => {
     return (
-      <div className="space-y-1">
+      <div className="space-y-2">
         {label && (
-          <label className="text-sm font-medium text-gray-700 dark:text-gray-200">
+          <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
             {label}
           </label>
         )}
         <input
+          type={type}
+          className={inputVariants({
+            variant: error ? 'error' : variant,
+            className,
+          })}
           ref={ref}
-          className={inputStyles({ variant: error ? 'error' : variant, size, className })}
           {...props}
         />
         {error && (
-          <p className="text-sm text-red-500">{error}</p>
+          <p className="text-sm text-destructive">{error}</p>
         )}
       </div>
-    )
+    );
   }
-)
+);
 
-Input.displayName = 'Input' 
+Input.displayName = 'Input';
+
+export { Input, inputVariants }; 
