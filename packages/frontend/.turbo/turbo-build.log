@@ -1,0 +1,21 @@
+
+> @ecotail/frontend@0.1.0 build
+> next build
+
+[1G[0K  [1m[38;2;173;127;168m ▲ Next.js 14.1.0[39m[22m
+
+ [37m[1m [22m[39m Creating an optimized production build ...
+ [32m[1m✓[22m[39m Compiled successfully
+[?25l [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[31mFailed to compile.
+[39m
+[36msrc/app/layout.tsx[39m
+[31m[1mType error[22m[39m: File '/Users/self/Desktop/Projects/EcoTail/packages/frontend/src/app/layout.tsx' is not a module.
+
+[?25h[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m Lifecycle script `build` failed with error:
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mcode[39m [33m1[39m
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mpath[39m /Users/self/Desktop/Projects/EcoTail/packages/frontend
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mworkspace[39m @ecotail/frontend@0.1.0
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mlocation[39m /Users/self/Desktop/Projects/EcoTail/packages/frontend
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m command failed
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mcommand[39m sh -c next build
+[1G[0K⠙[1G[0K
