@@ -18,16 +18,20 @@ export const Navbar: React.FC = () => {
   }, []);
 
   return (
-    <nav className={`fixed top-6 left-0 w-full z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-white/70 backdrop-blur-lg shadow-lg py-2' : 'py-4'
+    <nav className={`fixed top-6 w-full z-50 transition-all duration-500 ${
+      isScrolled 
+        ? 'bg-white/60 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] border border-white/20 rounded-full py-2 mx-auto max-w-[90%] left-1/2 -translate-x-1/2 hover:shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] hover:bg-white/70' 
+        : 'py-4 left-0'
     }`}>
-      <div className={`pl-6 transition-all duration-300 ${
-        isScrolled ? 'flex justify-center items-center' : ''
+      <div className={`transition-all duration-500 ${
+        isScrolled ? 'flex justify-center items-center px-8' : 'pl-6'
       }`}>
         <div className={`flex items-center ${isScrolled ? 'justify-center' : 'justify-between'}`}>
           {/* Logo and Navigation */}
           <div className="flex items-center">
-            <div className="w-8 h-8 rounded-full bg-primary-600" />
+            <div className={`w-8 h-8 rounded-full bg-primary-600 transition-all duration-500 ${
+              isScrolled ? 'shadow-[0_0_15px_rgba(0,112,243,0.3)]' : ''
+            }`} />
             <span className="text-2xl font-bold text-primary-600 ml-3">EcoTail</span>
             <div className="hidden md:flex items-center space-x-6 ml-12">
               <Link to="/ai-innovations" className="text-gray-700 hover:text-primary-600 transition-colors">
@@ -49,7 +53,7 @@ export const Navbar: React.FC = () => {
           {isScrolled && !user && (
             <button
               onClick={signIn}
-              className="ml-12 px-6 py-2 bg-primary-600 text-white rounded-full hover:bg-primary-700 transition-colors duration-200 shadow-md hover:shadow-lg"
+              className="ml-12 px-6 py-2 bg-primary-600 text-white rounded-full hover:bg-primary-700 transition-all duration-300 shadow-[0_4px_12px_rgba(0,112,243,0.25)] hover:shadow-[0_4px_16px_rgba(0,112,243,0.35)]"
             >
               Sign In
             </button>
