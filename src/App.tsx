@@ -28,9 +28,12 @@ function LandingHero() {
             </Button>
           </div>
 
-          <p className="mt-4 text-primary-600 text-sm font-medium">
+          <a 
+            href="/contact" 
+            className="inline-block mt-4 text-primary-600 text-sm font-medium hover:text-primary-700 transition-colors duration-200 hover:underline"
+          >
             Submit a Request
-          </p>
+          </a>
 
           <p className="mt-8 text-base text-gray-500 sm:text-lg md:text-xl max-w-2xl mx-auto">
             Experience next-level waste management with AI-powered sorting, gamified rewards, and real-time eco-insights—all designed to make going green second nature.
