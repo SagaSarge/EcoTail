@@ -13,7 +13,7 @@ export function ContentLayout({ title, description, children }: ContentLayoutPro
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 20 }}
-      className="space-y-8"
+      className="space-y-8 bg-[#F7F4EC] dark:bg-[#1A2421]"
     >
       <div className="text-center">
         <motion.h1
@@ -39,6 +39,7 @@ export function ContentLayout({ title, description, children }: ContentLayoutPro
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
+        className="bg-[#F7F4EC] dark:bg-[#1A2421]"
       >
         {children}
       </motion.div>
