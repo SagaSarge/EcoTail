@@ -268,3 +268,7 @@
 2025-01-16T12:27:05.331950Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/frontend/.next/trace")}
 2025-01-16T12:27:05.331965Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@ecotail/frontend"), path: AnchoredSystemPathBuf("packages/frontend") }}))
 2025-01-16T12:27:05.372660Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-01-16T14:14:11.077002Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("")}
+2025-01-16T14:14:11.077021Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({}))
+2025-01-16T16:21:38.533094Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("ecotail-app"), AnchoredSystemPathBuf("package-lock.json"), AnchoredSystemPathBuf("README.md"), AnchoredSystemPathBuf("node_modules"), AnchoredSystemPathBuf("package.json"), AnchoredSystemPathBuf("postcss.config.js"), AnchoredSystemPathBuf("src"), AnchoredSystemPathBuf("packages")}
+2025-01-16T16:21:38.533112Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(All)
