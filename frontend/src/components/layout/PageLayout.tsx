@@ -27,17 +27,15 @@ export function PageLayout({ children }: PageLayoutProps) {
   return (
     <div className="min-h-screen flex flex-col bg-[#F7F4EC] dark:bg-[#1A2421]">
       <header className="sticky top-0 z-50 bg-[#F7F4EC] dark:bg-[#1A2421] border-b border-[#7DD8C6]/20">
-        <nav className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
+        <nav className="max-w-7xl mx-auto px-4 h-16 flex items-center">
+          <div className="flex items-center gap-8">
             <Link to="/" className="flex items-center gap-2">
               <div className="w-10 h-10 rounded-full bg-[#7DD8C6]/10 flex items-center justify-center">
                 <span className="text-xl">🌱</span>
               </div>
-              <span className="font-medium text-[#02402C] dark:text-[#7DD8C6]">EcoTail</span>
+              <span className="font-bold text-xl text-[#02402C] dark:text-[#7DD8C6]">EcoTail</span>
             </Link>
-          </div>
 
-          <div className="flex items-center gap-8">
             <Link to="/ai-innovations" className="text-[#5E7D7E] hover:text-[#02402C] dark:text-[#7DD8C6] dark:hover:text-[#F7F4EC] transition-colors">
               AI Innovations
             </Link>
