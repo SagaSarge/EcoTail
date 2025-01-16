@@ -26,14 +26,35 @@ function useScrollAnimation() {
   }, []);
 
   const calculateTransform = (scrollY: number) => {
-    const baseThreshold = 50;
-    const maxScroll = 300;
-    const progress = Math.min(Math.max((scrollY - baseThreshold) / (maxScroll - baseThreshold), 0), 1);
+    const maxScroll = 600;
+    const progress = Math.min(scrollY / maxScroll, 1);
+    
+    // Final scale for all images when aligned
+    const finalScale = 0.75; // 75% of original size
+    const scaleProgress = 1 - (progress * 0.25); // Scale down to 75%
     
     return {
-      alignY: progress * 100, // Move to parallel line
-      slideLeft: progress * 150, // Slide off to left
-      opacity: 1 - progress * 0.8 // Fade out slightly
+      // First image movement
+      firstMoveDown: progress * 300,
+      firstScale: scaleProgress,
+
+      // Third image movement
+      moveDown: progress * 600,
+      moveLeft: progress * 300,
+      thirdScale: scaleProgress,
+      
+      // Fourth image movement
+      moveUp: progress * 250,
+      moveFourthLeft: progress * 50,
+      fourthScale: scaleProgress,
+
+      // Center image movement
+      centerMoveUp: progress * 60,
+      centerScale: scaleProgress,
+
+      // Fifth image movement - position between first and center
+      fifthMoveUp: progress * 400,
+      fifthScale: scaleProgress
     };
   };
 
@@ -41,34 +62,44 @@ function useScrollAnimation() {
 }
 
 function LandingHero() {
-  const { alignY, slideLeft, opacity } = useScrollAnimation();
+  const transforms = useScrollAnimation();
 
   return (
     <>
       <div className="relative bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto min-h-[90vh] flex items-start justify-center pt-52">
-          <div className="absolute left-0 w-[740px] h-[400px] bg-gray-300 rounded-r-3xl shadow-xl border-2 border-gray-400 transition-all duration-300"
+          {/* First Image */}
+          <div className="absolute left-0 w-[740px] h-[400px] bg-gray-300 rounded-r-3xl transform -translate-x-1/2 shadow-xl border-2 border-gray-400 transition-all duration-700"
                style={{ 
-                 top: `${32 * 16 - alignY}px`,
-                 transform: `translateX(calc(-25% - ${slideLeft}px))`,
-                 opacity: opacity
+                 top: `calc(32rem + ${transforms.firstMoveDown}px)`,
+                 transform: `translateX(-50%) scale(${transforms.firstScale})`
+               }}
+          />
+
+          {/* Fifth Image (between first and center) */}
+          <div className="absolute w-[225px] h-[450px] bg-gray-300 rounded-3xl shadow-xl border-2 border-gray-400 transition-all duration-700"
+               style={{ 
+                 top: `calc(70rem - ${transforms.fifthMoveUp}px)`,
+                 left: 'calc(50% - 600px)', // Adjusted position with more space
+                 transform: `scale(${transforms.fifthScale})`
                }}
           />
           
-          <div className="absolute w-[225px] h-[450px] bg-gray-300 rounded-3xl shadow-xl border-2 border-gray-400 transition-all duration-300"
+          {/* Third Image (iPhone-shaped) */}
+          <div className="absolute w-[225px] h-[450px] bg-gray-300 rounded-3xl shadow-xl border-2 border-gray-400 transition-all duration-700"
                style={{ 
-                 top: `${18 * 16 + alignY}px`,
-                 left: `calc(50% + 500px - ${slideLeft}px)`,
-                 opacity: opacity
+                 top: `calc(24rem + ${transforms.moveDown}px)`,
+                 left: `calc(50% + 650px - ${transforms.moveLeft}px)`, // Moved further right
+                 transform: `scale(${transforms.thirdScale})`
                }}
           />
           
-          <div className="absolute w-[140px] h-[350px] bg-gray-300 rounded-l-3xl shadow-xl border-2 border-gray-400 transition-all duration-300"
+          {/* Fourth Image */}
+          <div className="absolute right-0 w-[225px] h-[450px] bg-gray-300 rounded-l-3xl shadow-xl border-2 border-gray-400 transition-all duration-700"
                style={{ 
-                 top: `${52 * 16 - alignY * 1.5}px`,
-                 right: `calc(0px - ${slideLeft}px)`,
-                 transform: 'translateX(25%)',
-                 opacity: opacity
+                 top: `calc(52rem - ${transforms.moveUp}px)`,
+                 right: `calc(0px + ${transforms.moveFourthLeft}px)`,
+                 transform: `translateX(25%) scale(${transforms.fourthScale})`
                }}
           />
           
@@ -102,12 +133,13 @@ function LandingHero() {
               Experience next-level waste management with AI-powered sorting, gamified rewards, and real-time eco-insights—all designed to make going green second nature.
             </p>
 
-            <div className="mt-32 h-[400px] bg-gray-300 rounded-xl shadow-lg border-2 border-gray-400 max-w-2xl mx-auto transition-all duration-300"
-                 style={{ 
-                   transform: `translateX(-${slideLeft}px)`,
-                   marginTop: `${32 * 4 + alignY}px`,
-                   opacity: opacity
-                 }}
+            {/* Center Image */}
+            <div 
+              className="mt-32 h-[400px] bg-gray-300 rounded-xl shadow-lg border-2 border-gray-400 max-w-2xl mx-auto transition-all duration-700"
+              style={{
+                transform: `translateY(-${transforms.centerMoveUp}px) scale(${transforms.centerScale})`,
+                marginLeft: '100px' // Shift center image right
+              }}
             />
           </div>
         </div>
