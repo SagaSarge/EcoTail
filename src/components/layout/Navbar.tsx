@@ -18,17 +18,18 @@ export const Navbar: React.FC = () => {
   }, []);
 
   return (
-    <nav className={`fixed top-6 left-1/2 transform -translate-x-1/2 w-[90%] max-w-6xl z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-white/70 backdrop-blur-lg shadow-lg rounded-2xl border border-white/20 py-2' : 'py-4'
+    <nav className={`fixed top-6 left-0 w-full z-50 transition-all duration-300 ${
+      isScrolled ? 'bg-white/70 backdrop-blur-lg shadow-lg py-2' : 'py-4'
     }`}>
-      <div className={`mx-auto transition-all duration-300 ${
+      <div className={`pl-6 transition-all duration-300 ${
         isScrolled ? 'flex justify-center items-center' : ''
       }`}>
         <div className={`flex items-center ${isScrolled ? 'justify-center' : 'justify-between'}`}>
-          {/* Logo */}
+          {/* Logo and Navigation */}
           <div className="flex items-center">
             <div className="w-8 h-8 rounded-full bg-primary-600" />
-            <div className={`hidden md:flex items-center space-x-6 ml-4`}>
+            <span className="text-2xl font-bold text-primary-600 ml-3">EcoTail</span>
+            <div className="hidden md:flex items-center space-x-6 ml-12">
               <Link to="/ai-innovations" className="text-gray-700 hover:text-primary-600 transition-colors">
                 AI Innovations
               </Link>
@@ -48,7 +49,7 @@ export const Navbar: React.FC = () => {
           {isScrolled && !user && (
             <button
               onClick={signIn}
-              className="ml-8 px-6 py-2 bg-primary-600 text-white rounded-full hover:bg-primary-700 transition-colors duration-200 shadow-md hover:shadow-lg"
+              className="ml-12 px-6 py-2 bg-primary-600 text-white rounded-full hover:bg-primary-700 transition-colors duration-200 shadow-md hover:shadow-lg"
             >
               Sign In
             </button>
