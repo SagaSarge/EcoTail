@@ -1,32 +1,34 @@
-import { z } from 'zod';
-import { useAuthStore } from '../../stores/useAuthStore';
+import React from 'react';
+import { Button } from '../ui/Button';
 import { Form } from '../ui/form/Form';
 import { FormField } from '../ui/form/FormField';
-import { Button } from '../ui/Button';
-
-const loginSchema = z.object({
-  email: z.string().email('Please enter a valid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
-});
-
-type LoginValues = z.infer<typeof loginSchema>;
+import { loginSchema, type LoginValues } from '../../types/auth';
 
 export const LoginForm = () => {
-  const { signIn, isLoading, error } = useAuthStore();
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
 
   const handleSubmit = async (values: LoginValues) => {
+    setIsLoading(true);
+    setError(null);
+    
     try {
-      await signIn(values.email, values.password);
+      // Here you would typically handle the login logic
+      console.log('Login values:', values);
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
     } catch (err) {
-      // Error is handled by the store
+      setError(err instanceof Error ? err.message : 'An error occurred');
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="w-full max-w-md space-y-8">
       <div className="text-center">
-        <h2 className="text-3xl font-bold">Welcome back</h2>
-        <p className="mt-2 text-sm text-gray-600">
+        <h2 className="text-3xl font-bold text-eco-secondary">Welcome back</h2>
+        <p className="mt-2 text-sm text-eco-neutral">
           Please sign in to your account
         </p>
       </div>
@@ -60,13 +62,14 @@ export const LoginForm = () => {
 
             {error && (
               <div className="text-sm text-red-500">
-                {error.message}
+                {error}
               </div>
             )}
 
             <Button
-              onClick={() => {}}
-              className="w-full"
+              type="submit"
+              variant="primary"
+              className="w-full bg-eco-primary hover:bg-eco-primary/90 text-white"
               disabled={isLoading || formState.isSubmitting}
             >
               {isLoading || formState.isSubmitting ? (

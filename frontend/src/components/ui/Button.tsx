@@ -10,6 +10,8 @@ const buttonVariants = cva(
       variant: {
         default:
           'bg-bermuda text-white hover:bg-bermuda/90 shadow-sm',
+        primary:
+          'bg-sherwood text-white hover:bg-sherwood/90 shadow-sm',
         secondary:
           'bg-greyish-turquoise text-white hover:bg-greyish-turquoise/90 shadow-sm',
         outline:
@@ -22,6 +24,7 @@ const buttonVariants = cva(
         default: 'h-10 px-4 py-2',
         sm: 'h-9 px-3',
         lg: 'h-11 px-8',
+        xl: 'h-12 px-10 text-base',
         icon: 'h-10 w-10',
       },
     },
@@ -35,17 +38,23 @@ const buttonVariants = cva(
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
-  asChild?: boolean
+  isLoading?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  ({ className, variant, size, isLoading, children, ...props }, ref) => {
     return (
       <button
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
+        disabled={isLoading}
         {...props}
-      />
+      >
+        {isLoading ? (
+          <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+        ) : null}
+        {children}
+      </button>
     )
   }
 )

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ContentLayout } from '../components/layout/ContentLayout'
+import { ContentLayout } from '../../components/layout/ContentLayout'
 
 const features = [
   {

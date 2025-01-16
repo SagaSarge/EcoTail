@@ -1,8 +1,8 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useCallback, Suspense, useEffect } from 'react'
-import { ErrorBoundary } from '../components/common/ErrorBoundary'
-import { useAnalytics } from '../hooks/useAnalytics'
-import { Spinner } from '../components/common/Spinner'
+import { ErrorBoundary } from '../../components/error/ErrorBoundary'
+import { useAnalytics } from '../../hooks/useAnalytics'
+import { Spinner } from '../../components/ui/Spinner'
 
 /**
  * Interface representing a feature in the AI Innovations page
@@ -75,27 +75,40 @@ const features: Feature[] = [
 
 /**
  * AIInnovations component displays the AI capabilities of the EcoTail system
- * @returns React component displaying AI features and their details
  */
 export function AIInnovations(): JSX.Element {
   const [selectedFeature, setSelectedFeature] = useState<string | null>(null)
-  const [isLoading, setIsLoading] = useState(false)
-  const { trackEvent } = useAnalytics()
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const { trackEvent, trackPageView } = useAnalytics()
 
   useEffect(() => {
-    trackEvent('page_view', { page: 'ai-innovations' })
-  }, [trackEvent])
+    trackPageView('/features/ai-innovations')
+  }, [trackPageView])
 
   const handleFeatureClick = useCallback((featureId: string): void => {
     setIsLoading(true)
-    trackEvent('feature_click', { featureId })
+    trackEvent({
+      category: 'Features',
+      action: 'Feature Click',
+      label: featureId,
+      value: 1
+    })
     setSelectedFeature(prevSelected => prevSelected === featureId ? null : featureId)
     setTimeout(() => setIsLoading(false), 300)
   }, [trackEvent])
 
-  const handleKeyDown = useCallback((featureId: string) => (e: React.KeyboardEvent): void => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault()
+  const handlePreOrderClick = useCallback((): void => {
+    trackEvent({
+      category: 'Conversion',
+      action: 'Pre-order Click',
+      label: 'AI Innovations',
+      value: 1
+    })
+  }, [trackEvent])
+
+  const handleKeyDown = useCallback((featureId: string) => (event: React.KeyboardEvent<HTMLDivElement>): void => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault()
       handleFeatureClick(featureId)
     }
   }, [handleFeatureClick])
@@ -104,17 +117,17 @@ export function AIInnovations(): JSX.Element {
     <ErrorBoundary 
       fallback={
         <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-[#02402C] dark:text-[#7DD8C6]">
+          <h2 className="text-2xl font-semibold text-eco-secondary dark:text-eco-primary">
             Oops! Something went wrong
           </h2>
-          <p className="text-[#5E7D7E] dark:text-[#F7F4EC]">
+          <p className="text-eco-neutral dark:text-eco-light">
             Please try refreshing the page or contact support if the problem persists.
           </p>
           <button
             onClick={() => window.location.reload()}
-            className="px-4 py-2 bg-[#7DD8C6] hover:bg-[#6BC7B5] text-[#1A2421] font-medium rounded-lg 
-              transition-colors duration-200
-              dark:bg-[#02402C] dark:hover:bg-[#035038] dark:text-[#7DD8C6]"
+            className="px-4 py-2 bg-eco-primary hover:bg-eco-primary/90 text-eco-dark font-medium rounded-lg 
+              transition-all duration-200
+              dark:bg-eco-secondary dark:hover:bg-eco-secondary/90 dark:text-eco-primary"
           >
             Refresh Page
           </button>
@@ -125,33 +138,34 @@ export function AIInnovations(): JSX.Element {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="min-h-screen bg-[#F7F4EC] dark:bg-[#1A2421]"
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
+        className="min-h-screen bg-eco-light dark:bg-eco-dark"
       >
         <div className="py-12">
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-[#02402C] dark:text-[#7DD8C6] mb-4">
+            <h1 className="text-4xl font-bold text-eco-secondary dark:text-eco-primary mb-4">
               AI Innovations
             </h1>
-            <p className="text-xl text-[#5E7D7E] dark:text-[#F7F4EC] max-w-3xl mx-auto mb-8">
+            <p className="text-xl text-eco-neutral dark:text-eco-light max-w-3xl mx-auto mb-8">
               Discover our cutting-edge AI solutions for smart waste management
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <button
-                onClick={() => trackEvent('pre_order_click')}
-                className="px-6 py-3 bg-[#7DD8C6] hover:bg-[#6BC7B5] text-[#1A2421] font-semibold rounded-lg 
-                  shadow-lg hover:shadow-xl transition-all duration-200 min-w-[200px]
-                  dark:bg-[#02402C] dark:hover:bg-[#035038] dark:text-[#7DD8C6]"
+                onClick={handlePreOrderClick}
+                className="px-6 py-3 bg-eco-cta-orange hover:bg-eco-cta-orange/90 text-white font-semibold rounded-lg 
+                  shadow-lg hover:shadow-xl transition-all duration-200 min-w-[200px]"
+                aria-label="Pre-order AI Innovations"
               >
                 Pre-order Now
               </button>
-              <span className="text-[#5E7D7E] dark:text-[#F7F4EC]">
+              <span className="text-eco-neutral dark:text-eco-light">
                 Starting at $99/month
               </span>
             </div>
           </div>
 
-          <Suspense fallback={<Spinner />}>
+          <Suspense fallback={<div className="flex justify-center py-8"><Spinner size="lg" /></div>}>
             <section className="py-12" aria-labelledby="ai-innovations-title">
               <div className="container mx-auto px-4">
                 <h2 id="ai-innovations-title" className="sr-only">AI Innovation Features</h2>
@@ -160,13 +174,13 @@ export function AIInnovations(): JSX.Element {
                     <motion.div
                       key={feature.id}
                       className={`p-6 rounded-xl shadow-lg cursor-pointer 
-                        ${selectedFeature === feature.id ? 'ring-2 ring-[#7DD8C6] dark:ring-[#7DD8C6]' : ''}
-                        bg-white dark:bg-[#1A2421] hover:bg-[#F7F4EC] dark:hover:bg-[#02402C]
-                        transition-colors duration-200
+                        ${selectedFeature === feature.id ? 'ring-2 ring-eco-primary dark:ring-eco-primary' : ''}
+                        bg-white dark:bg-eco-dark hover:bg-eco-light dark:hover:bg-eco-secondary
+                        transition-all duration-200
                       `}
                       onClick={() => handleFeatureClick(feature.id)}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
+                      whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+                      whileTap={{ scale: 0.98, transition: { duration: 0.1 } }}
                       role="button"
                       aria-expanded={selectedFeature === feature.id}
                       aria-controls={`${feature.id}-details`}
@@ -174,29 +188,30 @@ export function AIInnovations(): JSX.Element {
                       onKeyDown={handleKeyDown(feature.id)}
                     >
                       <div className="flex justify-between items-start mb-4">
-                        <h3 className="text-xl font-semibold text-[#02402C] dark:text-[#7DD8C6]">
+                        <h3 className="text-xl font-semibold text-eco-secondary dark:text-eco-primary">
                           {feature.title}
                         </h3>
                         <span 
-                          className="px-3 py-1.5 bg-[#7DD8C6] text-[#1A2421] dark:bg-[#02402C] dark:text-[#7DD8C6] text-sm rounded-full font-medium" 
+                          className="px-3 py-1.5 bg-eco-primary text-eco-dark dark:bg-eco-secondary dark:text-eco-primary text-sm rounded-full font-medium" 
                           aria-label={`Version ${feature.version}`}
                         >
                           {feature.version}
                         </span>
                       </div>
-                      <p className="text-[#5E7D7E] dark:text-[#F7F4EC] mb-4">{feature.description}</p>
+                      <p className="text-eco-neutral dark:text-eco-light mb-4">{feature.description}</p>
                       
-                      <AnimatePresence mode="wait">
+                      <AnimatePresence mode="wait" initial={false}>
                         {selectedFeature === feature.id && !isLoading && (
                           <motion.div
                             id={`${feature.id}-details`}
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: 'auto' }}
                             exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.2, ease: 'easeInOut' }}
                             className="space-y-4"
                           >
-                            <div className="border-t border-[#5E7D7E]/20 dark:border-[#5E7D7E]/20 pt-4">
-                              <h4 className="font-semibold mb-2 text-[#02402C] dark:text-[#7DD8C6]">
+                            <div className="border-t border-eco-neutral/20 dark:border-eco-neutral/20 pt-4">
+                              <h4 className="font-semibold mb-2 text-eco-secondary dark:text-eco-primary">
                                 Key Features
                               </h4>
                               <ul className="space-y-2" role="list">
@@ -205,8 +220,8 @@ export function AIInnovations(): JSX.Element {
                                     key={`${feature.id}-detail-${index}`} 
                                     className="flex items-center gap-2"
                                   >
-                                    <span className="text-[#7DD8C6] dark:text-[#7DD8C6]" aria-hidden="true">•</span>
-                                    <span className="text-[#5E7D7E] dark:text-[#F7F4EC]">{detail}</span>
+                                    <span className="text-eco-primary dark:text-eco-primary" aria-hidden="true">•</span>
+                                    <span className="text-eco-neutral dark:text-eco-light">{detail}</span>
                                   </li>
                                 ))}
                               </ul>
@@ -220,12 +235,12 @@ export function AIInnovations(): JSX.Element {
                               {feature.metrics.map((metric, index) => (
                                 <div 
                                   key={`${feature.id}-metric-${index}`} 
-                                  className="bg-[#F7F4EC] dark:bg-[#02402C] p-4 rounded-lg text-center"
+                                  className="bg-eco-light dark:bg-eco-secondary p-4 rounded-lg text-center"
                                 >
-                                  <div className="font-semibold text-[#02402C] dark:text-[#7DD8C6] text-lg">
+                                  <div className="font-semibold text-eco-secondary dark:text-eco-primary text-lg">
                                     {metric.value}
                                   </div>
-                                  <div className="text-sm text-[#5E7D7E] dark:text-[#F7F4EC]">
+                                  <div className="text-sm text-eco-neutral dark:text-eco-light">
                                     {metric.label}
                                   </div>
                                 </div>
@@ -234,8 +249,13 @@ export function AIInnovations(): JSX.Element {
                           </motion.div>
                         )}
                         {isLoading && selectedFeature === feature.id && (
-                          <div className="flex justify-center py-8">
-                            <Spinner size="sm" className="text-[#7DD8C6]" />
+                          <div 
+                            className="flex justify-center py-8"
+                            aria-live="polite"
+                            aria-busy="true"
+                            role="status"
+                          >
+                            <Spinner size="sm" className="text-eco-primary" />
                           </div>
                         )}
                       </AnimatePresence>

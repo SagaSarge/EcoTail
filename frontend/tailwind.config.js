@@ -9,6 +9,14 @@ export default {
     extend: {
       colors: {
         // Primary Colors
+        'eco-primary': '#7DD8C6',
+        'eco-secondary': '#02402C',
+        'eco-neutral': '#5E7D7E',
+        'eco-dark-bg': '#1A2421',
+        'eco-light-bg': '#F7F4EC',
+        'eco-cta-orange': '#FF9800',
+        
+        // Existing color palette
         bermuda: {
           DEFAULT: '#7DD8C6',
           dark: '#5EBAA8',
@@ -29,105 +37,81 @@ export default {
           light: '#035C3F',
           dark: '#012419',
         },
-        
-        // Additional Colors
-        cream: {
-          DEFAULT: '#F7F4EC',
-          dark: '#E5E0D4',
-          light: '#FFFDF8',
-        },
-        'soft-gold': {
-          DEFAULT: '#FFC466',
-          dark: '#FFB133',
-          light: '#FFD799',
-        },
-        coral: {
-          DEFAULT: '#FF7B5A',
-          dark: '#FF5C33',
-          light: '#FF9A81',
-        },
-      },
-      
-      backgroundColor: {
-        primary: {
-          DEFAULT: '#FFFFFF',
-          dark: '#1A2421',
-        },
-        secondary: {
-          DEFAULT: '#F7F4EC',
-          dark: '#2C3B36',
-        },
-      },
-      
-      textColor: {
-        primary: {
-          DEFAULT: '#1A2421',
-          dark: '#FFFFFF',
-        },
-        secondary: {
-          DEFAULT: '#5E7D7E',
-          dark: '#8FA7A8',
-        },
-        accent: {
-          DEFAULT: '#02402C',
-          dark: '#7DD8C6',
-        },
-      },
-      
-      borderColor: {
-        primary: {
-          DEFAULT: '#E5E0D4',
-          dark: '#2C3B36',
-        },
-      },
-      
-      gradientColorStops: {
-        'gradient-start': 'rgba(125, 216, 198, 0.1)',
-        'gradient-end': 'rgba(94, 125, 126, 0.1)',
-      },
-      
-      boxShadow: {
-        sm: '0 1px 2px rgba(26, 36, 33, 0.05)',
-        DEFAULT: '0 4px 6px rgba(26, 36, 33, 0.1)',
-        lg: '0 10px 15px rgba(26, 36, 33, 0.1)',
-        dark: {
-          sm: '0 1px 2px rgba(0, 0, 0, 0.2)',
-          DEFAULT: '0 4px 6px rgba(0, 0, 0, 0.25)',
-          lg: '0 10px 15px rgba(0, 0, 0, 0.35)',
-        },
-      },
-      
-      fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
       },
       
       fontSize: {
-        xs: ['0.75rem', { lineHeight: '1rem' }],
-        sm: ['0.875rem', { lineHeight: '1.25rem' }],
-        base: ['1rem', { lineHeight: '1.5rem' }],
-        lg: ['1.125rem', { lineHeight: '1.75rem' }],
-        xl: ['1.25rem', { lineHeight: '1.75rem' }],
-        '2xl': ['1.5rem', { lineHeight: '2rem' }],
-        '3xl': ['1.875rem', { lineHeight: '2.25rem' }],
-        '4xl': ['2.25rem', { lineHeight: '2.5rem' }],
+        'hero-heading': '5.5rem',
+        'hero-subheading': '1.5rem',
       },
       
-      borderRadius: {
-        sm: '0.375rem',
-        DEFAULT: '0.5rem',
-        lg: '1rem',
-        xl: '1.5rem',
+      backgroundImage: {
+        'particles': `
+          radial-gradient(circle at 50% 50%, var(--eco-primary) 1px, transparent 1px),
+          radial-gradient(circle at 0% 0%, var(--eco-primary) 1px, transparent 1px)
+        `,
       },
       
-      transitionDuration: {
-        DEFAULT: '300ms',
+      backgroundSize: {
+        'particles': '40px 40px',
       },
       
-      transitionTimingFunction: {
-        DEFAULT: 'cubic-bezier(0.4, 0, 0.2, 1)',
+      keyframes: {
+        float: {
+          '0%, 100%': {
+            transform: 'translateY(0) translateX(0)',
+            backgroundPosition: '0% 0%',
+          },
+          '25%': {
+            transform: 'translateY(-2px) translateX(2px)',
+            backgroundPosition: '25% 25%',
+          },
+          '50%': {
+            transform: 'translateY(-4px) translateX(-2px)',
+            backgroundPosition: '50% 50%',
+          },
+          '75%': {
+            transform: 'translateY(-2px) translateX(2px)',
+            backgroundPosition: '75% 75%',
+          }
+        }
+      },
+      
+      animation: {
+        'particle-float': 'float 20s ease-in-out infinite',
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function({ addBase, addUtilities }) {
+      addBase({
+        ':root': {
+          '--eco-primary': '#7DD8C6',
+          '--eco-secondary': '#02402C',
+        },
+      });
+      
+      addUtilities({
+        '.bg-eco-particles': {
+          'position': 'relative',
+          'background-color': 'white',
+          'overflow': 'hidden',
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            inset: '0',
+            backgroundImage: `
+              radial-gradient(circle at 50% 50%, var(--eco-primary) 0.5px, transparent 0.5px),
+              radial-gradient(circle at 0% 0%, var(--eco-primary) 0.5px, transparent 0.5px)
+            `,
+            backgroundSize: '40px 40px',
+            opacity: '0.15',
+            animation: 'float 20s ease-in-out infinite',
+            pointerEvents: 'none',
+            zIndex: '0',
+          }
+        },
+      });
+    }
+  ],
 }
 

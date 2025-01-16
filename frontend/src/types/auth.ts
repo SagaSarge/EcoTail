@@ -1,4 +1,5 @@
 import { User } from 'firebase/auth';
+import { z } from 'zod';
 
 export interface AuthUser extends Omit<User, 'toJSON'> {
   role?: 'user' | 'admin';
@@ -16,4 +17,16 @@ export interface AuthStore extends AuthState {
   signOut: () => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
   updateProfile: (data: Partial<AuthUser>) => Promise<void>;
+}
+
+export const loginSchema = z.object({
+  email: z.string().email('Invalid email address'),
+  password: z.string().min(8, 'Password must be at least 8 characters'),
+});
+
+export type LoginValues = z.infer<typeof loginSchema>;
+
+export interface AuthError {
+  code: string;
+  message: string;
 } 

@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback } from 'react';
+import React, { createContext, useContext, useState, useCallback } from 'react';
 
 interface LoadingContextType {
   isLoading: boolean;
@@ -45,7 +45,7 @@ export const LoadingProvider = ({ children }: LoadingProviderProps) => {
       {children}
       {isLoading && (
         <div className="fixed inset-0 bg-black/20 dark:bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center">
-          <div className="h-16 w-16 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+          <div className="h-16 w-16 animate-spin rounded-full border-4 border-eco-primary border-t-transparent" />
         </div>
       )}
     </LoadingContext.Provider>

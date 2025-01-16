@@ -1,184 +1,222 @@
-import { motion } from 'framer-motion'
-import { Button } from '../components/ui/Button'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Button } from '../components/ui/Button';
+import { Link } from 'react-router-dom';
+import { useThemeStore } from '../stores/useThemeStore';
 
-// SEO-optimized section headings
-const SECTION_HEADINGS = {
-  hero: {
-    title: "Smart Waste Management",
-    subtitle: "AI-Powered • Eco-Friendly • Rewarding",
-    description: "Transform your daily waste management with AI-powered sorting, real-time analytics, and eco-rewards."
+// Product showcase data
+const FEATURED_PRODUCTS = [
+  {
+    id: 'eco-bin-pro',
+    name: 'EcoBin Pro',
+    price: 99,
+    description: 'AI-powered smart waste bin with sorting capabilities',
+    image: '/products/eco-bin-pro.webp',
+    features: ['AI Sorting', 'Mobile App', '13 Gallon'],
+    badge: 'Best Seller'
   },
-  valueProposition: {
-    title: "Why Choose EcoTail?",
-    subtitle: "Join the eco-friendly revolution in waste management with our innovative smart solution."
+  {
+    id: 'eco-bin-lite',
+    name: 'EcoBin Lite',
+    price: 79,
+    description: 'Smart waste management for smaller spaces',
+    image: '/products/eco-bin-lite.webp',
+    features: ['Basic Sorting', 'Mobile App', '8 Gallon'],
+    badge: 'New'
   },
-  journey: {
-    title: "Your EcoTail Journey",
-    subtitle: "Experience the evolution of smart waste management, from basic AI sorting to premium closed-loop recycling."
-  },
-  features: {
-    title: "Revolutionary Features",
-    subtitle: "Discover how EcoTail's cutting-edge technology makes sustainable living effortless and rewarding."
-  },
-  impact: {
-    title: "Make a Real Impact",
-    subtitle: "Track your environmental savings and join a community of eco-conscious households."
+  {
+    id: 'eco-bin-plus',
+    name: 'EcoBin Plus',
+    price: 129,
+    description: 'Premium smart bin with advanced analytics',
+    image: '/products/eco-bin-plus.webp',
+    features: ['Advanced Analytics', 'Voice Control', '15 Gallon'],
+    badge: 'Premium'
   }
-}
+]
 
 export function Home() {
-  return (
-    <div className="relative">
-      {/* Hero Section */}
-      <section 
-        className="min-h-screen flex flex-col items-center justify-center relative bg-gradient-to-br from-[#7DD8C6] via-[#5E7D7E] to-[#02402C]"
-        aria-label="Hero section introducing EcoTail's smart waste management solution"
-      >
-        {/* Fixed QR Code */}
-        <div className="fixed top-4 md:top-8 right-4 md:right-8 bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg p-4 md:p-6 z-50 hover:shadow-xl transition-all duration-300">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="text-xl" aria-hidden="true">🦝</span>
-            <span className="font-medium text-[#1A2421]">EcoTail</span>
-          </div>
-          <img 
-            src="/qr-code.svg" 
-            alt="QR code to download EcoTail mobile app" 
-            className="w-24 md:w-32 h-24 md:h-32" 
-          />
-          <p className="text-sm text-[#5E7D7E] mt-3 whitespace-nowrap text-center">
-            Get EcoTail for<br />your phone
-          </p>
-        </div>
+  const { theme } = useThemeStore();
 
-        {/* Main Hero Content */}
-        <div className="max-w-4xl mx-auto text-center px-4">
+  return (
+    <div className="bg-white min-h-screen">
+      {/* Hero Section */}
+      <section
+        className="min-h-[80vh] flex flex-col items-center justify-center relative bg-eco-particles"
+        aria-label="Hero section showcasing EcoTail's smart waste bins"
+      >
+        <div className="max-w-4xl mx-auto text-center px-4 pt-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            className="flex flex-col items-center space-y-10"
           >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl leading-[1.1] font-bold mb-4 md:mb-6">
-              <span className="block text-white">
-                Effortless Sustainability
+            <h1 className="flex flex-col items-center max-w-4xl">
+              <span className="text-hero-heading font-bold text-eco-secondary mt-8 tracking-tight">
+                Smartly Sustainable
               </span>
-              <span className="block text-2xl md:text-3xl text-[#7DD8C6] mt-4 font-normal">
-                AI Rewards Zero Waste
+              <span className="text-hero-subheading text-eco-neutral font-medium tracking-tight leading-tight max-w-[90%]">
+                AI-Powered, Zero Impact
               </span>
             </h1>
 
-            <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Experience next-level waste management with AI-powered sorting, gamified rewards, and real-time eco-insights—all designed to make going green second nature.
-            </p>
-
-            <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-12">
-              <Button className="w-full md:w-auto text-lg py-4 px-8 bg-[#02402C] hover:bg-[#7DD8C6] text-white transition-all duration-300">
-                Buy Now
+            <div className="flex flex-col items-center justify-center gap-2.5 mt-8">
+              <Button 
+                variant="primary"
+                size="xl"
+                className="w-full md:w-auto bg-eco-cta-orange hover:bg-eco-cta-orange/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-3"
+                onClick={() => window.location.href = '#products'}
+              >
+                Get Started Today
               </Button>
+              <a
+                href="#demo"
+                className="text-eco-neutral hover:text-eco-secondary text-sm font-medium transition-colors duration-300 hover:translate-y-[-1px] mt-2 block"
+              >
+                Request a Demo →
+              </a>
             </div>
 
-            {/* Feature Strip */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mt-12">
-              {/* Mobile UI */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:scale-105 hover:shadow-lg hover:shadow-[#02402C]/20 transition-all duration-300"
-              >
-                <img 
-                  src="/mobile-ui.webp" 
-                  alt="EcoTail mobile interface" 
-                  className="w-full h-48 object-cover rounded-lg mb-4"
-                />
-                <h3 className="text-white font-medium">Smart Mobile Interface</h3>
-              </motion.div>
-
-              {/* AI Dashboard */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:scale-105 hover:shadow-lg hover:shadow-[#02402C]/20 transition-all duration-300"
-              >
-                <img 
-                  src="/ai-dashboard.webp" 
-                  alt="AI-powered waste sorting dashboard" 
-                  className="w-full h-48 object-cover rounded-lg mb-4"
-                />
-                <h3 className="text-white font-medium">AI Sorting Dashboard</h3>
-              </motion.div>
-
-              {/* Rewards */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:scale-105 hover:shadow-lg hover:shadow-[#02402C]/20 transition-all duration-300"
-              >
-                <img 
-                  src="/rewards.webp" 
-                  alt="Gamified rewards leaderboard" 
-                  className="w-full h-48 object-cover rounded-lg mb-4"
-                />
-                <h3 className="text-white font-medium">Rewards Leaderboard</h3>
-              </motion.div>
-            </div>
+            <p className="text-base md:text-lg text-eco-neutral max-w-2xl mx-auto mt-6">
+              Transform your waste into a positive force with AI sorting, gamified challenges, and real-time eco-tracking. Join the movement now.
+            </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Latest Updates Section */}
-      <section 
-        className="py-16 md:py-24 bg-[#F7F4EC]"
-        aria-label="Latest updates and features from EcoTail"
+      {/* Product Showcase Section */}
+      <section
+        id="products"
+        className="py-16 md:py-24 bg-white"
+        aria-label="Featured EcoTail products"
       >
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Updates Card */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              <span className="text-sm font-medium text-[#5E7D7E]">UPDATES</span>
-              <h2 className="text-2xl md:text-3xl font-bold text-[#1A2421] mt-2 mb-4">
-                Automatic Updates
-              </h2>
-              <p className="text-[#5E7D7E] text-lg">
-                Stay ahead with automatic updates ensuring seamless functionality.
-              </p>
-              <Button className="mt-6 bg-[#02402C] hover:bg-[#7DD8C6] text-white transition-all duration-300">
-                Learn More
-              </Button>
-            </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-eco-secondary mb-4">
+              Choose Your EcoBin
+            </h2>
+            <p className="text-lg text-eco-neutral max-w-2xl mx-auto">
+              Select the perfect smart bin that matches your needs and budget
+            </p>
+          </motion.div>
 
-            {/* What's New Card */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              <span className="text-sm font-medium text-[#5E7D7E]">LATEST</span>
-              <h2 className="text-2xl md:text-3xl font-bold text-[#1A2421] mt-2 mb-4">
-                What's New from EcoTail
-              </h2>
-              <p className="text-[#5E7D7E] text-lg">
-                Explore the latest features making waste management smarter and easier.
-              </p>
-              <Button className="mt-6 bg-[#02402C] hover:bg-[#7DD8C6] text-white transition-all duration-300">
-                View Updates
-              </Button>
-            </motion.div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {FEATURED_PRODUCTS.map((product, index) => (
+              <motion.div
+                key={product.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                <div className="relative">
+                  <img 
+                    src={product.image} 
+                    alt={product.name}
+                    className="w-full aspect-square object-cover rounded-lg mb-6"
+                  />
+                  {product.badge && (
+                    <span className="absolute top-4 right-4 bg-eco-secondary text-white text-sm font-medium px-3 py-1 rounded-full">
+                      {product.badge}
+                    </span>
+                  )}
+                </div>
+
+                <h3 className="text-xl font-semibold text-eco-dark-bg mb-2">
+                  {product.name}
+                </h3>
+                <p className="text-eco-neutral mb-4">
+                  {product.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {product.features.map((feature) => (
+                    <span 
+                      key={feature}
+                      className="bg-eco-primary/20 text-eco-secondary text-sm px-3 py-1 rounded-full"
+                    >
+                      {feature}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <p className="text-2xl font-bold text-eco-secondary">
+                    ${product.price}
+                    <span className="text-sm font-normal text-eco-neutral">/mo</span>
+                  </p>
+                  <Button 
+                    variant="primary"
+                    className="bg-eco-cta-orange hover:bg-eco-cta-orange-dark text-white transition-all duration-300"
+                  >
+                    Add to Cart
+                  </Button>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Rest of the sections remain unchanged */}
+      {/* Features Grid Section */}
+      <section className="py-16 md:py-24 bg-eco-light-bg">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Smart Features */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center p-6 bg-white rounded-xl shadow-sm"
+            >
+              <div className="w-16 h-16 bg-eco-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">🤖</span>
+              </div>
+              <h3 className="text-xl font-semibold text-eco-secondary mb-2">Smart Sorting</h3>
+              <p className="text-eco-neutral">AI-powered waste categorization for effortless recycling</p>
+            </motion.div>
+
+            {/* Mobile App */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-center p-6 bg-white rounded-xl shadow-sm"
+            >
+              <div className="w-16 h-16 bg-eco-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">📱</span>
+              </div>
+              <h3 className="text-xl font-semibold text-eco-secondary mb-2">Mobile Control</h3>
+              <p className="text-eco-neutral">Monitor and manage your waste from anywhere</p>
+            </motion.div>
+
+            {/* Eco Rewards */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-center p-6 bg-white rounded-xl shadow-sm"
+            >
+              <div className="w-16 h-16 bg-eco-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">🌱</span>
+              </div>
+              <h3 className="text-xl font-semibold text-eco-secondary mb-2">Eco Rewards</h3>
+              <p className="text-eco-neutral">Earn points and rewards for sustainable choices</p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
     </div>
   )
-} 
+}
