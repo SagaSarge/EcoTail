@@ -15,6 +15,32 @@ module.exports = {
           700: '#0369a1',
         },
       },
+      keyframes: {
+        'fade-in-right': {
+          '0%': {
+            opacity: '0',
+            transform: 'translateX(100px)'
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateX(0)'
+          },
+        },
+        'shoot-to-left': {
+          '0%': {
+            opacity: '1',
+            transform: 'translateX(0)'
+          },
+          '100%': {
+            opacity: '0',
+            transform: 'translateX(-200vw)'
+          },
+        }
+      },
+      animation: {
+        'fade-in-right': 'fade-in-right 0.6s ease-out',
+        'shoot-to-left': 'shoot-to-left 2s ease-in-out forwards'
+      }
     },
   },
   plugins: [],

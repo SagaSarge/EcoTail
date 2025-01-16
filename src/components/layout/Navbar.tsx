@@ -1,16 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../hooks/use-auth';
 import { Button } from '../common/Button';
 
 export const Navbar: React.FC = () => {
   const { user } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <div className="fixed w-full top-6 px-4 z-50">
-      <nav className="bg-white/70 backdrop-blur-lg shadow-lg rounded-2xl mx-auto max-w-7xl border border-white/20
-                    transition-all duration-300 hover:shadow-xl hover:shadow-primary-500/10
-                    hover:border-primary-500/20">
+    <div className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'top-6' : 'top-0'}`}>
+      <nav className={`bg-white/70 backdrop-blur-lg mx-auto max-w-7xl transition-all duration-300 px-4
+                    ${isScrolled ? 'shadow-lg rounded-2xl border border-white/20 hover:shadow-xl hover:shadow-primary-500/10 hover:border-primary-500/20' : ''}`}>
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between h-16 items-center">
             <div className="flex items-center">

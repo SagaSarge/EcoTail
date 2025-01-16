@@ -3,11 +3,12 @@ import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { Button } from './components/common/Button';
 import { useAuth } from './contexts/auth-context';
+import { StickyProductCard } from './components/common/StickyProductCard';
 
 function LandingHero() {
   return (
     <div className="relative bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto min-h-[80vh] flex items-start justify-center pt-36">
+      <div className="max-w-7xl mx-auto min-h-[80vh] flex items-start justify-center pt-52">
         <div className="text-center px-4 sm:px-6 lg:px-8 max-w-3xl">
           <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
             <span className="block mb-2">Effortless</span>
@@ -53,6 +54,7 @@ function AppContent() {
           </div>
         )}
       </main>
+      <StickyProductCard />
       <Footer />
     </div>
   );
