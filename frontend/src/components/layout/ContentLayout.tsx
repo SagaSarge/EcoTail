@@ -20,7 +20,7 @@ export function ContentLayout({ title, description, children }: ContentLayoutPro
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl"
+          className="text-3xl font-bold tracking-tight text-[#02402C] dark:text-[#7DD8C6] sm:text-4xl"
         >
           {title}
         </motion.h1>
@@ -29,7 +29,7 @@ export function ContentLayout({ title, description, children }: ContentLayoutPro
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="mx-auto mt-4 max-w-2xl text-lg text-gray-600 dark:text-gray-300"
+            className="mx-auto mt-4 max-w-2xl text-lg text-[#5E7D7E] dark:text-[#F7F4EC]"
           >
             {description}
           </motion.p>

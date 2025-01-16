@@ -1,6 +1,5 @@
 import { ReactNode, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Button } from '../ui/Button'
 
 interface PageLayoutProps {
   children: ReactNode
@@ -16,37 +15,41 @@ export function PageLayout({ children }: PageLayoutProps) {
     if (email) {
       setSubscribeSuccess(true)
       setEmail('')
-      // Reset success message after 3 seconds
       setTimeout(() => setSubscribeSuccess(false), 3000)
     }
   }
 
   const handlePreOrder = () => {
     setPreOrderSuccess(true)
-    // Reset success message after 3 seconds
     setTimeout(() => setPreOrderSuccess(false), 3000)
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+    <div className="min-h-screen flex flex-col bg-[#F7F4EC] dark:bg-[#1A2421]">
+      <header className="sticky top-0 z-50 bg-[#F7F4EC]/80 dark:bg-[#1A2421]/80 backdrop-blur-md border-b border-[#7DD8C6]/10">
         <nav className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            {/* Logo Circle */}
             <Link to="/" className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-full bg-[#7DD8C6]/10 flex items-center justify-center">
                 <span className="text-xl">🌱</span>
               </div>
-              <span className="font-medium text-gray-900">EcoTail</span>
+              <span className="font-medium text-[#02402C] dark:text-[#7DD8C6]">EcoTail</span>
             </Link>
           </div>
 
-          {/* Navigation Links */}
           <div className="flex items-center gap-8">
-            <Link to="/ai-innovations" className="text-gray-600 hover:text-gray-900">AI Innovations</Link>
-            <Link to="/clean" className="text-gray-600 hover:text-gray-900">Clean</Link>
-            <Link to="/by-self-labs" className="text-gray-600 hover:text-gray-900">By Self Labs</Link>
-            <Link to="/education" className="text-gray-600 hover:text-gray-900">Education</Link>
+            <Link to="/ai-innovations" className="text-[#5E7D7E] hover:text-[#02402C] dark:text-[#7DD8C6] dark:hover:text-white transition-colors">
+              AI Innovations
+            </Link>
+            <Link to="/clean" className="text-[#5E7D7E] hover:text-[#02402C] dark:text-[#7DD8C6] dark:hover:text-white transition-colors">
+              Clean
+            </Link>
+            <Link to="/by-self-labs" className="text-[#5E7D7E] hover:text-[#02402C] dark:text-[#7DD8C6] dark:hover:text-white transition-colors">
+              By Self Labs
+            </Link>
+            <Link to="/education" className="text-[#5E7D7E] hover:text-[#02402C] dark:text-[#7DD8C6] dark:hover:text-white transition-colors">
+              Education
+            </Link>
           </div>
         </nav>
       </header>
@@ -55,7 +58,7 @@ export function PageLayout({ children }: PageLayoutProps) {
         {children}
       </main>
 
-      <footer className="bg-gray-50 border-t border-gray-100 py-16 mt-24">
+      <footer className="bg-[#F7F4EC] dark:bg-[#1A2421] border-t border-[#7DD8C6]/10 py-16 mt-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Logo and social links */}
           <div className="flex flex-col items-center mb-16">

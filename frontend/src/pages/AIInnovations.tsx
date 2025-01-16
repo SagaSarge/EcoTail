@@ -1,6 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { useState, useCallback, Suspense } from 'react'
-import { ContentLayout } from '../components/layout/ContentLayout'
+import { useState, useCallback, Suspense, useEffect } from 'react'
 import { ErrorBoundary } from '../components/common/ErrorBoundary'
 import { useAnalytics } from '../hooks/useAnalytics'
 import { Spinner } from '../components/common/Spinner'
@@ -83,11 +82,14 @@ export function AIInnovations(): JSX.Element {
   const [isLoading, setIsLoading] = useState(false)
   const { trackEvent } = useAnalytics()
 
+  useEffect(() => {
+    trackEvent('page_view', { page: 'ai-innovations' })
+  }, [trackEvent])
+
   const handleFeatureClick = useCallback((featureId: string): void => {
     setIsLoading(true)
     trackEvent('feature_click', { featureId })
     setSelectedFeature(prevSelected => prevSelected === featureId ? null : featureId)
-    // Simulate loading for smooth animation
     setTimeout(() => setIsLoading(false), 300)
   }, [trackEvent])
 
@@ -99,21 +101,58 @@ export function AIInnovations(): JSX.Element {
   }, [handleFeatureClick])
 
   return (
-    <ErrorBoundary fallback={<div>Something went wrong. Please try again later.</div>}>
-      <ContentLayout
-        title="AI Innovations"
-        description="Discover our cutting-edge AI solutions for smart waste management"
-      >
-        <Suspense fallback={<Spinner />}>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="min-h-screen bg-white dark:bg-gray-900"
-            role="main"
-            aria-label="AI Innovations features"
+    <ErrorBoundary 
+      fallback={
+        <div className="space-y-4">
+          <h2 className="text-2xl font-semibold text-[#02402C] dark:text-[#7DD8C6]">
+            Oops! Something went wrong
+          </h2>
+          <p className="text-[#5E7D7E] dark:text-[#F7F4EC]">
+            Please try refreshing the page or contact support if the problem persists.
+          </p>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-4 py-2 bg-[#7DD8C6] hover:bg-[#6BC7B5] text-[#1A2421] font-medium rounded-lg 
+              transition-colors duration-200
+              dark:bg-[#02402C] dark:hover:bg-[#035038] dark:text-[#7DD8C6]"
           >
-            <section className="py-24" aria-labelledby="ai-innovations-title">
+            Refresh Page
+          </button>
+        </div>
+      }
+    >
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="min-h-screen bg-[#F7F4EC] dark:bg-[#1A2421]"
+      >
+        <div className="py-12">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl font-bold text-[#02402C] dark:text-[#7DD8C6] mb-4">
+              AI Innovations
+            </h1>
+            <p className="text-xl text-[#5E7D7E] dark:text-[#F7F4EC] max-w-3xl mx-auto mb-8">
+              Discover our cutting-edge AI solutions for smart waste management
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <button
+                onClick={() => trackEvent('pre_order_click')}
+                className="px-6 py-3 bg-[#7DD8C6] hover:bg-[#6BC7B5] text-[#1A2421] font-semibold rounded-lg 
+                  shadow-lg hover:shadow-xl transition-all duration-200 min-w-[200px]
+                  dark:bg-[#02402C] dark:hover:bg-[#035038] dark:text-[#7DD8C6]"
+              >
+                Pre-order Now
+              </button>
+              <span className="text-[#5E7D7E] dark:text-[#F7F4EC]">
+                Starting at $99/month
+              </span>
+            </div>
+          </div>
+
+          <Suspense fallback={<Spinner />}>
+            <section className="py-12" aria-labelledby="ai-innovations-title">
               <div className="container mx-auto px-4">
                 <h2 id="ai-innovations-title" className="sr-only">AI Innovation Features</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -121,8 +160,8 @@ export function AIInnovations(): JSX.Element {
                     <motion.div
                       key={feature.id}
                       className={`p-6 rounded-xl shadow-lg cursor-pointer 
-                        ${selectedFeature === feature.id ? 'ring-2 ring-green-500 dark:ring-green-400' : ''}
-                        bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700
+                        ${selectedFeature === feature.id ? 'ring-2 ring-[#7DD8C6] dark:ring-[#7DD8C6]' : ''}
+                        bg-white dark:bg-[#1A2421] hover:bg-[#F7F4EC] dark:hover:bg-[#02402C]
                         transition-colors duration-200
                       `}
                       onClick={() => handleFeatureClick(feature.id)}
@@ -135,17 +174,17 @@ export function AIInnovations(): JSX.Element {
                       onKeyDown={handleKeyDown(feature.id)}
                     >
                       <div className="flex justify-between items-start mb-4">
-                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                        <h3 className="text-xl font-semibold text-[#02402C] dark:text-[#7DD8C6]">
                           {feature.title}
                         </h3>
                         <span 
-                          className="px-2 py-1 bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100 text-sm rounded-full" 
+                          className="px-3 py-1.5 bg-[#7DD8C6] text-[#1A2421] dark:bg-[#02402C] dark:text-[#7DD8C6] text-sm rounded-full font-medium" 
                           aria-label={`Version ${feature.version}`}
                         >
                           {feature.version}
                         </span>
                       </div>
-                      <p className="text-gray-600 dark:text-gray-300 mb-4">{feature.description}</p>
+                      <p className="text-[#5E7D7E] dark:text-[#F7F4EC] mb-4">{feature.description}</p>
                       
                       <AnimatePresence mode="wait">
                         {selectedFeature === feature.id && !isLoading && (
@@ -156,8 +195,8 @@ export function AIInnovations(): JSX.Element {
                             exit={{ opacity: 0, height: 0 }}
                             className="space-y-4"
                           >
-                            <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
-                              <h4 className="font-semibold mb-2 text-gray-900 dark:text-white">
+                            <div className="border-t border-[#5E7D7E]/20 dark:border-[#5E7D7E]/20 pt-4">
+                              <h4 className="font-semibold mb-2 text-[#02402C] dark:text-[#7DD8C6]">
                                 Key Features
                               </h4>
                               <ul className="space-y-2" role="list">
@@ -166,8 +205,8 @@ export function AIInnovations(): JSX.Element {
                                     key={`${feature.id}-detail-${index}`} 
                                     className="flex items-center gap-2"
                                   >
-                                    <span className="text-green-500 dark:text-green-400" aria-hidden="true">•</span>
-                                    <span className="text-gray-600 dark:text-gray-300">{detail}</span>
+                                    <span className="text-[#7DD8C6] dark:text-[#7DD8C6]" aria-hidden="true">•</span>
+                                    <span className="text-[#5E7D7E] dark:text-[#F7F4EC]">{detail}</span>
                                   </li>
                                 ))}
                               </ul>
@@ -181,12 +220,12 @@ export function AIInnovations(): JSX.Element {
                               {feature.metrics.map((metric, index) => (
                                 <div 
                                   key={`${feature.id}-metric-${index}`} 
-                                  className="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg text-center"
+                                  className="bg-[#F7F4EC] dark:bg-[#02402C] p-4 rounded-lg text-center"
                                 >
-                                  <div className="font-semibold text-green-600 dark:text-green-400">
+                                  <div className="font-semibold text-[#02402C] dark:text-[#7DD8C6] text-lg">
                                     {metric.value}
                                   </div>
-                                  <div className="text-sm text-gray-500 dark:text-gray-400">
+                                  <div className="text-sm text-[#5E7D7E] dark:text-[#F7F4EC]">
                                     {metric.label}
                                   </div>
                                 </div>
@@ -196,7 +235,7 @@ export function AIInnovations(): JSX.Element {
                         )}
                         {isLoading && selectedFeature === feature.id && (
                           <div className="flex justify-center py-8">
-                            <Spinner size="sm" />
+                            <Spinner size="sm" className="text-[#7DD8C6]" />
                           </div>
                         )}
                       </AnimatePresence>
@@ -205,9 +244,9 @@ export function AIInnovations(): JSX.Element {
                 </div>
               </div>
             </section>
-          </motion.div>
-        </Suspense>
-      </ContentLayout>
+          </Suspense>
+        </div>
+      </motion.div>
     </ErrorBoundary>
   )
-} 
+}
