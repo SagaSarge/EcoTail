@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../hooks/use-auth';
 import { Button } from '../common/Button';
+import { Link } from 'react-router-dom';
 
 export const Navbar: React.FC = () => {
   const { user } = useAuth();
@@ -24,21 +25,21 @@ export const Navbar: React.FC = () => {
           <div className="flex justify-between h-16 items-center">
             <div className="flex items-center">
               {/* Logo Circle and Text */}
-              <div className="flex items-center space-x-3 pl-4">
+              <Link to="/" className="flex items-center space-x-3 pl-4">
                 <div className="w-8 h-8 rounded-full bg-primary-600 shadow-lg shadow-primary-500/30"></div>
                 <span className="text-2xl font-bold text-primary-600">EcoTail</span>
-              </div>
+              </Link>
               
               {/* Navigation Links */}
               <div className="hidden md:flex items-center space-x-6 ml-8">
-                <a href="#" className="text-gray-600 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium
-                                   transition-all duration-300 hover:bg-primary-50/50">AI Innovations</a>
-                <a href="#" className="text-gray-600 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium
-                                   transition-all duration-300 hover:bg-primary-50/50">Clean</a>
-                <a href="#" className="text-gray-600 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium
-                                   transition-all duration-300 hover:bg-primary-50/50">By Self Labs</a>
-                <a href="#" className="text-gray-600 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium
-                                   transition-all duration-300 hover:bg-primary-50/50">Education</a>
+                <Link to="/ai-innovations" className="text-gray-600 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium
+                                   transition-all duration-300 hover:bg-primary-50/50">AI Innovations</Link>
+                <Link to="/clean" className="text-gray-600 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium
+                                   transition-all duration-300 hover:bg-primary-50/50">Clean</Link>
+                <Link to="/labs" className="text-gray-600 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium
+                                   transition-all duration-300 hover:bg-primary-50/50">By Self Labs</Link>
+                <Link to="/education" className="text-gray-600 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium
+                                   transition-all duration-300 hover:bg-primary-50/50">Education</Link>
               </div>
             </div>
 
@@ -92,10 +93,10 @@ export const Navbar: React.FC = () => {
         {/* Mobile menu */}
         <div className={`${isMobileMenuOpen ? 'block' : 'hidden'} md:hidden`}>
           <div className="px-2 pt-2 pb-3 space-y-1">
-            <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">AI Innovations</a>
-            <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">Clean</a>
-            <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">By Self Labs</a>
-            <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">Education</a>
+            <Link to="/ai-innovations" className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">AI Innovations</Link>
+            <Link to="/clean" className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">Clean</Link>
+            <Link to="/labs" className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">By Self Labs</Link>
+            <Link to="/education" className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">Education</Link>
             {/* Mobile auth button */}
             <div className="mt-4 px-3">
               {user ? (
