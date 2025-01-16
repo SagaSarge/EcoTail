@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { AuthProvider } from './contexts/auth-context';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
@@ -12,21 +13,63 @@ import { LabsPage } from './components/pages/LabsPage';
 import { EducationPage } from './components/pages/EducationPage';
 import { TestimonialsSection } from './components/sections/TestimonialsSection';
 
+function useScrollAnimation() {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const calculateTransform = (scrollY: number) => {
+    const baseThreshold = 50;
+    const maxScroll = 300;
+    const progress = Math.min(Math.max((scrollY - baseThreshold) / (maxScroll - baseThreshold), 0), 1);
+    
+    return {
+      alignY: progress * 100, // Move to parallel line
+      slideLeft: progress * 150, // Slide off to left
+      opacity: 1 - progress * 0.8 // Fade out slightly
+    };
+  };
+
+  return calculateTransform(scrollY);
+}
+
 function LandingHero() {
+  const { alignY, slideLeft, opacity } = useScrollAnimation();
+
   return (
     <>
       <div className="relative bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto min-h-[90vh] flex items-start justify-center pt-52">
-          <div className="absolute left-0 w-[740px] h-[400px] bg-gray-300 rounded-r-3xl transform -translate-x-1/4 shadow-xl border-2 border-gray-400"
-               style={{ top: '32rem' }}
+          <div className="absolute left-0 w-[740px] h-[400px] bg-gray-300 rounded-r-3xl shadow-xl border-2 border-gray-400 transition-all duration-300"
+               style={{ 
+                 top: `${32 * 16 - alignY}px`,
+                 transform: `translateX(calc(-25% - ${slideLeft}px))`,
+                 opacity: opacity
+               }}
           />
           
-          <div className="absolute left-[calc(50%+550px)] w-[225px] h-[450px] bg-gray-300 rounded-3xl shadow-xl border-2 border-gray-400"
-               style={{ top: '18rem' }}
+          <div className="absolute w-[225px] h-[450px] bg-gray-300 rounded-3xl shadow-xl border-2 border-gray-400 transition-all duration-300"
+               style={{ 
+                 top: `${18 * 16 + alignY}px`,
+                 left: `calc(50% + 500px - ${slideLeft}px)`,
+                 opacity: opacity
+               }}
           />
           
-          <div className="absolute right-0 w-[140px] h-[350px] bg-gray-300 rounded-l-3xl transform translate-x-1/4 shadow-xl border-2 border-gray-400"
-               style={{ top: '52rem' }}
+          <div className="absolute w-[140px] h-[350px] bg-gray-300 rounded-l-3xl shadow-xl border-2 border-gray-400 transition-all duration-300"
+               style={{ 
+                 top: `${52 * 16 - alignY * 1.5}px`,
+                 right: `calc(0px - ${slideLeft}px)`,
+                 transform: 'translateX(25%)',
+                 opacity: opacity
+               }}
           />
           
           <div className="text-center px-4 sm:px-6 lg:px-8 max-w-3xl">
@@ -59,7 +102,13 @@ function LandingHero() {
               Experience next-level waste management with AI-powered sorting, gamified rewards, and real-time eco-insights—all designed to make going green second nature.
             </p>
 
-            <div className="mt-32 h-[400px] bg-gray-300 rounded-xl shadow-lg border-2 border-gray-400 max-w-2xl mx-auto" />
+            <div className="mt-32 h-[400px] bg-gray-300 rounded-xl shadow-lg border-2 border-gray-400 max-w-2xl mx-auto transition-all duration-300"
+                 style={{ 
+                   transform: `translateX(-${slideLeft}px)`,
+                   marginTop: `${32 * 4 + alignY}px`,
+                   opacity: opacity
+                 }}
+            />
           </div>
         </div>
       </div>
