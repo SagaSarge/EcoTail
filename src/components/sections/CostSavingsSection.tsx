@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface SavingsCard {
   title: string;
@@ -33,6 +34,8 @@ const savingsTypes: SavingsCard[] = [
 ];
 
 export const CostSavingsSection: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="py-24 bg-gradient-to-br from-primary-900 to-primary-800 relative overflow-hidden">
       {/* Decorative Elements */}
@@ -77,7 +80,10 @@ export const CostSavingsSection: React.FC = () => {
             </div>
 
             {/* CTA Button */}
-            <button className="inline-flex items-center px-8 py-4 bg-white text-primary-900 rounded-xl font-medium hover:bg-primary-50 transition-colors duration-300">
+            <button 
+              onClick={() => navigate('/calculate-savings')}
+              className="inline-flex items-center px-8 py-4 bg-white text-primary-900 rounded-xl font-medium hover:bg-primary-50 transition-colors duration-300"
+            >
               Calculate Your Savings
               <svg className="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />

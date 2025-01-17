@@ -11,6 +11,7 @@ import { AiInnovationsPage } from './components/pages/AiInnovationsPage';
 import { CleanPage } from './components/pages/CleanPage';
 import { LabsPage } from './components/pages/LabsPage';
 import { EducationPage } from './components/pages/EducationPage';
+import { CalculateCostSavingsPage } from './components/pages/CalculateCostSavingsPage';
 import { TestimonialsSection } from './components/sections/TestimonialsSection';
 import { SmartWasteSection } from './components/sections/SmartWasteSection';
 import { EnvironmentalImpactSection } from './components/sections/EnvironmentalImpactSection';
@@ -164,6 +165,7 @@ function AppContent() {
           <Route path="/labs" element={<LabsPage />} />
           <Route path="/education" element={<EducationPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/calculate-savings" element={<CalculateCostSavingsPage />} />
           <Route path="/" element={
             !user ? <LandingHero /> : (
               <div className="text-center mt-10">
