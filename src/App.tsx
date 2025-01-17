@@ -29,38 +29,25 @@ function useScrollAnimation() {
     const maxScroll = 600;
     const progress = Math.min(scrollY / maxScroll, 1);
     
-    // Final scale for all images when aligned
-    const finalScale = 0.75;
-    const scaleProgress = 1 - (progress * 0.25);
-    
-    // Calculate slide-off movement
-    const slideRight = progress * 1200; // All images slide right
-    
     return {
-      // First image movement
-      firstMoveDown: progress * 300,
-      firstMoveRight: slideRight,
-      firstScale: scaleProgress,
-
-      // Third image movement
-      moveDown: progress * 600,
-      moveRight: slideRight,
-      thirdScale: scaleProgress,
+      // First image moves down and left
+      firstMoveDown: progress * 100,
+      firstMoveLeft: progress * 300,
       
-      // Fourth image movement - moves towards center
-      moveUp: progress * 250,
-      moveFourthRight: slideRight * 0.5, // Moves less right to end up near center
-      fourthScale: scaleProgress,
-
-      // Center image movement
-      centerMoveUp: progress * 60,
-      centerMoveRight: slideRight * 0.8,
-      centerScale: scaleProgress,
-
-      // Fifth image movement
-      fifthMoveUp: progress * 400,
-      fifthMoveRight: slideRight,
-      fifthScale: scaleProgress
+      // Center image moves slightly right and up
+      centerMoveUp: progress * 50,
+      centerMoveRight: progress * 200,
+      
+      // Third image moves down diagonally
+      thirdMoveDown: progress * 200,
+      thirdMoveLeft: progress * 100,
+      
+      // Fourth image moves up and left
+      fourthMoveUp: progress * 150,
+      fourthMoveLeft: progress * 75,
+      
+      // Scale effect
+      scale: 1 - (progress * 0.1)
     };
   };
 
@@ -69,62 +56,63 @@ function useScrollAnimation() {
 
 function LandingHero() {
   const transforms = useScrollAnimation();
+  const [rotatingWord, setRotatingWord] = useState('families');
+  
+  useEffect(() => {
+    const words = ['families', 'selfs', 'work', 'friends', 'kids'];
+    let currentIndex = 0;
+    
+    const interval = setInterval(() => {
+      currentIndex = (currentIndex + 1) % words.length;
+      setRotatingWord(words[currentIndex]);
+    }, 2000);
+    
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
       <div className="relative bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto min-h-[90vh] flex items-start justify-center pt-52">
           {/* First Image */}
-          <div className="absolute left-0 w-[740px] h-[400px] bg-gray-300 rounded-r-3xl transform -translate-x-1/2 shadow-xl border-2 border-gray-400 transition-all duration-700"
+          <div className="absolute left-0 w-[814px] h-[450px] bg-gray-300 rounded-r-3xl shadow-xl border-2 border-gray-400 transition-all duration-700"
                style={{ 
                  top: `calc(32rem + ${transforms.firstMoveDown}px)`,
-                 transform: `translateX(calc(-50% + ${transforms.firstMoveRight}px)) scale(${transforms.firstScale})`
+                 transform: `translateX(-50%) translateX(-${transforms.firstMoveLeft}px) scale(${transforms.scale})`
                }}
           />
 
-          {/* Fifth Image (between first and center) */}
-          <div className="absolute w-[225px] h-[450px] bg-gray-300 rounded-3xl shadow-xl border-2 border-gray-400 transition-all duration-700"
-               style={{ 
-                 top: `calc(70rem - ${transforms.fifthMoveUp}px)`,
-                 left: `calc(50% - 600px + ${transforms.fifthMoveRight}px)`,
-                 transform: `scale(${transforms.fifthScale})`
-               }}
-          />
-          
           {/* Third Image (iPhone-shaped) */}
-          <div className="absolute w-[225px] h-[450px] bg-gray-300 rounded-3xl shadow-xl border-2 border-gray-400 transition-all duration-700"
+          <div className="absolute w-[275px] h-[450px] bg-gray-300 rounded-3xl shadow-xl border-2 border-gray-400 transition-all duration-700"
                style={{ 
-                 top: `calc(24rem + ${transforms.moveDown}px)`,
-                 left: `calc(50% + 650px + ${transforms.moveRight}px)`,
-                 transform: `scale(${transforms.thirdScale})`
+                 top: `calc(20rem + ${transforms.thirdMoveDown}px)`,
+                 left: `calc(50% + 450px - ${transforms.thirdMoveLeft}px)`,
+                 transform: `scale(${transforms.scale})`
                }}
           />
           
           {/* Fourth Image */}
-          <div className="absolute right-0 w-[225px] h-[450px] bg-gray-300 rounded-l-3xl shadow-xl border-2 border-gray-400 transition-all duration-700"
+          <div className="absolute w-[275px] h-[450px] bg-gray-300 rounded-l-3xl shadow-xl border-2 border-gray-400 transition-all duration-700"
                style={{ 
-                 top: `calc(52rem - ${transforms.moveUp}px)`,
-                 right: `calc(0px - ${transforms.moveFourthRight}px)`,
-                 transform: `translateX(25%) scale(${transforms.fourthScale})`
+                 top: `calc(52rem - ${transforms.fourthMoveUp}px)`,
+                 right: `calc(0px + ${transforms.fourthMoveLeft}px)`,
+                 transform: `scale(${transforms.scale})`
                }}
           />
           
           <div className="text-center px-4 sm:px-6 lg:px-8 max-w-3xl">
-            <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-              <span className="block mb-2">Effortless</span>
-              <span className="block text-primary-600 mb-4">Sustainability</span>
+            <h1 className="text-5xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl mb-4">
+              <span className="text-gray-900">Sustainable </span>
+              <span className="text-primary-600">Saga</span>
             </h1>
             
             <p className="mt-3 text-xl text-gray-500 sm:text-2xl md:text-3xl font-medium">
               AI Rewards Zero Waste
             </p>
             
-            <div className="mt-8 flex justify-center space-x-4">
-              <Button variant="primary" className="px-8 py-3">
+            <div className="mt-8 flex justify-center">
+              <Button variant="primary" className="px-12 py-3">
                 Buy Now
-              </Button>
-              <Button variant="outline" className="px-8 py-3">
-                Pre Order V2
               </Button>
             </div>
 
@@ -132,18 +120,21 @@ function LandingHero() {
               to="/contact" 
               className="inline-block mt-4 text-primary-600 text-sm font-medium hover:text-primary-700 transition-colors duration-200 hover:underline"
             >
-              Submit a Request
+              Pre Order V2
             </Link>
 
-            <p className="mt-8 text-base text-gray-500 sm:text-lg md:text-xl max-w-2xl mx-auto">
-              Experience next-level waste management with AI-powered sorting, gamified rewards, and real-time eco-insights—all designed to make going green second nature.
+            <p className="mt-8 text-sm text-gray-500 sm:text-base max-w-2xl mx-auto">
+              What story does your <span className="text-primary-600 transition-all duration-300">{rotatingWord}</span> recycling habits tell?
             </p>
 
             {/* Center Image */}
             <div 
-              className="mt-32 h-[400px] bg-gray-300 rounded-xl shadow-lg border-2 border-gray-400 max-w-2xl mx-auto transition-all duration-700"
+              className="mt-32 bg-gray-300 rounded-xl shadow-lg border-2 border-gray-400 transition-all duration-700"
               style={{
-                transform: `translateY(-${transforms.centerMoveUp}px) translateX(${transforms.centerMoveRight}px) scale(${transforms.centerScale})`
+                transform: `translateY(-${transforms.centerMoveUp}px) translateX(${transforms.centerMoveRight}px) scale(${transforms.scale})`,
+                marginLeft: '-100px',
+                width: '800px',
+                height: '400px'
               }}
             />
           </div>

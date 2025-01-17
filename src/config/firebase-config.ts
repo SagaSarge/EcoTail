@@ -4,13 +4,13 @@ import { getFirestore } from 'firebase/firestore';
 import { getAnalytics } from 'firebase/analytics';
 
 const firebaseConfig: FirebaseOptions = {
-  apiKey: "AIzaSyDQ7w-f3vB4WLuhFB3zVd7sgkGWHjWSJ0A",
-  authDomain: "ecotail.firebaseapp.com",
-  projectId: "ecotail",
-  storageBucket: "ecotail.firebasestorage.app",
-  messagingSenderId: "161364049188",
-  appId: "1:161364049188:web:72b4cbbefdc766def987b1",
-  measurementId: "G-L67HLVBWQJ"
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: "ecotale.firebaseapp.com",
+  projectId: "ecotale",
+  storageBucket: "ecotale.firebasestorage.app",
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID,
+  measurementId: process.env.FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase

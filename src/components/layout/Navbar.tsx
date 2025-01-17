@@ -67,7 +67,9 @@ export const Navbar: React.FC = () => {
               <div className={`w-8 h-8 rounded-full bg-primary-600 transition-all duration-500 ${
                 isScrolled ? 'shadow-[0_0_15px_rgba(0,112,243,0.3)]' : ''
               }`} />
-              <span className="text-2xl font-bold text-primary-600 ml-3">EcoTail</span>
+              <Link to="/" className="ml-3 text-xl font-bold text-gray-900">
+                EcoTale
+              </Link>
               <div className="hidden md:flex items-center space-x-6 ml-12">
                 <Link to="/ai-innovations" className="text-gray-700 hover:text-primary-600 transition-colors">
                   AI Innovations
