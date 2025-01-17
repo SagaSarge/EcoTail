@@ -1,121 +1,119 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const EnvironmentalImpactSection: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
-    <section className="py-24 bg-gray-900 text-white relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[linear-gradient(30deg,#0f172a_12%,transparent_12.5%,transparent_87%,#0f172a_87.5%,#0f172a),linear-gradient(150deg,#0f172a_12%,transparent_12.5%,transparent_87%,#0f172a_87.5%,#0f172a),linear-gradient(30deg,#0f172a_12%,transparent_12.5%,transparent_87%,#0f172a_87.5%,#0f172a),linear-gradient(150deg,#0f172a_12%,transparent_12.5%,transparent_87%,#0f172a_87.5%,#0f172a),linear-gradient(60deg,#0f172a77_25%,transparent_25.5%,transparent_75%,#0f172a77_75%,#0f172a77),linear-gradient(60deg,#0f172a77_25%,transparent_25.5%,transparent_75%,#0f172a77_75%,#0f172a77)]" style={{
-          backgroundSize: '80px 140px',
-          backgroundPosition: '0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px'
-        }} />
+    <section className="py-24 bg-gradient-to-b from-white to-green-50 relative overflow-hidden">
+      {/* Decorative Elements */}
+      <div className="absolute inset-0 z-0">
+        {/* Globe SVG Background */}
+        <div className="absolute right-0 top-0 w-[600px] h-[600px] opacity-10">
+          <svg viewBox="0 0 100 100" className="w-full h-full text-green-900">
+            <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" strokeWidth="0.5" />
+            {/* Grid lines */}
+            {Array.from({ length: 8 }).map((_, i) => (
+              <path
+                key={i}
+                d={`M10 ${20 + i * 10} Q50 ${10 + i * 10} 90 ${20 + i * 10}`}
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="0.2"
+              />
+            ))}
+            {Array.from({ length: 8 }).map((_, i) => (
+              <path
+                key={i}
+                d={`M${20 + i * 10} 10 Q${10 + i * 10} 50 ${20 + i * 10} 90`}
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="0.2"
+              />
+            ))}
+          </svg>
+        </div>
+
+        {/* Tree SVG Elements */}
+        <div className="absolute left-0 bottom-0 w-[400px] h-[300px] opacity-10">
+          <svg viewBox="0 0 100 100" className="w-full h-full text-green-900">
+            {/* Multiple Trees */}
+            <g transform="translate(10,60) scale(0.8)">
+              <path d="M20 60 L30 20 L40 60 Z" fill="currentColor" />
+              <rect x="28" y="60" width="4" height="10" fill="currentColor" />
+            </g>
+            <g transform="translate(40,50) scale(0.6)">
+              <path d="M20 60 L30 20 L40 60 Z" fill="currentColor" />
+              <rect x="28" y="60" width="4" height="10" fill="currentColor" />
+            </g>
+            <g transform="translate(60,65) scale(0.7)">
+              <path d="M20 60 L30 20 L40 60 Z" fill="currentColor" />
+              <rect x="28" y="60" width="4" height="10" fill="currentColor" />
+            </g>
+          </svg>
+        </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-6 lg:text-5xl">
             Measure Your
-            <span className="block text-primary-400">Environmental Impact</span>
+            <span className="bg-gradient-to-r from-green-600 to-emerald-500 bg-clip-text text-transparent"> Environmental Impact</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Track and visualize your contribution to a sustainable future through real-time environmental metrics.
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Track your contribution to a sustainable future with real-time environmental metrics
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Impact Metrics */}
-          <div className="space-y-8">
-            {/* Carbon Footprint Card */}
-            <div className="bg-gray-800 rounded-2xl p-6 transform hover:scale-105 transition-transform duration-300">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-semibold">Carbon Footprint</h3>
-                <span className="text-primary-400">-25%</span>
-              </div>
-              <div className="h-4 bg-gray-700 rounded-full overflow-hidden">
-                <div className="h-full bg-primary-500 rounded-full" style={{ width: '75%' }} />
-              </div>
-              <p className="mt-4 text-gray-400">Reduced CO₂ emissions through smart waste management</p>
+        {/* Impact Metrics Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          {/* Carbon Footprint */}
+          <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
+              <svg className="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+              </svg>
             </div>
-
-            {/* Recycling Rate Card */}
-            <div className="bg-gray-800 rounded-2xl p-6 transform hover:scale-105 transition-transform duration-300">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-semibold">Recycling Rate</h3>
-                <span className="text-primary-400">+40%</span>
-              </div>
-              <div className="h-4 bg-gray-700 rounded-full overflow-hidden">
-                <div className="h-full bg-primary-500 rounded-full" style={{ width: '85%' }} />
-              </div>
-              <p className="mt-4 text-gray-400">Increased recycling efficiency with AI-powered sorting</p>
-            </div>
-
-            {/* Waste Reduction Card */}
-            <div className="bg-gray-800 rounded-2xl p-6 transform hover:scale-105 transition-transform duration-300">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-semibold">Waste Reduction</h3>
-                <span className="text-primary-400">-30%</span>
-              </div>
-              <div className="h-4 bg-gray-700 rounded-full overflow-hidden">
-                <div className="h-full bg-primary-500 rounded-full" style={{ width: '65%' }} />
-              </div>
-              <p className="mt-4 text-gray-400">Overall waste reduction through smart consumption</p>
-            </div>
+            <h3 className="text-2xl font-semibold mb-4">Carbon Reduction</h3>
+            <p className="text-gray-600 mb-6">Monitor your carbon footprint reduction through smart waste management</p>
+            <div className="text-4xl font-bold text-green-600">1.2 tons</div>
+            <p className="text-sm text-gray-500">CO₂ saved per month</p>
           </div>
 
-          {/* Impact Visualization */}
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-96 h-96 bg-primary-500 rounded-full opacity-10 blur-3xl" />
+          {/* Resource Conservation */}
+          <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+            <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mb-6">
+              <svg className="w-8 h-8 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+              </svg>
             </div>
-            
-            {/* Earth Visualization */}
-            <div className="relative bg-gray-800 rounded-3xl p-8 transform hover:scale-105 transition-transform duration-300">
-              <div className="aspect-w-1 aspect-h-1">
-                <div className="p-6 flex flex-col items-center justify-center">
-                  {/* Replace with actual Earth visualization */}
-                  <div className="w-64 h-64 rounded-full bg-gradient-to-br from-blue-500 to-green-500 relative">
-                    {/* Animated orbit effect */}
-                    <div className="absolute inset-0 rounded-full border-4 border-dashed border-primary-400 animate-spin-slow" style={{ animationDuration: '20s' }} />
-                    <div className="absolute inset-2 rounded-full border-4 border-dashed border-primary-300 animate-spin-slow" style={{ animationDuration: '15s' }} />
-                    <div className="absolute inset-4 rounded-full border-4 border-dashed border-primary-200 animate-spin-slow" style={{ animationDuration: '10s' }} />
-                  </div>
-                </div>
-              </div>
+            <h3 className="text-2xl font-semibold mb-4">Resource Saved</h3>
+            <p className="text-gray-600 mb-6">Track resources conserved through efficient waste management</p>
+            <div className="text-4xl font-bold text-emerald-600">850 kg</div>
+            <p className="text-sm text-gray-500">Materials recycled monthly</p>
+          </div>
 
-              {/* Impact Stats */}
-              <div className="mt-8 grid grid-cols-3 gap-4">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-primary-400">1.2T</div>
-                  <div className="text-sm text-gray-400">CO₂ Saved</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-primary-400">850K</div>
-                  <div className="text-sm text-gray-400">Items Recycled</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-primary-400">45%</div>
-                  <div className="text-sm text-gray-400">Less Waste</div>
-                </div>
-              </div>
+          {/* Environmental Score */}
+          <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+            <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mb-6">
+              <svg className="w-8 h-8 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+              </svg>
             </div>
-
-            {/* Floating Achievement */}
-            <div className="absolute -right-4 -bottom-8 transform rotate-6">
-              <div className="bg-primary-500 text-white rounded-2xl shadow-lg p-4">
-                <div className="text-sm font-semibold">🌟 Achievement Unlocked!</div>
-                <div className="text-xs">Carbon Neutral Status</div>
-              </div>
-            </div>
+            <h3 className="text-2xl font-semibold mb-4">Impact Score</h3>
+            <p className="text-gray-600 mb-6">Your environmental impact rating based on sustainable practices</p>
+            <div className="text-4xl font-bold text-teal-600">92/100</div>
+            <p className="text-sm text-gray-500">Sustainability rating</p>
           </div>
         </div>
 
-        {/* Call to Action */}
-        <div className="mt-20 text-center">
-          <button className="inline-flex items-center px-8 py-3 border-2 border-primary-400 text-primary-400 font-medium rounded-xl hover:bg-primary-400 hover:text-white transition-all duration-300">
-            View Detailed Impact Report
-            <svg className="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
+        {/* CTA */}
+        <div className="text-center">
+          <button 
+            onClick={() => navigate('/calculate-impact')}
+            className="bg-gradient-to-r from-green-600 to-emerald-500 text-white text-lg font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-105"
+          >
+            Calculate Your Impact
           </button>
         </div>
       </div>

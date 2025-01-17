@@ -16,6 +16,8 @@ import { TestimonialsSection } from './components/sections/TestimonialsSection';
 import { SmartWasteSection } from './components/sections/SmartWasteSection';
 import { EnvironmentalImpactSection } from './components/sections/EnvironmentalImpactSection';
 import { CostSavingsSection } from './components/sections/CostSavingsSection';
+import { HowSavingsSection } from './components/sections/HowSavingsSection';
+import { CalculateImpactPage } from './components/pages/CalculateImpactPage';
 
 function useScrollAnimation() {
   const [scrollY, setScrollY] = useState(0);
@@ -144,9 +146,10 @@ function LandingHero() {
           </div>
         </div>
       </div>
+      <CostSavingsSection />
+      <HowSavingsSection />
       <SmartWasteSection />
       <EnvironmentalImpactSection />
-      <CostSavingsSection />
       <TestimonialsSection />
     </>
   );
@@ -166,6 +169,7 @@ function AppContent() {
           <Route path="/education" element={<EducationPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/calculate-savings" element={<CalculateCostSavingsPage />} />
+          <Route path="/calculate-impact" element={<CalculateImpactPage />} />
           <Route path="/" element={
             !user ? <LandingHero /> : (
               <div className="text-center mt-10">

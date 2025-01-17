@@ -35,11 +35,19 @@ module.exports = {
             opacity: '0',
             transform: 'translateX(-200vw)'
           },
+        },
+        float: {
+          '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+          '20%': { transform: 'translate(100px, -50px) scale(1.2)' },
+          '40%': { transform: 'translate(-50px, 100px) scale(0.9)' },
+          '60%': { transform: 'translate(75px, 75px) scale(1.1)' },
+          '80%': { transform: 'translate(-100px, -50px) scale(0.95)' },
         }
       },
       animation: {
         'fade-in-right': 'fade-in-right 0.6s ease-out',
-        'shoot-to-left': 'shoot-to-left 2s ease-in-out forwards'
+        'shoot-to-left': 'shoot-to-left 2s ease-in-out forwards',
+        'float': 'float 15s ease-in-out infinite',
       },
       perspective: {
         '1000': '1000px',
