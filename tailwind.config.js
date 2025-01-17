@@ -40,7 +40,19 @@ module.exports = {
       animation: {
         'fade-in-right': 'fade-in-right 0.6s ease-out',
         'shoot-to-left': 'shoot-to-left 2s ease-in-out forwards'
-      }
+      },
+      perspective: {
+        '1000': '1000px',
+      },
+      rotate: {
+        'x-90': '90deg',
+      },
+      transformStyle: {
+        '3d': 'preserve-3d',
+      },
+      translate: {
+        'z-2': '2px',
+      },
     },
   },
   plugins: [],

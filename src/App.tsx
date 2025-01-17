@@ -12,6 +12,7 @@ import { CleanPage } from './components/pages/CleanPage';
 import { LabsPage } from './components/pages/LabsPage';
 import { EducationPage } from './components/pages/EducationPage';
 import { TestimonialsSection } from './components/sections/TestimonialsSection';
+import { ValueProposition } from './components/sections/ValueProposition';
 
 function useScrollAnimation() {
   const [scrollY, setScrollY] = useState(0);
@@ -140,6 +141,7 @@ function LandingHero() {
           </div>
         </div>
       </div>
+      <ValueProposition />
       <TestimonialsSection />
     </>
   );
