@@ -12,7 +12,9 @@ import { CleanPage } from './components/pages/CleanPage';
 import { LabsPage } from './components/pages/LabsPage';
 import { EducationPage } from './components/pages/EducationPage';
 import { TestimonialsSection } from './components/sections/TestimonialsSection';
-import { ValueProposition } from './components/sections/ValueProposition';
+import { SmartWasteSection } from './components/sections/SmartWasteSection';
+import { EnvironmentalImpactSection } from './components/sections/EnvironmentalImpactSection';
+import { CostSavingsSection } from './components/sections/CostSavingsSection';
 
 function useScrollAnimation() {
   const [scrollY, setScrollY] = useState(0);
@@ -141,7 +143,9 @@ function LandingHero() {
           </div>
         </div>
       </div>
-      <ValueProposition />
+      <SmartWasteSection />
+      <EnvironmentalImpactSection />
+      <CostSavingsSection />
       <TestimonialsSection />
     </>
   );
