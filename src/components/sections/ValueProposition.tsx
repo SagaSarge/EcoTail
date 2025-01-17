@@ -6,33 +6,26 @@ export const ValueProposition: React.FC = () => {
   const [hasBeenFullyVisible, setHasBeenFullyVisible] = useState(false);
 
   useEffect(() => {
-    let lastScrollY = window.scrollY;
-    
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const currentScrollY = window.scrollY;
-          const isScrollingDown = currentScrollY > lastScrollY;
-          
-          // Show tooltip when scrolling down and card is entering viewport
-          if (isScrollingDown && entry.isIntersecting && !hasBeenFullyVisible) {
+          // Show tooltip when card enters viewport and hasn't been fully visible yet
+          if (entry.isIntersecting && !hasBeenFullyVisible) {
             setShowScrollTooltip(true);
           }
           
-          // Hide tooltip when card is fully visible
-          if (entry.intersectionRatio >= 0.8 && showScrollTooltip) {
+          // Hide tooltip when card is almost fully visible
+          if (entry.intersectionRatio >= 0.8) {
             setTimeout(() => {
               setShowScrollTooltip(false);
               setHasBeenFullyVisible(true);
-            }, 1000);
+            }, 500);
           }
-          
-          lastScrollY = currentScrollY;
         });
       },
       {
         threshold: [0, 0.5, 0.8],
-        rootMargin: "-10% 0px -10% 0px"
+        rootMargin: "-20% 0px -20% 0px"
       }
     );
 
@@ -41,7 +34,7 @@ export const ValueProposition: React.FC = () => {
     }
 
     return () => observer.disconnect();
-  }, [hasBeenFullyVisible, showScrollTooltip]);
+  }, [hasBeenFullyVisible]);
 
   return (
     <section className="bg-gradient-to-b from-white to-gray-50 py-24">
@@ -152,19 +145,16 @@ export const ValueProposition: React.FC = () => {
             </div>
             
             {/* Tooltip for Personalized Rewards */}
-            <div className={`transition-all duration-700 absolute -bottom-4 left-0 w-full origin-top perspective-1000
-              ${showScrollTooltip ? 'opacity-100 rotate-x-0' : 'opacity-0 -rotate-x-90'} 
-              ${hasBeenFullyVisible && !showScrollTooltip ? 'group-hover/rewards:opacity-100 group-hover/rewards:rotate-x-0' : ''}`}>
-              <div className="bg-gradient-to-b from-gray-50/90 to-gray-100/80 rounded-2xl p-6 shadow-xl border border-gray-200/50 backdrop-blur-md transform preserve-3d">
-                {/* Connector Element */}
-                <div className="absolute -top-2 left-0 w-full h-2 bg-gradient-to-b from-white to-gray-50/90"></div>
-                
-                <div className="space-y-4 transform-style-3d">
+            <div className={`transition-all duration-500 absolute -bottom-4 left-0 w-full
+              ${showScrollTooltip ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'} 
+              ${hasBeenFullyVisible && !showScrollTooltip ? 'group-hover/rewards:opacity-100 group-hover/rewards:translate-y-0' : ''}`}>
+              <div className="bg-white rounded-2xl p-6 shadow-xl border border-gray-200">
+                <div className="space-y-4">
                   {/* Eco Points Card */}
-                  <div className="flex items-center space-x-3 bg-white/40 rounded-xl p-3 border border-gray-200/50 shadow-sm backdrop-blur-sm hover:bg-white/50 transition-all duration-300 hover:translate-z-2">
-                    <div className="h-10 w-10 bg-primary-50 rounded-xl flex items-center justify-center shadow-sm">
+                  <div className="flex items-center space-x-3 bg-gray-50 rounded-xl p-3 hover:bg-gray-100 transition-colors duration-300">
+                    <div className="h-10 w-10 bg-primary-50 rounded-xl flex items-center justify-center">
                       <svg className="w-5 h-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
                     <div>
@@ -174,8 +164,8 @@ export const ValueProposition: React.FC = () => {
                   </div>
                   
                   {/* Custom Rewards Card */}
-                  <div className="flex items-center space-x-3 bg-white/40 rounded-xl p-3 border border-gray-200/50 shadow-sm backdrop-blur-sm hover:bg-white/50 transition-all duration-300 hover:translate-z-2">
-                    <div className="h-10 w-10 bg-primary-50 rounded-xl flex items-center justify-center shadow-sm">
+                  <div className="flex items-center space-x-3 bg-gray-50 rounded-xl p-3 hover:bg-gray-100 transition-colors duration-300">
+                    <div className="h-10 w-10 bg-primary-50 rounded-xl flex items-center justify-center">
                       <svg className="w-5 h-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                       </svg>
@@ -187,8 +177,8 @@ export const ValueProposition: React.FC = () => {
                   </div>
                   
                   {/* Achievement Tiers Card */}
-                  <div className="flex items-center space-x-3 bg-white/40 rounded-xl p-3 border border-gray-200/50 shadow-sm backdrop-blur-sm hover:bg-white/50 transition-all duration-300 hover:translate-z-2">
-                    <div className="h-10 w-10 bg-primary-50 rounded-xl flex items-center justify-center shadow-sm">
+                  <div className="flex items-center space-x-3 bg-gray-50 rounded-xl p-3 hover:bg-gray-100 transition-colors duration-300">
+                    <div className="h-10 w-10 bg-primary-50 rounded-xl flex items-center justify-center">
                       <svg className="w-5 h-5 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                       </svg>
