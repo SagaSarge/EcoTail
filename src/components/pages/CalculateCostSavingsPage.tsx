@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface SavingsInputs {
   wasteVolume: number;
@@ -66,6 +66,10 @@ export const CalculateCostSavingsPage: React.FC = () => {
   });
 
   const totalSteps = 5; // 4 questions + calculator
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   const handleQuestionnaireUpdate = (field: keyof QuestionnaireData, value: any) => {
     setQuestionnaire(prev => ({ ...prev, [field]: value }));
@@ -135,208 +139,192 @@ export const CalculateCostSavingsPage: React.FC = () => {
   };
 
   const renderProgressBar = () => (
-    <div className="mb-8">
-      <div className="flex justify-between mb-2">
-        <span className="text-sm font-medium text-gray-600">Question {step} of {totalSteps}</span>
-        <span className="text-sm font-medium text-primary-600">{Math.round((step / totalSteps) * 100)}% Complete</span>
+    <div className="mb-12">
+      <div className="flex justify-between mb-3">
+        <span className="text-sm font-medium text-gray-600">
+          Step {step} of {totalSteps}
+        </span>
+        <span className="text-sm font-medium bg-primary-50 text-primary-700 px-3 py-1 rounded-full">
+          {Math.round((step / totalSteps) * 100)}% Complete
+        </span>
       </div>
-      <div className="w-full bg-gray-200 rounded-full h-2.5">
+      <div className="w-full h-3 bg-gray-100 rounded-full overflow-hidden shadow-inner">
         <div 
-          className="bg-primary-600 h-2.5 rounded-full transition-all duration-500"
+          className="h-full bg-gradient-to-r from-primary-500 to-primary-600 transition-all duration-500 ease-out rounded-full"
           style={{ width: `${(step / totalSteps) * 100}%` }}
-        />
+        >
+          <div className="h-full w-full bg-[length:20px_20px] bg-[linear-gradient(45deg,rgba(255,255,255,.15)25%,transparent_25%,transparent_50%,rgba(255,255,255,.15)50%,rgba(255,255,255,.15)75%,transparent_75%,transparent)] animate-[progress-stripes_1s_linear_infinite]" />
+        </div>
       </div>
     </div>
   );
 
   const renderQuestion = () => {
+    const QuestionWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+      <div className="max-w-4xl mx-auto transform transition-all duration-500 ease-out">
+        <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 backdrop-blur-lg backdrop-filter">
+          {children}
+        </div>
+      </div>
+    );
+
+    const ButtonGrid: React.FC<{
+      options: Array<{
+        value: string;
+        label: string;
+        icon: string;
+        desc: string;
+      }>;
+      onClick: (value: string) => void;
+      columns?: number;
+    }> = ({ options, onClick, columns = 3 }) => (
+      <div className={`grid grid-cols-1 md:grid-cols-${columns} gap-6`}>
+        {options.map((option) => (
+          <button
+            key={option.value}
+            onClick={() => onClick(option.value)}
+            className="group relative overflow-hidden bg-white rounded-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 border-2 border-gray-100 hover:border-primary-500"
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-primary-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="relative p-6 text-center">
+              <div className="text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                {option.icon}
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                {option.label}
+              </h3>
+              <p className="text-gray-600 text-sm">
+                {option.desc}
+              </p>
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            </div>
+          </button>
+        ))}
+      </div>
+    );
+
     switch (step) {
       case 1:
         return (
-          <div className="space-y-6 animate-fade-in">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-              Are you calculating savings for a business or individual?
+          <QuestionWrapper>
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-primary-800">
+              Who are we calculating savings for?
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <button
-                onClick={() => handleQuestionnaireUpdate('userType', 'business')}
-                className="p-6 border-2 border-gray-200 rounded-xl hover:border-primary-500 hover:bg-primary-50 transition-all duration-200"
-              >
-                <div className="text-4xl mb-4">🏢</div>
-                <h3 className="text-lg font-medium text-gray-900">Business</h3>
-                <p className="text-gray-600 mt-2">For companies and organizations</p>
-              </button>
-              <button
-                onClick={() => handleQuestionnaireUpdate('userType', 'individual')}
-                className="p-6 border-2 border-gray-200 rounded-xl hover:border-primary-500 hover:bg-primary-50 transition-all duration-200"
-              >
-                <div className="text-4xl mb-4">👤</div>
-                <h3 className="text-lg font-medium text-gray-900">Individual</h3>
-                <p className="text-gray-600 mt-2">For personal or household use</p>
-              </button>
-            </div>
-          </div>
+            <ButtonGrid
+              options={[
+                { value: 'business', label: 'Business', icon: '🏢', desc: 'For companies and organizations' },
+                { value: 'individual', label: 'Individual', icon: '👤', desc: 'For personal or household use' }
+              ]}
+              onClick={(value) => handleQuestionnaireUpdate('userType', value)}
+              columns={2}
+            />
+          </QuestionWrapper>
         );
 
       case 2:
         if (questionnaire.userType === 'business') {
           return (
-            <div className="space-y-6 animate-fade-in">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-6">
+            <QuestionWrapper>
+              <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-primary-800">
                 What's your organization size?
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {['small', 'medium', 'large'].map((size) => (
-                  <button
-                    key={size}
-                    onClick={() => handleQuestionnaireUpdate('organizationSize', size)}
-                    className="p-6 border-2 border-gray-200 rounded-xl hover:border-primary-500 hover:bg-primary-50 transition-all duration-200"
-                  >
-                    <div className="text-4xl mb-4">
-                      {size === 'small' ? '🏠' : size === 'medium' ? '🏢' : '🏭'}
-                    </div>
-                    <h3 className="text-lg font-medium text-gray-900 capitalize">{size}</h3>
-                    <p className="text-gray-600 mt-2">
-                      {size === 'small' ? '1-50 employees' : 
-                       size === 'medium' ? '51-200 employees' : 
-                       '200+ employees'}
-                    </p>
-                  </button>
-                ))}
-              </div>
-            </div>
+              <ButtonGrid
+                options={[
+                  { value: 'small', label: 'Small Business', icon: '🏠', desc: '1-50 employees' },
+                  { value: 'medium', label: 'Medium Enterprise', icon: '🏢', desc: '51-200 employees' },
+                  { value: 'large', label: 'Large Corporation', icon: '🏭', desc: '200+ employees' }
+                ]}
+                onClick={(value) => handleQuestionnaireUpdate('organizationSize', value)}
+              />
+            </QuestionWrapper>
           );
         } else {
           return (
-            <div className="space-y-6 animate-fade-in">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-6">
+            <QuestionWrapper>
+              <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-primary-800">
                 What's your household size?
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                {[
+              <ButtonGrid
+                options={[
                   { value: 'single', label: 'Single', icon: '👤', desc: '1 person' },
                   { value: 'couple', label: 'Couple', icon: '👥', desc: '2 people' },
                   { value: 'family', label: 'Family', icon: '👨‍👩‍👧‍👦', desc: '3-5 people' },
                   { value: 'shared', label: 'Shared', icon: '🏠', desc: '6+ people' }
-                ].map((option) => (
-                  <button
-                    key={option.value}
-                    onClick={() => handleQuestionnaireUpdate('householdSize', option.value)}
-                    className="p-6 border-2 border-gray-200 rounded-xl hover:border-primary-500 hover:bg-primary-50 transition-all duration-200"
-                  >
-                    <div className="text-4xl mb-4">{option.icon}</div>
-                    <h3 className="text-lg font-medium text-gray-900">{option.label}</h3>
-                    <p className="text-gray-600 mt-2">{option.desc}</p>
-                  </button>
-                ))}
-              </div>
-            </div>
+                ]}
+                onClick={(value) => handleQuestionnaireUpdate('householdSize', value)}
+                columns={2}
+              />
+            </QuestionWrapper>
           );
         }
 
       case 3:
         if (questionnaire.userType === 'business') {
           return (
-            <div className="space-y-6 animate-fade-in">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-                What's your current recycling program like?
+            <QuestionWrapper>
+              <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-primary-800">
+                Tell us about your current recycling program
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {[
+              <ButtonGrid
+                options={[
                   { value: 'none', label: 'No Program', icon: '📦', desc: 'Not currently recycling' },
-                  { value: 'basic', label: 'Basic', icon: '♻️', desc: 'Basic sorting and recycling' },
-                  { value: 'advanced', label: 'Advanced', icon: '🌟', desc: 'Comprehensive program' }
-                ].map((option) => (
-                  <button
-                    key={option.value}
-                    onClick={() => handleQuestionnaireUpdate('currentRecycling', option.value)}
-                    className="p-6 border-2 border-gray-200 rounded-xl hover:border-primary-500 hover:bg-primary-50 transition-all duration-200"
-                  >
-                    <div className="text-4xl mb-4">{option.icon}</div>
-                    <h3 className="text-lg font-medium text-gray-900">{option.label}</h3>
-                    <p className="text-gray-600 mt-2">{option.desc}</p>
-                  </button>
-                ))}
-              </div>
-            </div>
+                  { value: 'basic', label: 'Basic Program', icon: '♻️', desc: 'Basic sorting and recycling' },
+                  { value: 'advanced', label: 'Advanced Program', icon: '🌟', desc: 'Comprehensive program' }
+                ]}
+                onClick={(value) => handleQuestionnaireUpdate('currentRecycling', value)}
+              />
+            </QuestionWrapper>
           );
         } else {
           return (
-            <div className="space-y-6 animate-fade-in">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-6">
+            <QuestionWrapper>
+              <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-primary-800">
                 What type of residence do you live in?
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {[
+              <ButtonGrid
+                options={[
                   { value: 'apartment', label: 'Apartment', icon: '🏢', desc: 'Apartment or flat' },
                   { value: 'house', label: 'House', icon: '🏡', desc: 'Single family home' },
                   { value: 'condo', label: 'Condo', icon: '🏘️', desc: 'Condominium unit' }
-                ].map((option) => (
-                  <button
-                    key={option.value}
-                    onClick={() => handleQuestionnaireUpdate('residenceType', option.value)}
-                    className="p-6 border-2 border-gray-200 rounded-xl hover:border-primary-500 hover:bg-primary-50 transition-all duration-200"
-                  >
-                    <div className="text-4xl mb-4">{option.icon}</div>
-                    <h3 className="text-lg font-medium text-gray-900">{option.label}</h3>
-                    <p className="text-gray-600 mt-2">{option.desc}</p>
-                  </button>
-                ))}
-              </div>
-            </div>
+                ]}
+                onClick={(value) => handleQuestionnaireUpdate('residenceType', value)}
+              />
+            </QuestionWrapper>
           );
         }
 
       case 4:
         if (questionnaire.userType === 'business') {
           return (
-            <div className="space-y-6 animate-fade-in">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-                What's your primary goal?
+            <QuestionWrapper>
+              <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-primary-800">
+                What's your primary sustainability goal?
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {[
+              <ButtonGrid
+                options={[
                   { value: 'cost', label: 'Cost Savings', icon: '💰', desc: 'Reduce waste management costs' },
                   { value: 'environment', label: 'Environmental Impact', icon: '🌍', desc: 'Minimize environmental footprint' },
-                  { value: 'both', label: 'Both', icon: '✨', desc: 'Balance savings and sustainability' }
-                ].map((option) => (
-                  <button
-                    key={option.value}
-                    onClick={() => handleQuestionnaireUpdate('sustainabilityGoal', option.value)}
-                    className="p-6 border-2 border-gray-200 rounded-xl hover:border-primary-500 hover:bg-primary-50 transition-all duration-200"
-                  >
-                    <div className="text-4xl mb-4">{option.icon}</div>
-                    <h3 className="text-lg font-medium text-gray-900">{option.label}</h3>
-                    <p className="text-gray-600 mt-2">{option.desc}</p>
-                  </button>
-                ))}
-              </div>
-            </div>
+                  { value: 'both', label: 'Balanced Approach', icon: '✨', desc: 'Balance savings and sustainability' }
+                ]}
+                onClick={(value) => handleQuestionnaireUpdate('sustainabilityGoal', value)}
+              />
+            </QuestionWrapper>
           );
         } else {
           return (
-            <div className="space-y-6 animate-fade-in">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-6">
+            <QuestionWrapper>
+              <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-primary-800">
                 How often is your waste collected?
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {[
+              <ButtonGrid
+                options={[
                   { value: 'weekly', label: 'Weekly', icon: '📅', desc: 'Once per week' },
                   { value: 'biweekly', label: 'Bi-weekly', icon: '📆', desc: 'Every two weeks' },
                   { value: 'monthly', label: 'Monthly', icon: '🗓️', desc: 'Once per month' }
-                ].map((option) => (
-                  <button
-                    key={option.value}
-                    onClick={() => handleQuestionnaireUpdate('collectionFrequency', option.value)}
-                    className="p-6 border-2 border-gray-200 rounded-xl hover:border-primary-500 hover:bg-primary-50 transition-all duration-200"
-                  >
-                    <div className="text-4xl mb-4">{option.icon}</div>
-                    <h3 className="text-lg font-medium text-gray-900">{option.label}</h3>
-                    <p className="text-gray-600 mt-2">{option.desc}</p>
-                  </button>
-                ))}
-              </div>
-            </div>
+                ]}
+                onClick={(value) => handleQuestionnaireUpdate('collectionFrequency', value)}
+              />
+            </QuestionWrapper>
           );
         }
 
@@ -598,11 +586,11 @@ export const CalculateCostSavingsPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-24">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-primary-50 py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="text-5xl font-bold text-gray-900 mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-primary-800">
             Calculate Your Cost Savings
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -611,17 +599,17 @@ export const CalculateCostSavingsPage: React.FC = () => {
         </div>
 
         {/* Free Guide Banner */}
-        <div className="bg-primary-50 border border-primary-200 rounded-2xl p-6 mb-12">
+        <div className="bg-gradient-to-r from-primary-50 to-primary-100 backdrop-blur-lg backdrop-filter rounded-2xl p-8 mb-12 border border-primary-200 shadow-lg">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="text-4xl">📚</div>
+            <div className="flex items-center space-x-6">
+              <div className="text-5xl transform -rotate-12 hover:rotate-0 transition-transform duration-300">📚</div>
               <div>
-                <h3 className="text-lg font-semibold text-primary-900">Get Your Free Recycling Guide</h3>
+                <h3 className="text-xl font-semibold text-primary-900 mb-1">Get Your Free Recycling Guide</h3>
                 <p className="text-primary-700">Complete the calculator to receive our comprehensive recycling guide</p>
               </div>
             </div>
             <div className="hidden md:block">
-              <span className="inline-flex items-center px-4 py-2 border border-primary-300 text-sm font-medium rounded-md text-primary-700 bg-primary-50">
+              <span className="inline-flex items-center px-6 py-2 border-2 border-primary-300 text-sm font-medium rounded-full text-primary-700 bg-white/50 backdrop-blur-sm">
                 Limited Time Offer
               </span>
             </div>
@@ -632,22 +620,8 @@ export const CalculateCostSavingsPage: React.FC = () => {
         {renderProgressBar()}
 
         {/* Main Content */}
-        <div className="max-w-4xl mx-auto">
-          {step < 5 ? renderQuestion() : renderCalculator()}
-        </div>
+        {step < 5 ? renderQuestion() : renderCalculator()}
       </div>
     </div>
   );
-};
-
-// Add this to your global CSS or Tailwind config
-const styles = `
-  @keyframes fade-in {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  
-  .animate-fade-in {
-    animation: fade-in 0.5s ease-out forwards;
-  }
-`; 
+}; 
