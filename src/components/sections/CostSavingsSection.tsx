@@ -20,6 +20,16 @@ interface Testimonial {
   type: 'reordering' | 'monthly' | 'annual';
 }
 
+interface Comment {
+  id: string;
+  author: string;
+  avatar: string;
+  content: string;
+  timestamp: string;
+  likes: number;
+  replies?: Comment[];
+}
+
 const testimonials: Testimonial[] = [
   // Smart Reordering testimonials
   {
@@ -111,13 +121,224 @@ const savingsTypes: SavingsCard[] = [
     period: 'per year',
     description: 'Long-term savings through sustainable practices and rewards',
     features: [
-      'Reusable canister system eliminates bag costs',
+      'Smart container system reduces waste costs',
       'Recycling rewards and eco-friendly discounts',
-      'Lower energy bills through carbon tracking'
+      'Predictive analytics optimize resource usage'
     ],
     icon: '🌱'
   }
 ];
+
+const videoComments: Record<string, Comment[]> = {
+  '1': [
+    {
+      id: 'c1',
+      author: 'Maria Rodriguez',
+      avatar: '/avatars/maria.jpg',
+      content: "As a restaurant owner in Miami, I was skeptical at first. But the auto-reordering feature has saved my staff so much time! We've cut our waste management costs by 32% in just two months. Increíble! 🌮♻️",
+      timestamp: '2 days ago',
+      likes: 45
+    },
+    {
+      id: 'c2',
+      author: 'Dr. Patel',
+      avatar: '/avatars/patel.jpg',
+      content: "I implemented this system in my dental practice. The smart container system has made our medical waste management so much more efficient. It's brilliant how it tracks different types of waste separately!",
+      timestamp: '1 week ago',
+      likes: 38,
+      replies: [
+        {
+          id: 'r1',
+          author: 'Sarah Chen',
+          avatar: '/avatars/sarah.jpg',
+          content: "Same experience at our clinic! The compliance tracking feature is a game-changer for medical waste. Have you tried the new analytics dashboard?",
+          timestamp: '5 days ago',
+          likes: 12
+        }
+      ]
+    },
+    {
+      id: 'c3',
+      author: 'Jamal Thompson',
+      avatar: '/avatars/jamal.jpg',
+      content: "Running a small grocery store in Atlanta, and this system paid for itself in 3 months! The predictive ordering is spot on - we've reduced our spoilage by 40%. Real talk, it's like having an AI inventory manager. 💯",
+      timestamp: '3 days ago',
+      likes: 67
+    },
+    {
+      id: 'c4',
+      author: 'Aisha Mohammed',
+      avatar: '/avatars/aisha.jpg',
+      content: "Our mosque's community center has been using this for 6 months now. The recycling rewards program has helped us fund other sustainability initiatives. The customer support team is so respectful and helpful too! 🌟",
+      timestamp: '1 day ago',
+      likes: 29
+    }
+  ],
+  '2': [
+    {
+      id: 'c5',
+      author: 'Chef Kim',
+      avatar: '/avatars/kim.jpg',
+      content: "Finally, someone who understands restaurant waste management! The automated system learns from our busy/slow periods and adjusts accordingly. No more overordering during slow seasons. 식당 운영이 한결 편해졌어요! 👨‍🍳",
+      timestamp: '3 days ago',
+      likes: 83,
+      replies: [
+        {
+          id: 'r2',
+          author: 'Emma S.',
+          avatar: '/avatars/emma.jpg',
+          content: "The seasonal prediction feature is amazing! It's like it knows our business rhythm.",
+          timestamp: '2 days ago',
+          likes: 15
+        }
+      ]
+    },
+    {
+      id: 'c6',
+      author: 'Giovanni Rossi',
+      avatar: '/avatars/giovanni.jpg',
+      content: "Ho implementato questo sistema nel mio ristorante italiano e i risultati sono incredibili! The AI even predicted our increased mozzarella usage during summer events. Perfetto! 🇮🇹🍝",
+      timestamp: '1 week ago',
+      likes: 56
+    },
+    {
+      id: 'c7',
+      author: 'Tech Startup Guy',
+      avatar: '/avatars/startup.jpg',
+      content: "Our office kitchen used to be chaos. Now everything is automated and our team can focus on building products instead of managing supplies. Plus, the data visualization is *chef's kiss* 📊",
+      timestamp: '4 days ago',
+      likes: 42
+    }
+  ],
+  '3': [
+    {
+      id: 'c8',
+      author: 'Lisa Chen',
+      avatar: '/avatars/lisa.jpg',
+      content: "The monthly savings are real! Our hotel chain implemented this across 5 locations and we're seeing consistent 45-50% reduction in waste management costs. The staff training module made adoption super smooth too! 🏨✨",
+      timestamp: '2 days ago',
+      likes: 91,
+      replies: [
+        {
+          id: 'r3',
+          author: 'Hotel Manager Mike',
+          avatar: '/avatars/mike.jpg',
+          content: "Which training module worked best for your housekeeping staff? We're about to roll this out too!",
+          timestamp: '1 day ago',
+          likes: 8
+        }
+      ]
+    },
+    {
+      id: 'c9',
+      author: 'Raj Patel',
+      avatar: '/avatars/raj.jpg',
+      content: "As a property manager for 12 apartment buildings, this system has been a game-changer. The monthly reports help us identify which buildings need improvement. Already saved ₹3.2 lakhs this month! 🏢",
+      timestamp: '5 days ago',
+      likes: 73
+    },
+    {
+      id: 'c10',
+      author: 'Sarah Williams',
+      avatar: '/avatars/sarah-w.jpg',
+      content: "Small business owner here! The monthly cost tracking helped us identify waste patterns we never noticed before. It's like having a sustainability consultant on staff 24/7 💚",
+      timestamp: '1 week ago',
+      likes: 45
+    }
+  ],
+  '4': [
+    {
+      id: 'c11',
+      author: 'David Park',
+      avatar: '/avatars/david.jpg',
+      content: "Our university campus reduced waste costs by $52k/month! The real-time monitoring helps us adjust during events and semester breaks. Even the students are getting involved with the gamification features 🎓♻️",
+      timestamp: '3 days ago',
+      likes: 128,
+      replies: [
+        {
+          id: 'r4',
+          author: 'Student Council Rep',
+          avatar: '/avatars/student.jpg',
+          content: "The recycling competition between dorms is getting intense! We're currently in the lead 🏆",
+          timestamp: '2 days ago',
+          likes: 34
+        }
+      ]
+    },
+    {
+      id: 'c12',
+      author: 'Chef André',
+      avatar: '/avatars/andre.jpg',
+      content: "Mon restaurant étoilé a réduit ses déchets de 60%! The precision of the waste tracking matches our kitchen's standards. Magnifique! 🇫🇷👨‍🍳",
+      timestamp: '1 week ago',
+      likes: 89
+    }
+  ],
+  '5': [
+    {
+      id: 'c13',
+      author: 'Michael Roberts',
+      avatar: '/avatars/michael.jpg',
+      content: "First year results are in: $540k saved across our retail chain! The predictive analytics for seasonal merchandise waste is spot-on. Black Friday planning is so much easier now 📈",
+      timestamp: '4 days ago',
+      likes: 156,
+      replies: [
+        {
+          id: 'r5',
+          author: 'Retail Manager Amy',
+          avatar: '/avatars/amy.jpg',
+          content: "The holiday season predictions were incredibly accurate. No more overflowing dumpsters or emergency pickups!",
+          timestamp: '2 days ago',
+          likes: 28
+        }
+      ]
+    },
+    {
+      id: 'c14',
+      author: 'Dr. Zhang',
+      avatar: '/avatars/zhang.jpg',
+      content: "医院使用这个系统一年了，效果非常好！The annual compliance reports are automatically generated, saving our staff countless hours. Perfect for healthcare facilities! 🏥",
+      timestamp: '1 week ago',
+      likes: 94
+    }
+  ],
+  '6': [
+    {
+      id: 'c15',
+      author: 'Lisa Kumar',
+      avatar: '/avatars/lisa-k.jpg',
+      content: "The long-term impact is incredible! Our tech campus has reduced waste by 72% over 18 months. The sustainability metrics helped us achieve LEED certification too! 🌱🏢",
+      timestamp: '2 days ago',
+      likes: 187,
+      replies: [
+        {
+          id: 'r6',
+          author: 'Green Building Consultant',
+          avatar: '/avatars/consultant.jpg',
+          content: "Your case study is becoming a benchmark for corporate sustainability. Those numbers are impressive!",
+          timestamp: '1 day ago',
+          likes: 45
+        }
+      ]
+    },
+    {
+      id: 'c16',
+      author: 'Carlos Mendoza',
+      avatar: '/avatars/carlos.jpg',
+      content: "¡Increíble transformación! Our hotel chain's waste management costs dropped 62% in the first year. The ROI exceeded our expectations, and our guests love our eco-initiatives! 🏨♻️",
+      timestamp: '5 days ago',
+      likes: 134
+    },
+    {
+      id: 'c17',
+      author: 'Yuki Tanaka',
+      avatar: '/avatars/yuki.jpg',
+      content: "私たちのレストランチェーンでの1年間の結果です：経費削減に大成功！The AI suggestions keep getting smarter, and our staff loves the intuitive interface. サステナビリティと効率性の完璧な組み合わせ！🍱",
+      timestamp: '1 week ago',
+      likes: 112
+    }
+  ]
+};
 
 export const CostSavingsSection: React.FC = () => {
   const navigate = useNavigate();
@@ -142,8 +363,8 @@ export const CostSavingsSection: React.FC = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-6">
             <span className="relative">
-              <span className="absolute -inset-2 blur-2xl bg-gradient-to-r from-emerald-200 to-green-200 opacity-30" />
-              <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-green-600">
+              <span className="absolute -inset-2 blur-2xl bg-[#0F9D58]/20 opacity-30" />
+              <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-[#0F9D58] to-[#0F9D58]/80">
                 Smart Cost Savings
               </span>
             </span>
@@ -160,8 +381,8 @@ export const CostSavingsSection: React.FC = () => {
                 onClick={() => setActiveTab(index)}
                 className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
                   activeTab === index
-                    ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-500/25'
-                    : 'bg-white text-gray-600 hover:bg-emerald-50'
+                    ? 'bg-[#0F9D58] text-white shadow-lg shadow-[#0F9D58]/25'
+                    : 'bg-white text-gray-600 hover:bg-[#0F9D58]/10'
                 }`}
               >
                 <span className="mr-2">{type.icon}</span>
@@ -287,12 +508,110 @@ export const CostSavingsSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Video Modal */}
+      {/* Updated Video Modal */}
       {selectedVideo && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50" onClick={() => setSelectedVideo(null)}>
-          <div className="bg-white rounded-2xl overflow-hidden max-w-4xl w-full mx-4">
-            <div className="aspect-video bg-gray-900">
-              {/* Video player would go here */}
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50" onClick={(e) => {
+          if (e.target === e.currentTarget) setSelectedVideo(null);
+        }}>
+          <div className="bg-white rounded-2xl overflow-hidden w-full mx-4 max-h-[90vh] lg:max-w-7xl lg:flex">
+            {/* Video Section */}
+            <div className="lg:flex-1">
+              <div className="aspect-video bg-gray-900">
+                {/* Video player would go here */}
+                <div className="w-full h-full flex items-center justify-center text-white/60">
+                  Video Player Placeholder
+                </div>
+              </div>
+              
+              {/* Video Info */}
+              <div className="p-4 border-b lg:border-b-0 lg:border-r border-gray-200">
+                <h3 className="text-lg font-semibold text-gray-900">
+                  {testimonials.find(t => t.id === selectedVideo)?.title}
+                </h3>
+                <p className="text-sm text-gray-600 mt-1">
+                  {testimonials.find(t => t.id === selectedVideo)?.author} • {' '}
+                  {testimonials.find(t => t.id === selectedVideo)?.savings} saved
+                </p>
+              </div>
+            </div>
+
+            {/* Comments Section - Desktop: Right, Mobile: Bottom */}
+            <div className="lg:w-[400px] max-h-[50vh] lg:max-h-none overflow-y-auto bg-gray-50">
+              <div className="p-4">
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">Comments</h4>
+                
+                {/* Comments List */}
+                <div className="space-y-4">
+                  {videoComments[selectedVideo]?.map((comment) => (
+                    <div key={comment.id} className="space-y-4">
+                      {/* Main Comment */}
+                      <div className="flex gap-3">
+                        <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-200 overflow-hidden">
+                          <img src={comment.avatar} alt={comment.author} className="w-full h-full object-cover" />
+                        </div>
+                        <div className="flex-1">
+                          <div className="bg-white p-3 rounded-2xl shadow-sm">
+                            <div className="flex items-center justify-between mb-1">
+                              <span className="font-medium text-gray-900">{comment.author}</span>
+                              <span className="text-xs text-gray-500">{comment.timestamp}</span>
+                            </div>
+                            <p className="text-gray-600 text-sm">{comment.content}</p>
+                          </div>
+                          <div className="flex items-center gap-4 mt-1 ml-1">
+                            <button className="text-xs text-gray-500 hover:text-[#0F9D58] flex items-center gap-1">
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                              </svg>
+                              {comment.likes}
+                            </button>
+                            <button className="text-xs text-gray-500 hover:text-[#0F9D58]">Reply</button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Replies */}
+                      {comment.replies?.map((reply) => (
+                        <div key={reply.id} className="flex gap-3 ml-12">
+                          <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-200 overflow-hidden">
+                            <img src={reply.avatar} alt={reply.author} className="w-full h-full object-cover" />
+                          </div>
+                          <div className="flex-1">
+                            <div className="bg-white p-3 rounded-2xl shadow-sm">
+                              <div className="flex items-center justify-between mb-1">
+                                <span className="font-medium text-gray-900">{reply.author}</span>
+                                <span className="text-xs text-gray-500">{reply.timestamp}</span>
+                              </div>
+                              <p className="text-gray-600 text-sm">{reply.content}</p>
+                            </div>
+                            <div className="flex items-center gap-4 mt-1 ml-1">
+                              <button className="text-xs text-gray-500 hover:text-[#0F9D58] flex items-center gap-1">
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                                </svg>
+                                {reply.likes}
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Comment Input */}
+                <div className="sticky bottom-0 bg-gray-50 pt-4 mt-4 border-t border-gray-200">
+                  <div className="flex gap-3">
+                    <div className="w-10 h-10 rounded-full bg-gray-200 flex-shrink-0" />
+                    <div className="flex-1">
+                      <input
+                        type="text"
+                        placeholder="Add a comment..."
+                        className="w-full px-4 py-2 rounded-full border border-gray-300 focus:border-[#0F9D58] focus:ring-1 focus:ring-[#0F9D58] outline-none"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
