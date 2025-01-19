@@ -12,7 +12,7 @@ import { CleanPage } from './components/pages/CleanPage';
 import { LabsPage } from './components/pages/LabsPage';
 import { EducationPage } from './components/pages/EducationPage';
 import { CalculateCostSavingsPage } from './components/pages/CalculateCostSavingsPage';
-import { TestimonialsSection } from './components/sections/TestimonialsSection';
+import { TestimonialSection } from './components/sections/TestimonialSection';
 import { SmartWasteSection } from './components/sections/SmartWasteSection';
 import { EnvironmentalImpactSection } from './components/sections/EnvironmentalImpactSection';
 import { CostSavingsSection } from './components/sections/CostSavingsSection';
@@ -23,6 +23,9 @@ import { TechnologyPage } from './components/pages/TechnologyPage';
 import { PurchasePage } from './components/pages/PurchasePage';
 import { ProductDetailsPage } from './components/pages/ProductDetailsPage';
 import { ProductsOverviewPage } from './components/pages/ProductsOverviewPage';
+import { ProductSection } from './components/sections/ProductSection';
+import { FAQSection } from './components/sections/FAQSection';
+import { BlogSection } from './components/sections/BlogSection';
 
 function useScrollAnimation() {
   const [scrollY, setScrollY] = useState(0);
@@ -160,8 +163,11 @@ function LandingHero() {
       <CostSavingsSection />
       <HowSavingsSection />
       <SmartWasteSection />
+      <ProductSection />
       <EnvironmentalImpactSection />
-      <TestimonialsSection />
+      <TestimonialSection />
+      <BlogSection />
+      <FAQSection />
     </>
   );
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export const SmartWasteSection: React.FC = () => {
+export const SmartWasteSection = () => {
   const navigate = useNavigate();
 
   return (
