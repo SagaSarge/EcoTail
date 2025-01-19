@@ -1,6 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const SmartWasteSection: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="py-24 bg-gradient-to-br from-white to-gray-50 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -53,7 +56,10 @@ export const SmartWasteSection: React.FC = () => {
 
             {/* CTA Button */}
             <div className="mt-10">
-              <button className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-primary-600 hover:bg-primary-700 transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg">
+              <button 
+                onClick={() => navigate('/technology')}
+                className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-primary-600 hover:bg-primary-700 transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg"
+              >
                 Learn About Our Technology
                 <svg className="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

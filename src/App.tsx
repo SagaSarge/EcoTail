@@ -5,7 +5,7 @@ import { Footer } from './components/layout/Footer';
 import { Button } from './components/common/Button';
 import { useAuth } from './contexts/auth-context';
 import { StickyProductCard } from './components/common/StickyProductCard';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
 import { ContactPage } from './components/pages/ContactPage';
 import { AiInnovationsPage } from './components/pages/AiInnovationsPage';
 import { CleanPage } from './components/pages/CleanPage';
@@ -17,7 +17,12 @@ import { SmartWasteSection } from './components/sections/SmartWasteSection';
 import { EnvironmentalImpactSection } from './components/sections/EnvironmentalImpactSection';
 import { CostSavingsSection } from './components/sections/CostSavingsSection';
 import { HowSavingsSection } from './components/sections/HowSavingsSection';
+import { ProblemSolvingSection } from './components/sections/HowToUseSection';
 import { CalculateImpactPage } from './components/pages/CalculateImpactPage';
+import { TechnologyPage } from './components/pages/TechnologyPage';
+import { PurchasePage } from './components/pages/PurchasePage';
+import { ProductDetailsPage } from './components/pages/ProductDetailsPage';
+import { ProductsOverviewPage } from './components/pages/ProductsOverviewPage';
 
 function useScrollAnimation() {
   const [scrollY, setScrollY] = useState(0);
@@ -63,6 +68,7 @@ function useScrollAnimation() {
 function LandingHero() {
   const transforms = useScrollAnimation();
   const [rotatingWord, setRotatingWord] = useState('families');
+  const navigate = useNavigate();
   
   useEffect(() => {
     const words = ['families', 'selfs', 'work', 'friends', 'kids'];
@@ -117,7 +123,11 @@ function LandingHero() {
             </p>
             
             <div className="mt-8 flex justify-center">
-              <Button variant="primary" className="px-12 py-3">
+              <Button 
+                variant="primary" 
+                className="px-12 py-3"
+                onClick={() => navigate('/purchase')}
+              >
                 Buy Now
               </Button>
             </div>
@@ -146,6 +156,7 @@ function LandingHero() {
           </div>
         </div>
       </div>
+      <ProblemSolvingSection />
       <CostSavingsSection />
       <HowSavingsSection />
       <SmartWasteSection />
@@ -170,6 +181,10 @@ function AppContent() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/calculate-savings" element={<CalculateCostSavingsPage />} />
           <Route path="/calculate-impact" element={<CalculateImpactPage />} />
+          <Route path="/technology" element={<TechnologyPage />} />
+          <Route path="/purchase" element={<PurchasePage />} />
+          <Route path="/products" element={<ProductsOverviewPage />} />
+          <Route path="/products/:version" element={<ProductDetailsPage />} />
           <Route path="/" element={
             !user ? <LandingHero /> : (
               <div className="text-center mt-10">

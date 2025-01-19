@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const HowSavingsSection: React.FC = () => {
+  const navigate = useNavigate();
   const [activeCard, setActiveCard] = useState<number | null>(null);
 
   const steps = [
@@ -208,7 +210,10 @@ export const HowSavingsSection: React.FC = () => {
 
         {/* CTA Button */}
         <div className="text-center">
-          <button className="bg-gradient-to-r from-blue-500 via-violet-500 to-emerald-500 hover:from-blue-600 hover:via-violet-600 hover:to-emerald-600 text-white text-xl font-semibold px-12 py-4 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105">
+          <button 
+            onClick={() => navigate('/purchase')}
+            className="bg-gradient-to-r from-blue-500 via-violet-500 to-emerald-500 hover:from-blue-600 hover:via-violet-600 hover:to-emerald-600 text-white text-xl font-semibold px-12 py-4 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105"
+          >
             Buy Now
           </button>
         </div>

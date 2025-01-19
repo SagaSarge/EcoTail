@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from './Button';
+import { useNavigate } from 'react-router-dom';
 
 export const StickyProductCard: React.FC = () => {
+  const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [isClosed, setIsClosed] = useState(false);
@@ -68,7 +70,7 @@ export const StickyProductCard: React.FC = () => {
           <Button 
             variant="primary"
             className="w-full text-xs py-1.5"
-            onClick={() => {}}
+            onClick={() => navigate('/purchase')}
           >
             Download
           </Button>
