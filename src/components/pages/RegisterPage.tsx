@@ -8,10 +8,21 @@ export const RegisterPage: React.FC = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [isCaptchaChecked, setIsCaptchaChecked] = useState(false);
+  const [isVerifying, setIsVerifying] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     navigate('/auth/loading');
+  };
+
+  const handleCaptchaCheck = () => {
+    setIsVerifying(true);
+    // Simulate verification delay
+    setTimeout(() => {
+      setIsCaptchaChecked(true);
+      setIsVerifying(false);
+    }, 800);
   };
 
   return (
@@ -235,9 +246,46 @@ export const RegisterPage: React.FC = () => {
                 </button>
               </div>
 
+              <div className="relative">
+                <div className="bg-white border border-gray-200 rounded-lg p-3 flex items-center gap-3">
+                  <div className="relative">
+                    <input
+                      type="checkbox"
+                      checked={isCaptchaChecked}
+                      onChange={handleCaptchaCheck}
+                      disabled={isVerifying || isCaptchaChecked}
+                      className="w-5 h-5 border-2 border-gray-300 rounded focus:ring-primary-500 text-primary-600 cursor-pointer disabled:cursor-not-allowed"
+                    />
+                    {isVerifying && (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-4 h-4 border-2 border-primary-500 border-t-transparent rounded-full animate-spin" />
+                      </div>
+                    )}
+                    {isCaptchaChecked && (
+                      <div className="absolute inset-0 flex items-center justify-center text-primary-600">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-sm text-gray-700 font-medium">I'm not a robot</div>
+                    <div className="text-xs text-gray-500">Verify that you are human</div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="text-xs text-gray-400">Protected by</div>
+                    <div className="text-sm font-medium bg-gradient-to-r from-primary-600 to-accent-500 bg-clip-text text-transparent">
+                      EcoTale
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <button
                 type="submit"
-                className="w-full py-2 px-4 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 text-sm font-medium"
+                disabled={!isCaptchaChecked}
+                className="w-full py-2 px-4 bg-primary-600 text-white rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
               >
                 Create Account
               </button>
