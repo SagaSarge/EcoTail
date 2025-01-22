@@ -7,6 +7,11 @@ import { useAuth } from './contexts/auth-context';
 import { StickyProductCard } from './components/common/StickyProductCard';
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
 import { TechnologyPage } from './components/pages/TechnologyPage';
+import { MobileAppPage } from './components/pages/MobileAppPage';
+import { AuthPage } from './components/pages/AuthPage';
+import { SignInPage } from './components/pages/SignInPage';
+import { RegisterPage } from './components/pages/RegisterPage';
+import { LoadingPage } from './components/pages/LoadingPage';
 import { TestimonialSection } from './components/sections/TestimonialSection';
 import { SmartWasteSection } from './components/sections/SmartWasteSection';
 import { EnvironmentalImpactSection } from './components/sections/EnvironmentalImpactSection';
@@ -171,6 +176,11 @@ function AppContent() {
       <main className="flex-grow">
         <Routes>
           <Route path="/technology" element={<TechnologyPage />} />
+          <Route path="/mobile-app" element={<MobileAppPage />} />
+          <Route path="/auth" element={<AuthPage />} />
+          <Route path="/auth/signin" element={<SignInPage />} />
+          <Route path="/auth/register" element={<RegisterPage />} />
+          <Route path="/auth/loading" element={<LoadingPage />} />
           <Route path="/" element={
             !user ? <LandingHero /> : (
               <div className="text-center mt-10">

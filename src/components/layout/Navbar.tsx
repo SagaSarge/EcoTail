@@ -46,6 +46,9 @@ export const Navbar: React.FC = () => {
                 <Link to="/technology" className="text-gray-700 hover:text-primary-600 transition-colors">
                   Technology
                 </Link>
+                <Link to="/auth" className="text-gray-700 hover:text-primary-600 transition-colors">
+                  Mobile App
+                </Link>
               </div>
             </div>
           </div>
@@ -75,6 +78,9 @@ export const Navbar: React.FC = () => {
             <div className="hidden md:flex items-center space-x-6">
               <Link to="/technology" className="text-gray-700 hover:text-primary-600 transition-colors">
                 Technology
+              </Link>
+              <Link to="/auth" className="text-gray-700 hover:text-primary-600 transition-colors">
+                Mobile App
               </Link>
             </div>
 
