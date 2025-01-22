@@ -117,6 +117,18 @@ module.exports = {
           '100%': {
             transform: 'rotateY(360deg)',
           },
+        },
+        'spin-slow': {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
+        'spin-slow-reverse': {
+          '0%': { transform: 'rotate(360deg)' },
+          '100%': { transform: 'rotate(0deg)' },
+        },
+        'orbit': {
+          '0%': { transform: 'rotate(0deg) translateX(120px) rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg) translateX(120px) rotate(-360deg)' },
         }
       },
       animation: {
@@ -124,6 +136,9 @@ module.exports = {
         'shoot-to-left': 'shoot-to-left 2s ease-in-out forwards',
         'float': 'float 20s ease-in-out infinite',
         'spin-3d': 'spin3d 4s linear infinite',
+        'spin-slow': 'spin-slow 8s linear infinite',
+        'spin-slow-reverse': 'spin-slow-reverse 8s linear infinite',
+        'orbit': 'orbit 12s linear infinite',
       },
       perspective: {
         '1000': '1000px',
