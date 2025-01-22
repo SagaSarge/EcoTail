@@ -112,12 +112,18 @@ module.exports = {
           '40%': { transform: 'translate(-20px, 20px)' },
           '60%': { transform: 'translate(20px, 20px)' },
           '80%': { transform: 'translate(-20px, -20px)' },
+        },
+        spin3d: {
+          '100%': {
+            transform: 'rotateY(360deg)',
+          },
         }
       },
       animation: {
         'fade-in-right': 'fade-in-right 0.6s ease-out',
         'shoot-to-left': 'shoot-to-left 2s ease-in-out forwards',
         'float': 'float 20s ease-in-out infinite',
+        'spin-3d': 'spin3d 4s linear infinite',
       },
       perspective: {
         '1000': '1000px',
