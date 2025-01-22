@@ -43,17 +43,8 @@ export const Navbar: React.FC = () => {
                 EcoTale
               </Link>
               <div className="hidden md:flex items-center space-x-6 ml-12">
-                <Link to="/ai-innovations" className="text-gray-700 hover:text-primary-600 transition-colors">
-                  AI Innovations
-                </Link>
-                <Link to="/clean" className="text-gray-700 hover:text-primary-600 transition-colors">
-                  Clean
-                </Link>
-                <Link to="/labs" className="text-gray-700 hover:text-primary-600 transition-colors">
-                  By Self Labs
-                </Link>
-                <Link to="/education" className="text-gray-700 hover:text-primary-600 transition-colors">
-                  Education
+                <Link to="/technology" className="text-gray-700 hover:text-primary-600 transition-colors">
+                  Technology
                 </Link>
               </div>
             </div>
@@ -82,17 +73,8 @@ export const Navbar: React.FC = () => {
 
             {/* Navigation Links */}
             <div className="hidden md:flex items-center space-x-6">
-              <Link to="/ai-innovations" className="text-gray-700 hover:text-primary-600 transition-colors">
-                AI Innovations
-              </Link>
-              <Link to="/clean" className="text-gray-700 hover:text-primary-600 transition-colors">
-                Clean
-              </Link>
-              <Link to="/labs" className="text-gray-700 hover:text-primary-600 transition-colors">
-                By Self Labs
-              </Link>
-              <Link to="/education" className="text-gray-700 hover:text-primary-600 transition-colors">
-                Education
+              <Link to="/technology" className="text-gray-700 hover:text-primary-600 transition-colors">
+                Technology
               </Link>
             </div>
 

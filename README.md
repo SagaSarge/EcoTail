@@ -63,6 +63,66 @@ EcoTale is an AI-powered smart waste management system that revolutionizes waste
 - Advanced analytics dashboard
 - Comprehensive rewards program
 
+## 🔧 React Component Structure
+
+### Common Components
+```typescript
+src/components/common/
+├── Button.tsx              // Reusable button component
+├── StickyProductCard.tsx   // Floating product card
+└── TestimonialCard.tsx     // Testimonial display component
+```
+
+### Layout Components
+```typescript
+src/components/layout/
+└── Navbar.tsx              // Main navigation component
+```
+
+### Page Components
+```typescript
+src/components/pages/
+├── CalculateCostSavingsPage.tsx
+├── CalculateImpactPage.tsx
+├── EducationPage.tsx
+├── ProductDetailsPage.tsx
+├── ProductsOverviewPage.tsx
+├── PurchasePage.tsx
+└── TechnologyPage.tsx
+```
+
+### Section Components
+```typescript
+src/components/sections/
+├── BlogSection.tsx
+├── ContentSection.tsx
+├── CostSavingsSection.tsx
+├── EnvironmentalImpactSection.tsx
+├── FAQSection.tsx
+├── HowItWorksSection.tsx
+├── HowSavingsSection.tsx
+├── HowToUseSection.tsx
+├── ProductSection.tsx
+├── SmartWasteSection.tsx
+├── TestimonialsSection.tsx
+└── ValueProposition.tsx
+```
+
+### React Implementation Details
+- All components are written in TypeScript
+- Functional components with React hooks
+- Following React 18 best practices
+- Styled with Tailwind CSS
+- Proper type definitions
+- Responsive design implementation
+
+### Common Hooks Used
+- `useState` for local state management
+- `useEffect` for side effects
+- `useNavigate` for routing
+- `useRef` for references
+- Custom hooks (e.g., `useAuth` for authentication)
+
 ## 💻 Tech Stack
 
 ### Frontend

@@ -6,23 +6,13 @@ import { Button } from './components/common/Button';
 import { useAuth } from './contexts/auth-context';
 import { StickyProductCard } from './components/common/StickyProductCard';
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
-import { ContactPage } from './components/pages/ContactPage';
-import { AiInnovationsPage } from './components/pages/AiInnovationsPage';
-import { CleanPage } from './components/pages/CleanPage';
-import { LabsPage } from './components/pages/LabsPage';
-import { EducationPage } from './components/pages/EducationPage';
-import { CalculateCostSavingsPage } from './components/pages/CalculateCostSavingsPage';
+import { TechnologyPage } from './components/pages/TechnologyPage';
 import { TestimonialSection } from './components/sections/TestimonialSection';
 import { SmartWasteSection } from './components/sections/SmartWasteSection';
 import { EnvironmentalImpactSection } from './components/sections/EnvironmentalImpactSection';
 import { CostSavingsSection } from './components/sections/CostSavingsSection';
 import { HowSavingsSection } from './components/sections/HowSavingsSection';
 import { ProblemSolvingSection } from './components/sections/HowToUseSection';
-import { CalculateImpactPage } from './components/pages/CalculateImpactPage';
-import { TechnologyPage } from './components/pages/TechnologyPage';
-import { PurchasePage } from './components/pages/PurchasePage';
-import { ProductDetailsPage } from './components/pages/ProductDetailsPage';
-import { ProductsOverviewPage } from './components/pages/ProductsOverviewPage';
 import { ProductSection } from './components/sections/ProductSection';
 import { FAQSection } from './components/sections/FAQSection';
 import { BlogSection } from './components/sections/BlogSection';
@@ -180,17 +170,7 @@ function AppContent() {
       <Navbar />
       <main className="flex-grow">
         <Routes>
-          <Route path="/ai-innovations" element={<AiInnovationsPage />} />
-          <Route path="/clean" element={<CleanPage />} />
-          <Route path="/labs" element={<LabsPage />} />
-          <Route path="/education" element={<EducationPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/calculate-savings" element={<CalculateCostSavingsPage />} />
-          <Route path="/calculate-impact" element={<CalculateImpactPage />} />
           <Route path="/technology" element={<TechnologyPage />} />
-          <Route path="/purchase" element={<PurchasePage />} />
-          <Route path="/products" element={<ProductsOverviewPage />} />
-          <Route path="/products/:version" element={<ProductDetailsPage />} />
           <Route path="/" element={
             !user ? <LandingHero /> : (
               <div className="text-center mt-10">
