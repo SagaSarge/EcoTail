@@ -129,6 +129,15 @@ module.exports = {
         'orbit': {
           '0%': { transform: 'rotate(0deg) translateX(120px) rotate(0deg)' },
           '100%': { transform: 'rotate(360deg) translateX(120px) rotate(-360deg)' },
+        },
+        fall: {
+          '0%': { transform: 'translateY(-20px) rotate(0deg)', opacity: '0' },
+          '20%': { opacity: '1' },
+          '100%': { transform: 'translateY(300px) rotate(360deg)', opacity: '0' }
+        },
+        slideIn: {
+          '0%': { transform: 'translateX(100%)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' }
         }
       },
       animation: {
@@ -139,6 +148,11 @@ module.exports = {
         'spin-slow': 'spin-slow 8s linear infinite',
         'spin-slow-reverse': 'spin-slow-reverse 8s linear infinite',
         'orbit': 'orbit 12s linear infinite',
+        'fall': 'fall 2s ease-in forwards',
+        'fall-delayed': 'fall 2s ease-in 1s forwards',
+        'slideIn': 'slideIn 0.5s ease-out forwards',
+        'slideIn-delayed': 'slideIn 0.5s ease-out 1s forwards',
+        'shimmer': 'shimmer 2s linear infinite',
       },
       perspective: {
         '1000': '1000px',
