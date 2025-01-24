@@ -32,76 +32,12 @@ export const MobileAppLandingPage: React.FC = () => {
           </div>
 
           <div className="relative">
-            {/* Fill Level Progress Bar - Left Aligned */}
-            <div className="absolute left-7 top-0 bottom-0 flex flex-col justify-center items-center">
-              <div className="relative w-2 h-64 bg-gray-200 rounded-full overflow-hidden">
-                {/* Fill Level */}
-                <div 
-                  className="absolute bottom-0 w-full bg-gradient-to-t from-gray-900 to-gray-800 rounded-full transition-all duration-1000"
-                  style={{ height: '75%' }}
-                >
-                  {/* Animated Glow Effect */}
-                  <div className="absolute top-0 left-0 right-0 h-4 bg-white/20 blur-sm transform -skew-y-45"></div>
-                </div>
-              </div>
-              {/* Percentage Label */}
-              <div className="mt-2 text-gray-900 font-medium text-sm">
-                75%
-              </div>
-            </div>
-
             {/* Main Content */}
             <div className="flex flex-col items-center mb-12">
-              {/* 3D Trash Can with Falling Items */}
+              {/* 3D Trash Can */}
               <div className="relative w-96 h-96 flex items-center justify-center">
                 {/* Shadow Effect */}
                 <div className="absolute bottom-0 w-64 h-12 bg-gray-900/10 rounded-full blur-xl"></div>
-                
-                {/* Falling Items */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none">
-                  {/* Dr Pepper Can - Falling Animation */}
-                  <div className="absolute top-0 left-1/4 animate-fall">
-                    <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center transform rotate-12">
-                      🥤
-                    </div>
-                  </div>
-
-                  {/* Doritos Bag - Falling Animation with Delay */}
-                  <div className="absolute top-0 right-1/4 animate-fall-delayed">
-                    <div className="w-12 h-12 bg-yellow-100 rounded-xl flex items-center justify-center transform -rotate-12">
-                      🌮
-                    </div>
-                  </div>
-                </div>
-
-                {/* Notification Toasts */}
-                <div className="absolute top-4 right-4 space-y-2 pointer-events-none">
-                  {/* Dr Pepper Notification */}
-                  <div className="animate-slideIn opacity-0 transform translate-x-full">
-                    <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 shadow-lg border border-gray-200 flex items-center gap-3">
-                      <div className="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center">
-                        🥤
-                      </div>
-                      <div>
-                        <div className="text-sm font-medium text-gray-900">Dr Pepper Can Added</div>
-                        <div className="text-xs text-gray-600">Just now</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Doritos Notification - Delayed */}
-                  <div className="animate-slideIn-delayed opacity-0 transform translate-x-full">
-                    <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 shadow-lg border border-gray-200 flex items-center gap-3">
-                      <div className="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center">
-                        🌮
-                      </div>
-                      <div>
-                        <div className="text-sm font-medium text-gray-900">Doritos Bag Added</div>
-                        <div className="text-xs text-gray-600">Just now</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
 
                 {/* 3D Trash Can SVG */}
                 <svg className="w-full h-full" viewBox="0 0 200 240" fill="none">
