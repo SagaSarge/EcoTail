@@ -94,9 +94,18 @@ export const PurchasePage: React.FC = () => {
       label: tier.name,
       additionalData: {
         page: 'purchase_page',
-        section: 'pricing_selection'
+        section: 'pricing_selection',
+        price: tier.price,
+        totalPrice: tier.totalPrice,
+        isPreOrder: tier.name.includes('V2') && !tier.name.includes('Enterprise')
       }
     });
+
+    // For enterprise tier, show contact form
+    if (tier.name.includes('Enterprise')) {
+      setSelectedTier(tier.name);
+      return;
+    }
 
     // Navigate to checkout with appropriate state
     navigate('/checkout', {
