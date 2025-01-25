@@ -1,11 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../contexts/auth-context';
+
+const NAVIGATION_ITEMS = [
+  { label: 'Technology', path: '/technology' },
+  { label: 'Mobile App', path: '/mobile-app' },
+  { label: 'Pricing', path: '/pricing' },
+  { label: 'About', path: '/about' }
+];
 
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const { user, signIn } = useAuth();
+  const location = useLocation();
   const prevScrollY = useRef(0);
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up');
 
@@ -19,7 +27,7 @@ export const Navbar: React.FC = () => {
         setScrollDirection('up');
       }
       
-      setIsScrolled(currentScrollY > 50);
+      setIsScrolled(currentScrollY > 20);
       prevScrollY.current = currentScrollY;
     };
 
@@ -27,92 +35,149 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const isActive = (path: string) => location.pathname === path;
+
   return (
     <>
-      {/* Fixed Top Navbar */}
+      {/* Main Navbar */}
       <nav 
-        className={`fixed top-0 left-0 right-0 z-50 bg-white transition-all duration-500 transform
-          ${scrollDirection === 'down' ? '-translate-y-full' : 'translate-y-0'}`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 transform
+          ${scrollDirection === 'down' && isScrolled ? '-translate-y-full' : 'translate-y-0'}
+          ${isScrolled ? 'bg-white/80 backdrop-blur-md shadow-[0_2px_20px_rgba(0,0,0,0.04)]' : 'bg-transparent'}`}
       >
-        <div className="px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center h-16">
-            {/* Logo and Navigation */}
-            <div className="flex items-center">
-              <div className="w-8 h-8 rounded-full bg-primary-600" />
-              <Link to="/" className="ml-3 text-xl font-bold text-gray-900">
-                EcoTale
-              </Link>
-              <div className="hidden md:flex items-center space-x-6 ml-12">
-                <Link to="/technology" className="text-gray-700 hover:text-primary-600 transition-colors">
-                  Technology
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo */}
+            <Link to="/" className="flex items-center space-x-3 group">
+              <div className={`w-10 h-10 rounded-2xl bg-gradient-to-br from-[#4285F4] to-[#3367D6] shadow-lg group-hover:shadow-[#4285F4]/30 transition-all duration-300 ${
+                isScrolled ? 'shadow-[0_4px_12px_rgba(66,133,244,0.2)]' : ''
+              }`} />
+              <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#4285F4] to-[#3367D6] group-hover:from-[#3367D6] group-hover:to-[#4285F4] transition-all duration-300">
+                EcoTail
+              </span>
+            </Link>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-1">
+              {NAVIGATION_ITEMS.map((item) => (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
+                    isActive(item.path)
+                      ? 'text-[#4285F4] bg-[#4285F4]/5'
+                      : 'text-gray-600 hover:text-[#4285F4] hover:bg-[#4285F4]/5'
+                  }`}
+                >
+                  {item.label}
                 </Link>
-                <Link to="/auth" className="text-gray-700 hover:text-primary-600 transition-colors">
-                  Mobile App
+              ))}
+            </div>
+
+            {/* Action Buttons */}
+            <div className="hidden md:flex items-center space-x-4">
+              {!user ? (
+                <>
+                  <button
+                    onClick={signIn}
+                    className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#4285F4] transition-colors duration-300"
+                  >
+                    Sign In
+                  </button>
+                  <Link
+                    to="/get-started"
+                    className="px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-[#4285F4] to-[#3367D6] rounded-xl shadow-lg hover:shadow-[0_5px_20px_rgba(66,133,244,0.3)] hover:scale-[1.02] transition-all duration-300"
+                  >
+                    Get Started
+                  </Link>
+                </>
+              ) : (
+                <Link
+                  to="/dashboard"
+                  className="px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-[#4285F4] to-[#3367D6] rounded-xl shadow-lg hover:shadow-[0_5px_20px_rgba(66,133,244,0.3)] hover:scale-[1.02] transition-all duration-300"
+                >
+                  Dashboard
                 </Link>
-              </div>
+              )}
+            </div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden">
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className={`p-2 rounded-xl transition-colors duration-300 ${
+                  isOpen ? 'bg-[#4285F4]/5 text-[#4285F4]' : 'text-gray-600 hover:text-[#4285F4] hover:bg-[#4285F4]/5'
+                }`}
+              >
+                {isOpen ? (
+                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                ) : (
+                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                )}
+              </button>
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Floating Center Navbar */}
-      <nav 
-        className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 transform
-          ${isScrolled && scrollDirection === 'down' 
-            ? 'translate-y-0 opacity-100' 
-            : '-translate-y-full opacity-0'}`}
+      {/* Mobile Menu */}
+      <div 
+        className={`fixed inset-0 z-40 bg-white/80 backdrop-blur-xl transition-all duration-500 transform md:hidden ${
+          isOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
       >
-        <div className="bg-white/40 backdrop-blur-md rounded-[24px] shadow-[0_8px_32px_-4px_rgba(0,0,0,0.1)] border-[1.5px] border-white/60 px-5 py-2.5">
-          <div className="flex items-center space-x-6">
-            {/* Logo */}
-            <div className="flex items-center">
-              <div className={`w-8 h-8 rounded-full bg-primary-600 transition-all duration-500 ${
-                isScrolled ? 'shadow-[0_0_15px_rgba(0,112,243,0.3)]' : ''
-              }`} />
-              <Link to="/" className="ml-3 text-xl font-bold text-gray-900">
-                EcoTale
-              </Link>
-            </div>
-
-            {/* Navigation Links */}
-            <div className="hidden md:flex items-center space-x-6">
-              <Link to="/technology" className="text-gray-700 hover:text-primary-600 transition-colors">
-                Technology
-              </Link>
-              <Link to="/auth" className="text-gray-700 hover:text-primary-600 transition-colors">
-                Mobile App
-              </Link>
-            </div>
-
-            {/* Sign In Button */}
-            {!user && (
-              <button
-                onClick={signIn}
-                className="px-5 py-2 bg-white/90 text-primary-600 font-medium rounded-2xl hover:bg-primary-50/80 transition-all duration-300 shadow-[0_2px_10px_-2px_rgba(0,112,243,0.2)] hover:shadow-[0_4px_16px_-4px_rgba(0,112,243,0.3)] border border-primary-100 ml-2"
+        <div className="flex flex-col h-full pt-20 pb-6 px-4">
+          <div className="flex-1 flex flex-col items-center justify-center space-y-6">
+            {NAVIGATION_ITEMS.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                onClick={() => setIsOpen(false)}
+                className={`px-6 py-3 rounded-xl text-lg font-medium transition-all duration-300 ${
+                  isActive(item.path)
+                    ? 'text-[#4285F4] bg-[#4285F4]/5'
+                    : 'text-gray-600 hover:text-[#4285F4] hover:bg-[#4285F4]/5'
+                }`}
               >
-                Sign In
-              </button>
+                {item.label}
+              </Link>
+            ))}
+          </div>
+          <div className="flex flex-col space-y-4 items-center">
+            {!user ? (
+              <>
+                <button
+                  onClick={() => {
+                    signIn();
+                    setIsOpen(false);
+                  }}
+                  className="w-full px-6 py-3 text-center text-gray-600 hover:text-[#4285F4] font-medium transition-colors duration-300"
+                >
+                  Sign In
+                </button>
+                <Link
+                  to="/get-started"
+                  onClick={() => setIsOpen(false)}
+                  className="w-full px-6 py-3 text-center text-white bg-gradient-to-r from-[#4285F4] to-[#3367D6] rounded-xl shadow-lg font-medium"
+                >
+                  Get Started
+                </Link>
+              </>
+            ) : (
+              <Link
+                to="/dashboard"
+                onClick={() => setIsOpen(false)}
+                className="w-full px-6 py-3 text-center text-white bg-gradient-to-r from-[#4285F4] to-[#3367D6] rounded-xl shadow-lg font-medium"
+              >
+                Dashboard
+              </Link>
             )}
           </div>
         </div>
-      </nav>
-
-      {/* Mobile Menu Button - Only on Fixed Navbar */}
-      <div className="md:hidden fixed top-4 right-4 z-50">
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="text-gray-700 hover:text-primary-600 focus:outline-none"
-        >
-          {isOpen ? (
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          ) : (
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          )}
-        </button>
       </div>
     </>
   );

@@ -8,6 +8,7 @@ interface Testimonial {
   content: string;
   videoUrl: string;
   savings: string;
+  rating: number;
 }
 
 const testimonial: Testimonial = {
@@ -19,75 +20,78 @@ const testimonial: Testimonial = {
   },
   content: "Our family earned $520 in rewards last year just from regular recycling. The kids love checking our daily points and seeing how much we've saved. It's made recycling a fun family activity!",
   videoUrl: '/videos/testimonials/sarah-review.mp4',
-  savings: '$520'
+  savings: '$520',
+  rating: 5
 };
 
 export const TestimonialSection = () => {
   return (
-    <section className="py-24 bg-gradient-to-br from-white to-gray-50 relative overflow-hidden">
+    <section className="py-32 bg-white relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-[#4285F4]/10 to-[#4285F4]/5 blur-3xl opacity-70" />
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-gradient-to-tr from-[#0F9D58]/10 to-[#0F9D58]/5 blur-3xl opacity-70" />
+        <div className="absolute top-1/4 right-0 w-[800px] h-[800px] rounded-full bg-gradient-to-br from-[#4285F4]/5 to-transparent blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[800px] h-[800px] rounded-full bg-gradient-to-tr from-[#0F9D58]/5 to-transparent blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Section header */}
-        <div className="text-center mb-16">
-          <span className="text-[#4285F4] font-semibold tracking-wide uppercase">REAL PEOPLE, REAL REWARDS</span>
-          <h2 className="mt-2 text-4xl md:text-5xl font-bold text-gray-900">
-            See How Families Are
-            <span className="relative mx-2">
-              <span className="absolute -inset-2 blur-2xl bg-[#4285F4]/20 opacity-30" />
-              <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-[#4285F4] to-[#4285F4]/80">Earning Rewards</span>
-            </span>
+        <div className="text-center mb-20">
+          <span className="text-[#4285F4] font-semibold tracking-wide uppercase text-sm">REAL PEOPLE, REAL REWARDS</span>
+          <h2 className="mt-6 text-[2.75rem] leading-tight font-bold text-gray-900 max-w-4xl mx-auto">
+            See How Families Are{' '}
+            <span className="text-[#4285F4]">Saving Money</span>
           </h2>
-          <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
-            Join thousands of households turning their everyday recycling into amazing rewards
+          <p className="mt-6 text-xl text-gray-600 max-w-2xl mx-auto">
+            Join thousands of households turning their everyday recycling into real rewards
           </p>
         </div>
 
-        {/* Testimonial Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
-          {/* Video Column (spans 2 columns on large screens) */}
-          <div className="lg:col-span-2">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-              <video 
-                className="w-full aspect-video object-cover"
-                src={testimonial.videoUrl}
-                controls
-                poster="/images/testimonials/video-poster.jpg"
-              />
-              <div className="absolute bottom-4 right-4 px-4 py-2 bg-[#4285F4] text-white rounded-full text-sm font-medium">
-                Saved {testimonial.savings} Last Year
-              </div>
-            </div>
-          </div>
-
-          {/* Content Column */}
-          <div className="lg:col-span-1">
-            <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-              {/* Quote */}
-              <div className="mb-8">
-                <svg className="w-12 h-12 text-[#4285F4]/20 mb-4" fill="currentColor" viewBox="0 0 32 32">
-                  <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
-                </svg>
-                <p className="text-xl text-gray-600 italic leading-relaxed">
-                  {testimonial.content}
-                </p>
-              </div>
-
-              {/* Author */}
-              <div className="flex items-center">
-                <img 
-                  src={testimonial.author.avatar} 
-                  alt={testimonial.author.name}
-                  className="w-16 h-16 rounded-full object-cover border-2 border-[#4285F4]"
+        {/* Testimonial Card */}
+        <div className="max-w-[1000px] mx-auto">
+          <div className="bg-white rounded-3xl shadow-[0_2px_40px_rgba(0,0,0,0.06)] overflow-hidden">
+            <div className="grid grid-cols-1 lg:grid-cols-2">
+              {/* Video Side */}
+              <div className="relative bg-gray-50">
+                <video 
+                  className="w-full h-full object-cover"
+                  src={testimonial.videoUrl}
+                  controls
+                  poster="/images/testimonials/video-poster.jpg"
                 />
-                <div className="ml-4">
-                  <h3 className="font-semibold text-gray-900">{testimonial.author.name}</h3>
-                  <p className="text-sm text-gray-500">{testimonial.author.role}</p>
-                  <p className="text-xs text-gray-400">{testimonial.author.location}</p>
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-6 py-2.5 bg-[#4285F4] text-white rounded-full text-sm font-medium shadow-lg">
+                  Saved {testimonial.savings} Last Year
+                </div>
+              </div>
+
+              {/* Content Side */}
+              <div className="p-12 flex flex-col justify-center">
+                {/* Rating Stars */}
+                <div className="flex gap-1 mb-8">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <svg key={i} className="w-6 h-6 text-[#F4B400]" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+
+                {/* Quote */}
+                <blockquote className="text-2xl text-gray-600 leading-relaxed mb-10 relative">
+                  <span className="absolute -top-4 -left-2 text-[#4285F4]/10 text-7xl font-serif">"</span>
+                  {testimonial.content}
+                </blockquote>
+
+                {/* Author */}
+                <div className="flex items-center">
+                  <img 
+                    src={testimonial.author.avatar} 
+                    alt={testimonial.author.name}
+                    className="w-14 h-14 rounded-full object-cover ring-4 ring-white shadow-lg"
+                  />
+                  <div className="ml-4">
+                    <h3 className="font-semibold text-gray-900">{testimonial.author.name}</h3>
+                    <p className="text-sm text-gray-500">{testimonial.author.role}</p>
+                    <p className="text-sm text-gray-400">{testimonial.author.location}</p>
+                  </div>
                 </div>
               </div>
             </div>

@@ -1,80 +1,112 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
-const recyclingItems = [
+const usageSteps = [
   {
-    id: '1',
-    name: 'Dr Pepper Can',
-    type: 'Aluminum',
-    points: 15,
-    progress: 75,
-    co2Reduction: '0.5 kg saved',
-    waterSaved: '2L saved',
+    title: "Use Like Normal",
+    description: "Just toss your recyclables like any trash can",
+    detail: "No extra steps needed",
+    icon: "🗑️"
   },
   {
-    id: '2',
-    name: 'Doritos Bag',
-    type: 'Plastic',
-    points: 12,
-    progress: 60,
-    co2Reduction: '0.3 kg saved',
-    waterSaved: '1.5L saved',
+    title: "Bin Does The Work",
+    description: "Smart bin automatically sorts and tracks items",
+    detail: "Zero effort required",
+    icon: "✨"
   },
   {
-    id: '3',
-    name: 'Amazon Box',
-    type: 'Cardboard',
-    points: 18,
-    progress: 90,
-    co2Reduction: '0.8 kg saved',
-    waterSaved: '3L saved',
+    title: "Save Money",
+    description: "Watch your savings grow automatically",
+    detail: "Up to $70/month",
+    icon: "💵"
+  }
+];
+
+const commonItems = [
+  {
+    item: "Soda Cans",
+    action: "Just toss in",
+    reward: "2¢ each",
+    icon: "🥤"
   },
+  {
+    item: "Water Bottles",
+    action: "Drop as usual",
+    reward: "3¢ each",
+    icon: "💧"
+  },
+  {
+    item: "Cardboard",
+    action: "Toss and forget",
+    reward: "5¢ per box",
+    icon: "📦"
+  }
 ];
 
 export const CostSavingsSection: React.FC = () => {
-  const navigate = useNavigate();
-
   return (
-    <section className="py-24 bg-gradient-to-br from-white to-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold text-gray-900 text-center mb-8">
-          Your Recycling Impact Today
-        </h2>
-        <p className="text-xl text-gray-600 text-center mb-12">
-          Track your daily recycling activity and environmental impact
-        </p>
+    <section className="py-16 bg-white">
+      <div className="max-w-4xl mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            It's Just a Smarter Trash Can
+          </h2>
+          <p className="text-lg text-gray-600">
+            Use it normally, let the bin do the work
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {recyclingItems.map(item => (
-            <div key={item.id} className="bg-white rounded-lg shadow-lg p-6">
-              <h3 className="text-xl font-semibold">{item.name}</h3>
-              <p className="text-gray-500">{item.type}</p>
-              <div className="mt-4">
-                <div className="flex items-center justify-between">
-                  <span className="text-lg font-bold">{`+${item.points} pts`}</span>
-                  <span className="text-gray-600">{`Recycling Progress: ${item.progress}%`}</span>
-                </div>
-                <div className="mt-2">
-                  <div className="bg-gray-200 rounded-full h-2">
-                    <div
-                      className="bg-blue-600 h-2 rounded-full"
-                      style={{ width: `${item.progress}%` }}
-                    />
-                  </div>
-                </div>
+        {/* Simple Steps */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          {usageSteps.map((step, index) => (
+            <div 
+              key={index}
+              className="bg-gray-50 rounded-xl p-6 text-center"
+            >
+              <div className="text-4xl mb-4">
+                {step.icon}
               </div>
-              <div className="mt-4 text-gray-600">
-                <p>{`CO₂ Reduction: ${item.co2Reduction}`}</p>
-                <p>{`Water Saved: ${item.waterSaved}`}</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                {step.title}
+              </h3>
+              <p className="text-gray-600 text-sm mb-2">
+                {step.description}
+              </p>
+              <div className="text-sm font-medium text-primary-600">
+                {step.detail}
               </div>
-              <button
-                onClick={() => navigate(`/details/${item.id}`)}
-                className="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-200"
-              >
-                View Details
-              </button>
             </div>
           ))}
+        </div>
+
+        {/* Common Items Examples */}
+        <div className="bg-gray-50 rounded-xl p-8">
+          <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">
+            Example: Your Daily Items
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {commonItems.map((item, index) => (
+              <div 
+                key={index}
+                className="bg-white rounded-lg p-6 text-center"
+              >
+                <div className="text-3xl mb-3">
+                  {item.icon}
+                </div>
+                <div className="font-medium text-gray-900 mb-1">
+                  {item.item}
+                </div>
+                <div className="text-sm text-gray-500 mb-2">
+                  {item.action}
+                </div>
+                <div className="text-sm font-medium text-primary-600">
+                  {item.reward}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 text-center text-sm text-gray-500">
+            *Rewards automatically added to your account
+          </div>
         </div>
       </div>
     </section>
