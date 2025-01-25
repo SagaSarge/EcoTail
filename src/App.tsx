@@ -22,6 +22,7 @@ import { ProductSection } from './components/sections/ProductSection';
 import { FAQSection } from './components/sections/FAQSection';
 import { BlogSection } from './components/sections/BlogSection';
 import { MobileAppLandingPage } from './components/pages/MobileAppLandingPage';
+import PurchasePage from './components/pages/PurchasePage';
 
 function useScrollAnimation() {
   const [scrollY, setScrollY] = useState(0);
@@ -132,7 +133,7 @@ function LandingHero() {
             </div>
 
             <Link 
-              to="/contact" 
+              to="/purchase" 
               className="inline-block mt-4 text-primary-600 text-sm font-medium hover:text-primary-700 transition-colors duration-200 hover:underline"
             >
               Pre Order V2
@@ -182,6 +183,7 @@ function AppContent() {
           <Route path="/auth/signin" element={<SignInPage />} />
           <Route path="/auth/register" element={<RegisterPage />} />
           <Route path="/auth/loading" element={<LoadingPage />} />
+          <Route path="/purchase" element={<PurchasePage />} />
           <Route path="/" element={
             !user ? <LandingHero /> : <MobileAppLandingPage />
           } />
