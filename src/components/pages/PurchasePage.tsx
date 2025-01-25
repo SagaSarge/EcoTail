@@ -8,54 +8,58 @@ interface PricingTier {
   features: string[];
   buttonText: string;
   isPopular?: boolean;
+  isSoldOut?: boolean;
+  stockCount?: number;
+  deliveryDate?: string;
 }
 
 const pricingTiers: PricingTier[] = [
   {
-    name: "Smart Bin V2 - Standard",
-    price: "$999",
-    description: "Perfect for small businesses and residential use",
+    name: "Smart Bin V1",
+    price: "$56",
+    description: "Basic smart waste management solution - Only 600 units left",
     features: [
-      "Basic AI Sorting Technology",
-      "Mobile App Access",
-      "Real-time Analytics Dashboard",
-      "1-Year Hardware Warranty",
-      "Email Support",
-      "Monthly Performance Reports"
+      "Basic AI Sorting",
+      "View Only Mobile App",
+      "Basic Metrics",
+      "Monthly Reports",
+      "Standard APIs",
+      "Email Support"
     ],
-    buttonText: "Pre-order Standard"
+    buttonText: "Buy Now",
+    stockCount: 600
   },
   {
-    name: "Smart Bin V2 - Professional",
-    price: "$1,499",
-    description: "Ideal for medium businesses and organizations",
+    name: "Smart Bin V2",
+    price: "$25",
+    description: "Pre-order now - Delivery starts February 17th",
     features: [
       "Advanced Multi-Stream Sorting",
-      "Full Mobile App Control",
-      "Advanced Analytics & Predictions",
-      "2-Year Extended Warranty",
+      "Full Control & Customization App",
+      "Advanced Insights & Predictions",
+      "Real-time Custom Reports",
+      "Advanced APIs & Custom Integration",
       "Priority Support 24/7",
-      "Weekly Performance Reports",
-      "Custom Integration Support",
-      "Employee Training Session"
+      "Employee Training Session",
+      "Extended Warranty"
     ],
-    buttonText: "Pre-order Professional",
-    isPopular: true
+    buttonText: "Pre-order Now",
+    isPopular: true,
+    deliveryDate: "February 17th"
   },
   {
-    name: "Smart Bin V2 - Enterprise",
-    price: "Custom",
-    description: "Tailored solutions for large organizations",
+    name: "Smart Bin V2 Enterprise",
+    price: "Contact Sales",
+    description: "Custom enterprise solutions with volume discounts",
     features: [
       "Custom AI Model Training",
       "White-label Mobile App",
       "Enterprise Analytics Suite",
-      "5-Year Premium Warranty",
+      "Custom Integration Support",
       "Dedicated Support Team",
-      "Daily Performance Reports",
-      "Full API Access",
+      "Volume Discounts Available",
       "On-site Training & Setup",
-      "Volume Discounts"
+      "Extended Enterprise Warranty"
     ],
     buttonText: "Contact Sales"
   }
@@ -72,7 +76,8 @@ export const PurchasePage: React.FC = () => {
     message: ''
   });
 
-  const handleTierSelect = (tierName: string) => {
+  const handleTierSelect = (tierName: string, isSoldOut?: boolean) => {
+    if (isSoldOut) return;
     setSelectedTier(tierName);
     trackEvent({
       action: 'select_pricing_tier',
@@ -116,11 +121,18 @@ export const PurchasePage: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
+          <span className="text-[#4285F4] font-semibold text-lg mb-4 block">
+            Smart Waste Management Solutions
+          </span>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Choose Your Smart Bin Solution
+            Choose Your
+            <span className="relative ml-2">
+              <span className="absolute -inset-2 blur-2xl bg-[#4285F4]/20 opacity-30" />
+              <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-[#4285F4] to-[#4285F4]/80"> Solution </span>
+            </span>
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Select the perfect package for your waste management needs
+            Compare our smart waste management solutions and find the perfect fit for your needs
           </p>
         </div>
 
@@ -130,41 +142,62 @@ export const PurchasePage: React.FC = () => {
             <div 
               key={tier.name}
               className={`relative bg-white rounded-2xl shadow-xl border ${
-                tier.isPopular ? 'border-primary-500 scale-105' : 'border-gray-100'
+                tier.isPopular ? 'border-[#4285F4] scale-105' : 'border-gray-100'
               } p-8 transition-all duration-300 hover:shadow-2xl`}
             >
               {tier.isPopular && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <span className="bg-primary-500 text-white px-4 py-1 rounded-full text-sm font-medium">
-                    Most Popular
+                <div className="absolute -top-4 right-4 z-20">
+                  <span className="inline-flex items-center px-4 py-1 rounded-full text-sm font-semibold bg-[#4285F4] text-white">
+                    Pre-order Available
+                  </span>
+                </div>
+              )}
+              {tier.stockCount && (
+                <div className="absolute top-4 right-4 z-20">
+                  <span className="inline-flex items-center px-4 py-1 rounded-full text-sm font-semibold bg-green-600 text-white">
+                    {tier.stockCount} units left
                   </span>
                 </div>
               )}
               
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">{tier.name}</h3>
-                <div className="text-4xl font-bold text-primary-600 mb-4">{tier.price}</div>
+                <div className="text-4xl font-bold mb-4 text-[#4285F4]">
+                  {tier.price}
+                </div>
                 <p className="text-gray-600">{tier.description}</p>
+                {tier.deliveryDate && (
+                  <p className="text-sm text-[#4285F4] mt-2 font-medium">
+                    Delivery starts {tier.deliveryDate}
+                  </p>
+                )}
               </div>
 
-              <ul className="space-y-4 mb-8">
+              <div className="space-y-4 mb-8">
                 {tier.features.map((feature, index) => (
-                  <li key={index} className="flex items-center text-gray-600">
-                    <svg className="w-5 h-5 text-primary-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
+                  <div key={index} className="flex items-center text-gray-600">
+                    <div className={`w-8 h-8 ${tier.isSoldOut ? 'bg-gray-100' : 'bg-[#4285F4]/10'} rounded-lg flex items-center justify-center mr-3`}>
+                      <span className="text-xl">
+                        {index === 0 ? '🔍' : 
+                         index === 1 ? '📱' : 
+                         index === 2 ? '📊' : '✨'}
+                      </span>
+                    </div>
                     {feature}
-                  </li>
+                  </div>
                 ))}
-              </ul>
+              </div>
 
               <button
-                onClick={() => handleTierSelect(tier.name)}
+                onClick={() => handleTierSelect(tier.name, tier.isSoldOut)}
+                disabled={tier.isSoldOut}
                 className={`w-full py-3 px-4 rounded-xl ${
-                  selectedTier === tier.name
-                    ? 'bg-primary-600 text-white'
-                    : 'bg-primary-100 text-primary-600'
-                } font-medium hover:bg-primary-600 hover:text-white transition-colors duration-300`}
+                  tier.isSoldOut
+                    ? 'bg-gray-100 text-gray-500 cursor-not-allowed'
+                    : selectedTier === tier.name
+                    ? 'bg-[#4285F4] text-white'
+                    : 'bg-[#4285F4]/10 text-[#4285F4] hover:bg-[#4285F4] hover:text-white'
+                } font-medium transition-colors duration-300`}
               >
                 {tier.buttonText}
               </button>
@@ -188,7 +221,7 @@ export const PurchasePage: React.FC = () => {
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#4285F4] focus:border-[#4285F4]"
                 />
               </div>
 
@@ -203,7 +236,7 @@ export const PurchasePage: React.FC = () => {
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#4285F4] focus:border-[#4285F4]"
                 />
               </div>
 
@@ -217,7 +250,7 @@ export const PurchasePage: React.FC = () => {
                   name="company"
                   value={formData.company}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#4285F4] focus:border-[#4285F4]"
                 />
               </div>
 
@@ -231,7 +264,7 @@ export const PurchasePage: React.FC = () => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#4285F4] focus:border-[#4285F4]"
                 />
               </div>
 
@@ -245,13 +278,13 @@ export const PurchasePage: React.FC = () => {
                   value={formData.message}
                   onChange={handleInputChange}
                   rows={4}
-                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#4285F4] focus:border-[#4285F4]"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full py-3 px-4 rounded-xl bg-primary-600 text-white font-medium hover:bg-primary-700 transition-colors duration-300"
+                className="w-full py-3 px-4 rounded-xl bg-[#4285F4] text-white font-medium hover:bg-[#3367D6] transition-colors duration-300"
               >
                 Submit Pre-order
               </button>
