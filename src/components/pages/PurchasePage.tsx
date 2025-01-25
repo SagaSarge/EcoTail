@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAnalytics } from '../../hooks/useAnalytics';
+import { useNavigate } from 'react-router-dom';
 
 interface PricingTier {
   name: string;
   price: string;
+  totalPrice?: string;
   description: string;
   features: string[];
   buttonText: string;
@@ -11,6 +13,7 @@ interface PricingTier {
   isSoldOut?: boolean;
   stockCount?: number;
   deliveryDate?: string;
+  depositInfo?: string;
 }
 
 const pricingTiers: PricingTier[] = [
@@ -32,7 +35,8 @@ const pricingTiers: PricingTier[] = [
   {
     name: "Smart Bin V2",
     price: "$25",
-    description: "Pre-order now - Delivery starts February 17th",
+    totalPrice: "$149",
+    description: "Secure your order with a fully refundable deposit",
     features: [
       "Advanced Multi-Stream Sorting",
       "Full Control & Customization App",
@@ -43,9 +47,10 @@ const pricingTiers: PricingTier[] = [
       "Employee Training Session",
       "Extended Warranty"
     ],
-    buttonText: "Pre-order Now",
+    buttonText: "Pre-order with $25 Deposit",
     isPopular: true,
-    deliveryDate: "February 17th"
+    deliveryDate: "February 17th",
+    depositInfo: "Fully refundable deposit. Total price: $149"
   },
   {
     name: "Smart Bin V2 Enterprise",
@@ -67,6 +72,7 @@ const pricingTiers: PricingTier[] = [
 
 export const PurchasePage: React.FC = () => {
   const { trackEvent } = useAnalytics();
+  const navigate = useNavigate();
   const [selectedTier, setSelectedTier] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: '',
@@ -76,16 +82,29 @@ export const PurchasePage: React.FC = () => {
     message: ''
   });
 
-  const handleTierSelect = (tierName: string, isSoldOut?: boolean) => {
-    if (isSoldOut) return;
-    setSelectedTier(tierName);
+  useEffect(() => {
+    // Scroll to top on component mount
+    window.scrollTo(0, 0);
+  }, []);
+
+  const handleTierSelect = (tier: PricingTier) => {
     trackEvent({
       action: 'select_pricing_tier',
       category: 'purchase',
-      label: tierName,
+      label: tier.name,
       additionalData: {
         page: 'purchase_page',
         section: 'pricing_selection'
+      }
+    });
+
+    // Navigate to checkout with appropriate state
+    navigate('/checkout', {
+      state: {
+        productType: tier.name.includes('V2') ? 'v2' : 'v1',
+        price: tier.price,
+        totalPrice: tier.totalPrice,
+        isPreOrder: tier.name.includes('V2') && !tier.name.includes('Enterprise')
       }
     });
   };
@@ -162,9 +181,14 @@ export const PurchasePage: React.FC = () => {
               
               <div className="text-center mb-8">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">{tier.name}</h3>
-                <div className="text-4xl font-bold mb-4 text-[#4285F4]">
+                <div className="text-4xl font-bold mb-2 text-[#4285F4]">
                   {tier.price}
                 </div>
+                {tier.depositInfo && (
+                  <div className="text-sm text-gray-600 mb-2">
+                    {tier.depositInfo}
+                  </div>
+                )}
                 <p className="text-gray-600">{tier.description}</p>
                 {tier.deliveryDate && (
                   <p className="text-sm text-[#4285F4] mt-2 font-medium">
@@ -189,14 +213,11 @@ export const PurchasePage: React.FC = () => {
               </div>
 
               <button
-                onClick={() => handleTierSelect(tier.name, tier.isSoldOut)}
-                disabled={tier.isSoldOut}
+                onClick={() => handleTierSelect(tier)}
                 className={`w-full py-3 px-4 rounded-xl ${
-                  tier.isSoldOut
-                    ? 'bg-gray-100 text-gray-500 cursor-not-allowed'
-                    : selectedTier === tier.name
-                    ? 'bg-[#4285F4] text-white'
-                    : 'bg-[#4285F4]/10 text-[#4285F4] hover:bg-[#4285F4] hover:text-white'
+                  tier.name.includes('Enterprise')
+                    ? 'bg-gray-100 text-gray-900 hover:bg-gray-200'
+                    : 'bg-[#4285F4] text-white hover:bg-[#3367D6]'
                 } font-medium transition-colors duration-300`}
               >
                 {tier.buttonText}

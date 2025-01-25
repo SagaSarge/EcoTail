@@ -39,11 +39,25 @@ export const ProductSection: React.FC = () => {
     }
   ];
 
+  const handlePurchaseClick = () => {
+    trackPurchaseClick('product_section', {
+      button_type: 'buy_now',
+      button_text: 'Buy Now',
+      product: 'Smart Bin V1',
+      price: 56,
+      stock: 600
+    });
+    navigate('/purchase');
+  };
+
   const handlePreorderClick = () => {
     trackPurchaseClick('product_section', {
       button_type: 'pre_order',
-      button_text: 'Pre-order Now',
-      product: 'Smart Bin V2'
+      button_text: 'Pre-order with $25 Deposit',
+      product: 'Smart Bin V2',
+      deposit: 25,
+      total_price: 149,
+      delivery_date: 'February 17th'
     });
     navigate('/purchase');
   };
@@ -101,10 +115,10 @@ export const ProductSection: React.FC = () => {
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {/* V1 Card */}
           <div className="relative bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden group transition-all duration-300">
-            {/* Sold Out Label */}
+            {/* Stock Count Label */}
             <div className="absolute top-4 right-4 z-20">
-              <span className="inline-flex items-center px-4 py-1 rounded-full text-sm font-semibold bg-gray-900/90 text-white">
-                Sold Out
+              <span className="inline-flex items-center px-4 py-1 rounded-full text-sm font-semibold bg-green-600 text-white">
+                600 units left
               </span>
             </div>
             {/* Product Image */}
@@ -115,6 +129,7 @@ export const ProductSection: React.FC = () => {
             </div>
             <div className="p-8">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">Smart Bin V1</h3>
+              <div className="text-3xl font-bold text-[#4285F4] mb-4">$56</div>
               <div className="space-y-4 mb-8">
                 <div className="flex items-center text-gray-600">
                   <div className="w-8 h-8 bg-[#4285F4]/10 rounded-lg flex items-center justify-center mr-3">
@@ -136,10 +151,10 @@ export const ProductSection: React.FC = () => {
                 </div>
               </div>
               <button 
-                disabled
-                className="w-full py-3 px-4 rounded-xl bg-gray-100 text-gray-500 font-medium cursor-not-allowed"
+                onClick={handlePurchaseClick}
+                className="w-full py-3 px-4 rounded-xl bg-[#4285F4] text-white font-medium hover:bg-[#3367D6] transition-colors duration-300"
               >
-                Sold Out
+                Buy Now
               </button>
             </div>
           </div>
@@ -160,6 +175,13 @@ export const ProductSection: React.FC = () => {
             </div>
             <div className="p-8">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">Smart Bin V2</h3>
+              <div className="text-3xl font-bold text-[#4285F4] mb-2">$25</div>
+              <div className="text-sm text-gray-600 mb-4">
+                Fully refundable deposit. Total price: $149
+              </div>
+              <div className="text-sm text-[#4285F4] mb-4">
+                Delivery starts February 17th
+              </div>
               <div className="space-y-4 mb-8">
                 <div className="flex items-center text-gray-600">
                   <div className="w-8 h-8 bg-[#4285F4]/10 rounded-lg flex items-center justify-center mr-3">
@@ -182,9 +204,9 @@ export const ProductSection: React.FC = () => {
               </div>
               <button 
                 onClick={handlePreorderClick}
-                className="w-full py-3 px-4 rounded-xl bg-[#4285F4] text-white font-medium hover:bg-[#3367D6] transition-colors duration-300 group-hover:shadow-lg"
+                className="w-full py-3 px-4 rounded-xl bg-[#4285F4] text-white font-medium hover:bg-[#3367D6] transition-colors duration-300"
               >
-                Pre-order Now
+                Pre-order with $25 Deposit
               </button>
             </div>
           </div>

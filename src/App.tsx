@@ -23,6 +23,7 @@ import { FAQSection } from './components/sections/FAQSection';
 import { BlogSection } from './components/sections/BlogSection';
 import { MobileAppLandingPage } from './components/pages/MobileAppLandingPage';
 import PurchasePage from './components/pages/PurchasePage';
+import { CheckoutPage } from './components/pages/CheckoutPage';
 
 function useScrollAnimation() {
   const [scrollY, setScrollY] = useState(0);
@@ -184,6 +185,7 @@ function AppContent() {
           <Route path="/auth/register" element={<RegisterPage />} />
           <Route path="/auth/loading" element={<LoadingPage />} />
           <Route path="/purchase" element={<PurchasePage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/" element={
             !user ? <LandingHero /> : <MobileAppLandingPage />
           } />
