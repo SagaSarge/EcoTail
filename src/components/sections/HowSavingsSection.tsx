@@ -9,74 +9,176 @@ export const HowSavingsSection: React.FC = () => {
     {
       number: '01',
       title: 'Smart Waste Tracking',
-      description: 'AI-Agents inform you of your waste analytics and identifies cost-saving opportunities in real-time.',
-      features: ['Automated waste analysis', 'Usage pattern detection', 'Cost optimization insights'],
+      description: 'Real-time tracking and analytics of your recyclable items with AI-powered recognition.',
+      features: ['Live waste analytics', 'Item recognition', 'Progress tracking'],
       roadmapSteps: [
         {
           step: '1',
-          title: 'Install Sensors',
-          description: 'Smart sensors automatically track waste levels 24/7'
+          title: 'Scan Items',
+          description: 'Use your camera to scan recyclable items'
         },
         {
           step: '2',
-          title: 'AI Analysis',
-          description: 'Our AI processes data to identify patterns and opportunities'
+          title: 'Get Points',
+          description: 'Earn points for each correctly recycled item'
         },
         {
           step: '3',
-          title: 'Get Insights',
-          description: 'Receive real-time alerts and optimization suggestions'
+          title: 'Track Progress',
+          description: 'Monitor your recycling goals in real-time'
         }
       ],
-      expandedContent: 'Our AI system continuously monitors your waste patterns, providing real-time insights and actionable recommendations. Watch how businesses have reduced their waste costs by up to 40% using our smart tracking system.'
+      expandedContent: (
+        <div className="space-y-4">
+          <div className="bg-gray-50 rounded-xl p-4">
+            <div className="text-lg font-bold text-gray-900 mb-3">Live Activity Feed</div>
+            <div className="space-y-3">
+              <div className="flex items-center justify-between p-3 bg-white rounded-lg border border-gray-100">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                    🥤
+                  </div>
+                  <div>
+                    <div className="text-sm font-medium text-gray-900">Soda Can</div>
+                    <div className="text-xs text-gray-500">Just now</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-6 bg-green-100 rounded-lg flex items-center justify-center">
+                    ⭐
+                  </div>
+                  <div className="text-xs text-green-600 font-medium">+5 pts</div>
+                </div>
+              </div>
+              <div className="flex items-center justify-between p-3 bg-white rounded-lg border border-gray-100">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                    💧
+                  </div>
+                  <div>
+                    <div className="text-sm font-medium text-gray-900">Water Bottle</div>
+                    <div className="text-xs text-gray-500">2m ago</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-6 bg-blue-100 rounded-lg flex items-center justify-center">
+                    ♻️
+                  </div>
+                  <div className="text-xs text-blue-600 font-medium">+3 pts</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
     },
     {
       number: '02',
       title: 'Optimization & Rewards',
-      description: 'Receive personalized recommendations and earn rewards for implementing sustainable practices.',
-      features: ['Custom action plans', 'Points-based rewards', 'Partner discounts'],
+      description: 'Earn points and unlock rewards while making sustainable choices.',
+      features: ['Points system', 'Partner rewards', 'Achievement badges'],
       roadmapSteps: [
         {
           step: '1',
-          title: 'Set Goals',
-          description: 'Choose your sustainability targets and timeline'
+          title: 'Daily Goals',
+          description: 'Set and achieve daily recycling targets'
         },
         {
           step: '2',
-          title: 'Take Action',
-          description: 'Follow personalized recommendations to reduce waste'
+          title: 'Earn Rewards',
+          description: 'Convert points into partner discounts'
         },
         {
           step: '3',
-          title: 'Earn Rewards',
-          description: 'Get points and unlock partner discounts'
+          title: 'Track Streaks',
+          description: 'Maintain your recycling streak'
         }
       ],
-      expandedContent: 'Transform your sustainability efforts into tangible rewards. See how our points system works and how you can earn discounts from our eco-friendly partners.'
+      expandedContent: (
+        <div className="space-y-4">
+          <div className="bg-gray-50 rounded-xl p-4">
+            <div className="text-lg font-bold text-gray-900 mb-3">Current Rewards</div>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="bg-white p-3 rounded-lg border border-gray-100">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-8 h-8 bg-[#F4B400]/10 rounded-lg flex items-center justify-center">
+                    ⭐
+                  </div>
+                  <div className="text-sm font-medium text-gray-900">TerraCycle</div>
+                </div>
+                <div className="text-xs text-gray-600">18/40 items</div>
+                <div className="mt-2 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                  <div className="h-full bg-[#F4B400] rounded-full" style={{width: '45%'}}></div>
+                </div>
+              </div>
+              <div className="bg-white p-3 rounded-lg border border-gray-100">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-8 h-8 bg-[#4285F4]/10 rounded-lg flex items-center justify-center">
+                    💧
+                  </div>
+                  <div className="text-sm font-medium text-gray-900">WaterSaver</div>
+                </div>
+                <div className="text-xs text-gray-600">25/50 bottles</div>
+                <div className="mt-2 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                  <div className="h-full bg-[#4285F4] rounded-full" style={{width: '50%'}}></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
     },
     {
       number: '03',
       title: 'Real Savings',
-      description: 'Watch your savings grow through reduced waste costs and reward redemptions.',
-      features: ['Monthly cost reduction', 'Reward redemptions', 'ROI tracking'],
+      description: 'Track your environmental impact and monetary savings in real-time.',
+      features: ['Impact metrics', 'Cost savings', 'Achievement tracking'],
       roadmapSteps: [
         {
           step: '1',
-          title: 'Track Progress',
-          description: 'Monitor your waste reduction and savings in real-time'
+          title: 'View Stats',
+          description: 'Monitor your environmental impact'
         },
         {
           step: '2',
-          title: 'Redeem Rewards',
-          description: 'Use earned points for partner products and services'
+          title: 'Save Money',
+          description: 'See your cost savings grow'
         },
         {
           step: '3',
-          title: 'Scale Impact',
-          description: 'Expand optimization across more locations or departments'
+          title: 'Share Impact',
+          description: 'Share achievements with friends'
         }
       ],
-      expandedContent: 'Track your ROI in real-time and see how your sustainable choices translate into significant cost savings. Our users typically see returns within the first 6 months.'
+      expandedContent: (
+        <div className="space-y-4">
+          <div className="bg-gray-50 rounded-xl p-4">
+            <div className="text-lg font-bold text-gray-900 mb-3">Environmental Impact</div>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="bg-white p-3 rounded-lg border border-gray-100">
+                <div className="text-sm font-medium text-gray-900">CO₂ Prevented</div>
+                <div className="text-lg font-bold text-[#0F9D58]">1.2t</div>
+                <div className="text-xs text-gray-600">+12% this month</div>
+              </div>
+              <div className="bg-white p-3 rounded-lg border border-gray-100">
+                <div className="text-sm font-medium text-gray-900">Trees Saved</div>
+                <div className="text-lg font-bold text-[#0F9D58]">48</div>
+                <div className="text-xs text-gray-600">+8% this month</div>
+              </div>
+              <div className="bg-white p-3 rounded-lg border border-gray-100">
+                <div className="text-sm font-medium text-gray-900">Water Saved</div>
+                <div className="text-lg font-bold text-[#4285F4]">2.8kL</div>
+                <div className="text-xs text-gray-600">+15% this month</div>
+              </div>
+              <div className="bg-white p-3 rounded-lg border border-gray-100">
+                <div className="text-sm font-medium text-gray-900">Energy Saved</div>
+                <div className="text-lg font-bold text-[#F4B400]">180kW</div>
+                <div className="text-xs text-gray-600">+10% this month</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
     }
   ];
 
@@ -96,13 +198,13 @@ export const HowSavingsSection: React.FC = () => {
       case 1:
         return {
           cardBg: 'bg-white',
-          ringColor: 'ring-violet-500',
-          numberColor: 'text-violet-500',
-          iconBg: 'bg-violet-100',
-          iconColor: 'text-violet-500',
-          hoverBg: 'hover:bg-violet-600',
-          playBg: 'bg-violet-500',
-          featureBg: 'bg-violet-50/50'
+          ringColor: 'ring-[#F4B400]',
+          numberColor: 'text-[#F4B400]',
+          iconBg: 'bg-[#F4B400]/10',
+          iconColor: 'text-[#F4B400]',
+          hoverBg: 'hover:bg-[#F4B400]',
+          playBg: 'bg-[#F4B400]',
+          featureBg: 'bg-[#F4B400]/5'
         };
       case 2:
         return {
@@ -121,16 +223,14 @@ export const HowSavingsSection: React.FC = () => {
   };
 
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
+    <section className="py-24 bg-gradient-to-br from-white to-gray-50 relative overflow-hidden">
       {/* Decorative Elements */}
       <div className="absolute inset-0 z-0">
         <div 
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#4285F4]/10 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-float" 
-          style={{ animationDelay: '0s', zIndex: 0 }}
+          className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-[#4285F4]/10 to-[#4285F4]/5 blur-3xl opacity-70" 
         />
         <div 
-          className="absolute top-1/3 right-1/4 w-96 h-96 bg-violet-500/10 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-float" 
-          style={{ animationDelay: '-5s', zIndex: 2 }}
+          className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-gradient-to-tr from-[#0F9D58]/10 to-[#0F9D58]/5 blur-3xl opacity-70" 
         />
       </div>
 
@@ -139,7 +239,10 @@ export const HowSavingsSection: React.FC = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-6 lg:text-5xl">
             How Our
-            <span className="bg-gradient-to-r from-[#4285F4] via-violet-500 to-[#0F9D58] bg-clip-text text-transparent"> Savings </span>
+            <span className="relative">
+              <span className="absolute -inset-2 blur-2xl bg-[#4285F4]/20 opacity-30" />
+              <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-[#4285F4] to-[#4285F4]/80"> Savings </span>
+            </span>
             Work
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -148,9 +251,9 @@ export const HowSavingsSection: React.FC = () => {
         </div>
 
         {/* Main Card Container */}
-        <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 p-8 mb-16 relative">
-          <div className="absolute -top-4 right-8 bg-gradient-to-r from-[#4285F4] via-violet-500 to-[#0F9D58] text-white px-4 py-2 rounded-full text-sm font-medium animate-bounce">
-            Hover cards to learn more
+        <div className="bg-white rounded-3xl shadow-2xl border border-[#4285F4]/10 p-8 mb-16 relative">
+          <div className="absolute -top-4 right-8 bg-[#4285F4] text-white px-4 py-2 rounded-full text-sm font-medium">
+            Hover cards to see live updates
           </div>
           
           {/* Steps Container with Expanded Content Side by Side */}
@@ -260,9 +363,22 @@ export const HowSavingsSection: React.FC = () => {
         <div className="text-center">
           <button 
             onClick={() => navigate('/purchase')}
-            className="bg-gradient-to-r from-[#4285F4] via-violet-500 to-[#0F9D58] hover:from-[#4285F4] hover:via-violet-600 hover:to-[#0F9D58] text-white text-xl font-semibold px-12 py-4 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105"
+            className="bg-[#4285F4] hover:bg-[#4285F4]/90 text-white text-xl font-semibold px-12 py-4 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl flex items-center justify-center gap-2 mx-auto group"
           >
             Buy Now
+            <svg 
+              className="w-6 h-6 transform transition-transform group-hover:translate-x-1" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={2} 
+                d="M13 7l5 5m0 0l-5 5m5-5H6"
+              />
+            </svg>
           </button>
         </div>
       </div>

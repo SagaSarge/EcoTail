@@ -352,10 +352,11 @@ export const CostSavingsSection: React.FC = () => {
   };
 
   return (
-    <section className="py-24 bg-gradient-to-br from-white via-emerald-50 to-white relative overflow-hidden">
+    <section className="py-24 bg-gradient-to-br from-white to-gray-50 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-grid-gray-900/[0.03]" style={{ backgroundSize: '32px 32px' }} />
+        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-[#4285F4]/10 to-[#4285F4]/5 blur-3xl opacity-70" />
+        <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-gradient-to-tr from-[#0F9D58]/10 to-[#0F9D58]/5 blur-3xl opacity-70" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -363,8 +364,8 @@ export const CostSavingsSection: React.FC = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-6">
             <span className="relative">
-              <span className="absolute -inset-2 blur-2xl bg-[#0F9D58]/20 opacity-30" />
-              <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-[#0F9D58] to-[#0F9D58]/80">
+              <span className="absolute -inset-2 blur-2xl bg-[#4285F4]/20 opacity-30" />
+              <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-[#4285F4] to-[#4285F4]/80">
                 Smart Cost Savings
               </span>
             </span>
@@ -381,8 +382,8 @@ export const CostSavingsSection: React.FC = () => {
                 onClick={() => setActiveTab(index)}
                 className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
                   activeTab === index
-                    ? 'bg-[#0F9D58] text-white shadow-lg shadow-[#0F9D58]/25'
-                    : 'bg-white text-gray-600 hover:bg-[#0F9D58]/10'
+                    ? 'bg-[#4285F4] text-white shadow-lg shadow-[#4285F4]/25'
+                    : 'bg-white text-gray-600 hover:bg-[#4285F4]/10'
                 }`}
               >
                 <span className="mr-2">{type.icon}</span>
@@ -395,9 +396,9 @@ export const CostSavingsSection: React.FC = () => {
         {/* Content Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-16">
           {/* Info Card */}
-          <div className="bg-white rounded-2xl p-8 shadow-xl border border-emerald-100">
+          <div className="bg-white rounded-2xl p-8 shadow-xl border border-[#4285F4]/20">
             <div className="flex items-baseline mb-6">
-              <span className="font-mono text-4xl font-bold tracking-tight text-emerald-500 tabular-nums">
+              <span className="font-mono text-4xl font-bold tracking-tight text-[#4285F4] tabular-nums">
                 {savingsTypes[activeTab].amount}
               </span>
               <span className="ml-2 text-gray-500">{savingsTypes[activeTab].period}</span>
@@ -406,7 +407,7 @@ export const CostSavingsSection: React.FC = () => {
             <ul className="space-y-4">
               {savingsTypes[activeTab].features.map((feature, idx) => (
                 <li key={idx} className="flex items-start">
-                  <svg className="w-6 h-6 text-emerald-500 mr-3 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-6 h-6 text-[#0F9D58] mr-3 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   <span className="text-gray-600">{feature}</span>
@@ -430,14 +431,14 @@ export const CostSavingsSection: React.FC = () => {
                     alt={video.title}
                     className="w-full h-full object-cover"
                   />
-                  {/* TikTok-style overlay gradient */}
+                  {/* Overlay gradient */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
                   
                   {/* Video Info Overlay */}
                   <div className="absolute inset-x-0 bottom-0 p-4 space-y-2">
                     {/* Author Info */}
                     <div className="flex items-center space-x-2">
-                      <div className="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center text-white font-bold">
+                      <div className="w-8 h-8 rounded-full bg-[#4285F4] flex items-center justify-center text-white font-bold">
                         {video.author.charAt(0)}
                       </div>
                       <span className="text-white font-medium text-sm">@{video.author.toLowerCase().replace(' ', '')}</span>
@@ -462,27 +463,28 @@ export const CostSavingsSection: React.FC = () => {
 
                   {/* Play Button */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-12 h-12 rounded-full bg-[#4285F4]/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M8 5v14l11-7z" />
                       </svg>
                     </div>
                   </div>
 
-                  {/* TikTok-style Side Actions */}
+                  {/* Side Actions */}
                   <div className="absolute right-2 bottom-20 flex flex-col items-center space-y-4">
-                    <button className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center group-hover:bg-black/60 transition-colors">
+                    {/* Action buttons with Google colors */}
+                    <button className="w-10 h-10 rounded-full bg-[#4285F4]/40 backdrop-blur-sm flex items-center justify-center group-hover:bg-[#4285F4]/60 transition-colors">
                       <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         <path d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112z" />
                       </svg>
                     </button>
-                    <button className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center group-hover:bg-black/60 transition-colors">
+                    <button className="w-10 h-10 rounded-full bg-[#0F9D58]/40 backdrop-blur-sm flex items-center justify-center group-hover:bg-[#0F9D58]/60 transition-colors">
                       <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M7.493 18.75c-.425 0-.82-.236-.975-.632A7.48 7.48 0 016 15.375c0-1.75.599-3.358 1.602-4.634.151-.192.373-.309.6-.397.473-.183.89-.514 1.212-.924a9.042 9.042 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75 2.25 2.25 0 012.25 2.25c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H14.23c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23h-.777zM2.331 10.977a11.969 11.969 0 00-.831 4.398 12 12 0 00.52 3.507c.26.85 1.084 1.368 1.973 1.368H4.9c.445 0 .72-.498.523-.898a8.963 8.963 0 01-.924-3.977c0-1.708.476-3.305 1.302-4.666.245-.403-.028-.959-.5-.959H4.25c-.832 0-1.612.453-1.918 1.227z" />
                       </svg>
                     </button>
-                    <button className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center group-hover:bg-black/60 transition-colors">
+                    <button className="w-10 h-10 rounded-full bg-[#F4B400]/40 backdrop-blur-sm flex items-center justify-center group-hover:bg-[#F4B400]/60 transition-colors">
                       <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M15.75 4.5a3 3 0 11.825 2.066l-8.421 4.679a3.002 3.002 0 010 1.51l8.421 4.679a3 3 0 11-.729 1.31l-8.421-4.678a3 3 0 110-4.132l8.421-4.679a3 3 0 01-.096-.755z" />
                       </svg>
@@ -498,11 +500,11 @@ export const CostSavingsSection: React.FC = () => {
         <div className="text-center">
           <button
             onClick={() => navigate('/calculate-savings')}
-            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-emerald-500 to-green-600 text-white rounded-xl font-medium hover:from-emerald-600 hover:to-green-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-emerald-500/25"
+            className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-[#4285F4] hover:bg-[#3367D6] transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg"
           >
-            Calculate Your Potential Savings
+            Calculate Your Savings
             <svg className="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </button>
         </div>

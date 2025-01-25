@@ -21,6 +21,7 @@ import { ProblemSolvingSection } from './components/sections/HowToUseSection';
 import { ProductSection } from './components/sections/ProductSection';
 import { FAQSection } from './components/sections/FAQSection';
 import { BlogSection } from './components/sections/BlogSection';
+import { MobileAppLandingPage } from './components/pages/MobileAppLandingPage';
 
 function useScrollAnimation() {
   const [scrollY, setScrollY] = useState(0);
@@ -182,11 +183,7 @@ function AppContent() {
           <Route path="/auth/register" element={<RegisterPage />} />
           <Route path="/auth/loading" element={<LoadingPage />} />
           <Route path="/" element={
-            !user ? <LandingHero /> : (
-              <div className="text-center mt-10">
-                Welcome, {user.email}!
-              </div>
-            )
+            !user ? <LandingHero /> : <MobileAppLandingPage />
           } />
         </Routes>
       </main>
