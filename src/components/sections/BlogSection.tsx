@@ -16,64 +16,68 @@ interface BlogPost {
 
 const blogPosts: BlogPost[] = [
   {
-    title: "The Future of Smart Waste Management",
-    excerpt: "Discover how AI and IoT are revolutionizing waste management systems and creating sustainable solutions for businesses.",
-    category: "Technology",
+    title: "Family of 4 Saves $520 with Smart Recycling",
+    excerpt: "See how the Johnson family transformed their recycling habits and earned amazing rewards with their Smart Bin.",
+    category: "Success Story",
     author: {
-      name: "Dr. Sarah Chen",
-      role: "Chief Technology Officer",
-      avatar: "/images/avatars/sarah-chen.jpg"
+      name: "Emily Johnson",
+      role: "EcoTail User",
+      avatar: "/images/avatars/emily-johnson.jpg"
     },
-    readTime: "5 min read",
+    readTime: "3 min read",
     date: "Mar 15, 2024",
-    image: "/images/blog/smart-waste-future.jpg"
+    image: "/images/blog/family-recycling.jpg"
   },
   {
-    title: "Maximizing ROI with Smart Bins",
-    excerpt: "Learn how businesses are achieving significant cost savings and improving efficiency with smart waste management.",
-    category: "Business",
+    title: "Top 10 Household Items That Earn Most Points",
+    excerpt: "Discover which everyday items in your home can earn you the biggest rewards when recycled properly.",
+    category: "Tips & Tricks",
     author: {
       name: "Michael Rodriguez",
-      role: "Business Analyst",
+      role: "Recycling Expert",
       avatar: "/images/avatars/michael-rodriguez.jpg"
     },
     readTime: "4 min read",
     date: "Mar 12, 2024",
-    image: "/images/blog/roi-analysis.jpg"
+    image: "/images/blog/recycling-items.jpg"
   },
   {
-    title: "Sustainable Practices for Modern Business",
-    excerpt: "Explore how implementing smart waste solutions can help your business meet sustainability goals.",
-    category: "Sustainability",
+    title: "From Waste to Rewards: A Monthly Guide",
+    excerpt: "Learn how to maximize your household recycling rewards with this easy-to-follow monthly planning guide.",
+    category: "Guide",
     author: {
       name: "Emma Watson",
-      role: "Sustainability Expert",
+      role: "Sustainability Coach",
       avatar: "/images/avatars/emma-watson.jpg"
     },
-    readTime: "6 min read",
+    readTime: "5 min read",
     date: "Mar 10, 2024",
-    image: "/images/blog/sustainability.jpg"
+    image: "/images/blog/monthly-guide.jpg"
   }
 ];
 
 export const BlogSection = () => {
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
+    <section className="py-24 bg-gradient-to-br from-white to-gray-50 relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-secondary-400/10 to-secondary-400/5 blur-3xl opacity-70" />
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-gradient-to-tr from-secondary-400/10 to-secondary-400/5 blur-3xl opacity-70" />
+        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-[#4285F4]/10 to-[#4285F4]/5 blur-3xl opacity-70" />
+        <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-gradient-to-tr from-[#0F9D58]/10 to-[#0F9D58]/5 blur-3xl opacity-70" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Section header */}
         <div className="text-center mb-16">
-          <span className="text-secondary-400 font-semibold tracking-wide uppercase">BLOG</span>
+          <span className="text-[#4285F4] font-semibold tracking-wide uppercase">SUCCESS STORIES</span>
           <h2 className="mt-2 text-4xl md:text-5xl font-bold text-gray-900">
-            Latest Insights
+            See How Families
+            <span className="relative mx-2">
+              <span className="absolute -inset-2 blur-2xl bg-[#4285F4]/20 opacity-30" />
+              <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-[#4285F4] to-[#4285F4]/80">Save & Earn</span>
+            </span>
           </h2>
           <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
-            Stay updated with the latest trends and insights in smart waste management
+            Real stories from households turning their recycling into rewards
           </p>
         </div>
 
@@ -82,11 +86,15 @@ export const BlogSection = () => {
           {blogPosts.map((post, index) => (
             <article 
               key={index}
-              className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+              className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
             >
               {/* Category badge */}
               <div className="absolute top-4 left-4 z-10">
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-white/90 text-gray-900">
+                <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+                  post.category === 'Success Story' ? 'bg-[#4285F4]/10 text-[#4285F4]' :
+                  post.category === 'Tips & Tricks' ? 'bg-[#0F9D58]/10 text-[#0F9D58]' :
+                  'bg-[#F4B400]/10 text-[#F4B400]'
+                }`}>
                   {post.category}
                 </span>
               </div>
@@ -103,7 +111,7 @@ export const BlogSection = () => {
 
               {/* Content */}
               <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-secondary-400 transition-colors duration-300">
+                <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#4285F4] transition-colors duration-300">
                   {post.title}
                 </h3>
                 <p className="text-gray-600 mb-4">
@@ -132,8 +140,8 @@ export const BlogSection = () => {
 
               {/* Read more link */}
               <div className="px-6 pb-6">
-                <button className="w-full mt-4 inline-flex items-center justify-center px-4 py-2 rounded-xl bg-secondary-400/10 text-secondary-400 font-medium hover:bg-secondary-400 hover:text-white transition-all duration-300">
-                  Read More
+                <button className="w-full mt-4 inline-flex items-center justify-center px-4 py-2 rounded-xl bg-[#4285F4]/10 text-[#4285F4] font-medium hover:bg-[#4285F4] hover:text-white transition-all duration-300">
+                  Read Full Story
                   <svg className="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
@@ -145,10 +153,20 @@ export const BlogSection = () => {
 
         {/* View all posts CTA */}
         <div className="text-center mt-12">
-          <button className="inline-flex items-center px-8 py-3 rounded-xl bg-secondary-400 text-white font-medium hover:bg-secondary-400/90 transition-all duration-300">
-            View All Posts
-            <svg className="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          <button className="bg-[#4285F4] hover:bg-[#4285F4]/90 text-white text-xl font-semibold px-12 py-4 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl flex items-center justify-center gap-2 mx-auto group">
+            View All Success Stories
+            <svg 
+              className="w-6 h-6 transform transition-transform group-hover:translate-x-1" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              stroke="currentColor"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={2} 
+                d="M13 7l5 5m0 0l-5 5m5-5H6"
+              />
             </svg>
           </button>
         </div>
