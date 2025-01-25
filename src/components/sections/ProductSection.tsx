@@ -1,8 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAnalytics } from '../../hooks/useAnalytics';
 
 export const ProductSection: React.FC = () => {
   const navigate = useNavigate();
+  const { trackPurchaseClick } = useAnalytics();
 
   const comparisonFeatures = [
     {
@@ -36,6 +38,15 @@ export const ProductSection: React.FC = () => {
       icon: "🔌"
     }
   ];
+
+  const handlePreorderClick = () => {
+    trackPurchaseClick('product_section', {
+      button_type: 'pre_order',
+      button_text: 'Pre-order Now',
+      product: 'Smart Bin V2'
+    });
+    navigate('/purchase');
+  };
 
   return (
     <section className="py-24 bg-gradient-to-br from-white to-gray-50 relative overflow-hidden">
@@ -170,7 +181,7 @@ export const ProductSection: React.FC = () => {
                 </div>
               </div>
               <button 
-                onClick={() => navigate('/purchase')}
+                onClick={handlePreorderClick}
                 className="w-full py-3 px-4 rounded-xl bg-[#4285F4] text-white font-medium hover:bg-[#3367D6] transition-colors duration-300 group-hover:shadow-lg"
               >
                 Pre-order Now

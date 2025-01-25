@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from './Button';
 import { useNavigate } from 'react-router-dom';
+import { useAnalytics } from '../../hooks/useAnalytics';
 
 export const StickyProductCard: React.FC = () => {
   const navigate = useNavigate();
+  const { trackPurchaseClick } = useAnalytics();
   const [isVisible, setIsVisible] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [isClosed, setIsClosed] = useState(false);
@@ -21,6 +23,15 @@ export const StickyProductCard: React.FC = () => {
     setTimeout(() => {
       setIsClosed(true);
     }, 2000);
+  };
+
+  const handleDownloadClick = () => {
+    trackPurchaseClick('sticky_card', {
+      button_type: 'download',
+      button_text: 'Download',
+      card_position: 'sticky_right'
+    });
+    navigate('/purchase');
   };
 
   if (!isVisible || isClosed) return null;
@@ -70,7 +81,7 @@ export const StickyProductCard: React.FC = () => {
           <Button 
             variant="primary"
             className="w-full text-xs py-1.5"
-            onClick={() => navigate('/purchase')}
+            onClick={handleDownloadClick}
           >
             Download
           </Button>

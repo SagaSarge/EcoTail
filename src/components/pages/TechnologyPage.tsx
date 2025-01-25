@@ -1,12 +1,23 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAnalytics } from '../../hooks/useAnalytics';
 
 export const TechnologyPage: React.FC = () => {
   const navigate = useNavigate();
+  const { trackPurchaseClick } = useAnalytics();
   
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const handleGetStartedClick = () => {
+    trackPurchaseClick('technology_page', {
+      button_type: 'cta',
+      button_text: 'Get Started Now',
+      page_section: 'bottom_cta'
+    });
+    navigate('/purchase');
+  };
 
   return (
     <div className="bg-white relative min-h-screen overflow-hidden">
@@ -308,7 +319,7 @@ export const TechnologyPage: React.FC = () => {
             </h2>
             <p className="text-xl mb-12 text-gray-600 max-w-2xl mx-auto">Join the future of smart, sustainable waste management today.</p>
             <button 
-              onClick={() => navigate('/purchase')}
+              onClick={handleGetStartedClick}
               className="px-8 py-4 rounded-full font-semibold text-white
                        bg-gradient-to-r from-sky-500 to-blue-500 
                        hover:from-sky-600 hover:to-blue-600

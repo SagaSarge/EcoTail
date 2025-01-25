@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAnalytics } from '../../hooks/useAnalytics';
 
 export const HowSavingsSection: React.FC = () => {
   const navigate = useNavigate();
+  const { trackPurchaseClick } = useAnalytics();
   const [activeCard, setActiveCard] = useState<number | null>(null);
 
   const steps = [
@@ -222,6 +224,14 @@ export const HowSavingsSection: React.FC = () => {
     }
   };
 
+  const handlePurchaseClick = () => {
+    trackPurchaseClick('how_savings_section', {
+      button_type: 'primary',
+      button_text: 'Buy Now'
+    });
+    navigate('/purchase');
+  };
+
   return (
     <section className="py-24 bg-gradient-to-br from-white to-gray-50 relative overflow-hidden">
       {/* Decorative Elements */}
@@ -362,7 +372,7 @@ export const HowSavingsSection: React.FC = () => {
         {/* CTA Button */}
         <div className="text-center">
           <button 
-            onClick={() => navigate('/purchase')}
+            onClick={handlePurchaseClick}
             className="bg-[#4285F4] hover:bg-[#4285F4]/90 text-white text-xl font-semibold px-12 py-4 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl flex items-center justify-center gap-2 mx-auto group"
           >
             Buy Now
