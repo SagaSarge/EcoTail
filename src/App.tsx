@@ -5,13 +5,17 @@ import { Footer } from './components/layout/Footer';
 import { Button } from './components/common/Button';
 import { useAuth } from './contexts/auth-context';
 import { StickyProductCard } from './components/common/StickyProductCard';
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
+import { RouteGuard } from './components/common/RouteGuard';
+import { PageTransition } from './components/common/PageTransition';
 import { TechnologyPage } from './components/pages/TechnologyPage';
 import { MobileAppPage } from './components/pages/MobileAppPage';
 import { AuthPage } from './components/pages/AuthPage';
 import { SignInPage } from './components/pages/SignInPage';
 import { RegisterPage } from './components/pages/RegisterPage';
 import { LoadingPage } from './components/pages/LoadingPage';
+import { NotFoundPage } from './components/pages/NotFoundPage';
 import { TestimonialSection } from './components/sections/TestimonialSection';
 import { SmartWasteSection } from './components/sections/SmartWasteSection';
 import { EnvironmentalImpactSection } from './components/sections/EnvironmentalImpactSection';
@@ -172,24 +176,68 @@ function LandingHero() {
 
 function AppContent() {
   const { user } = useAuth();
+  const location = useLocation();
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <Navbar />
       <main className="flex-grow">
-        <Routes>
-          <Route path="/technology" element={<TechnologyPage />} />
-          <Route path="/mobile-app" element={<MobileAppPage />} />
-          <Route path="/auth" element={<AuthPage />} />
-          <Route path="/auth/signin" element={<SignInPage />} />
-          <Route path="/auth/register" element={<RegisterPage />} />
-          <Route path="/auth/loading" element={<LoadingPage />} />
-          <Route path="/purchase" element={<PurchasePage />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
-          <Route path="/" element={
-            !user ? <LandingHero /> : <MobileAppLandingPage />
-          } />
-        </Routes>
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route path="/technology" element={
+              <PageTransition>
+                <TechnologyPage />
+              </PageTransition>
+            } />
+            <Route path="/mobile-app" element={
+              <PageTransition>
+                <MobileAppPage />
+              </PageTransition>
+            } />
+            <Route path="/auth" element={
+              <PageTransition>
+                <AuthPage />
+              </PageTransition>
+            } />
+            <Route path="/auth/signin" element={
+              <PageTransition>
+                <SignInPage />
+              </PageTransition>
+            } />
+            <Route path="/auth/register" element={
+              <PageTransition>
+                <RegisterPage />
+              </PageTransition>
+            } />
+            <Route path="/auth/loading" element={
+              <PageTransition>
+                <LoadingPage />
+              </PageTransition>
+            } />
+            <Route path="/purchase" element={
+              <PageTransition>
+                <PurchasePage />
+              </PageTransition>
+            } />
+            <Route path="/checkout" element={
+              <PageTransition>
+                <RouteGuard requiresState>
+                  <CheckoutPage />
+                </RouteGuard>
+              </PageTransition>
+            } />
+            <Route path="/" element={
+              <PageTransition>
+                {!user ? <LandingHero /> : <MobileAppLandingPage />}
+              </PageTransition>
+            } />
+            <Route path="*" element={
+              <PageTransition>
+                <NotFoundPage />
+              </PageTransition>
+            } />
+          </Routes>
+        </AnimatePresence>
       </main>
       <StickyProductCard />
       <Footer />
