@@ -16,42 +16,42 @@ interface BlogPost {
 
 const blogPosts: BlogPost[] = [
   {
-    title: "Family of 4 Saves $520 with Smart Recycling",
-    excerpt: "See how the Johnson family transformed their recycling habits and earned amazing rewards with their Smart Bin.",
+    title: "Family Reduces Waste by 75% with Smart Bin",
+    excerpt: "Discover how the Anderson family revolutionized their recycling habits and earned substantial rewards with their Smart Bin.",
     category: "Success Story",
     author: {
-      name: "Emily Johnson",
-      role: "EcoTale User",
-      avatar: "/images/avatars/emily-johnson.jpg"
+      name: "David Anderson",
+      role: "EcoTale Community Lead",
+      avatar: "/images/avatars/david-anderson.jpg"
     },
-    readTime: "3 min read",
-    date: "Mar 15, 2024",
+    readTime: "4 min read",
+    date: "Apr 2, 2024",
     image: "/images/blog/family-recycling.jpg"
   },
   {
-    title: "Top 10 Household Items That Earn Most Points",
-    excerpt: "Discover which everyday items in your home can earn you the biggest rewards when recycled properly.",
+    title: "Maximize Your Recycling Rewards: Expert Tips",
+    excerpt: "Learn insider tips from recycling experts on how to get the most value from your recyclable items.",
     category: "Tips & Tricks",
     author: {
-      name: "Michael Rodriguez",
-      role: "Recycling Expert",
-      avatar: "/images/avatars/michael-rodriguez.jpg"
+      name: "Lisa Chen",
+      role: "Sustainability Expert",
+      avatar: "/images/avatars/lisa-chen.jpg"
     },
-    readTime: "4 min read",
-    date: "Mar 12, 2024",
+    readTime: "5 min read",
+    date: "Mar 28, 2024",
     image: "/images/blog/recycling-items.jpg"
   },
   {
-    title: "From Waste to Rewards: A Monthly Guide",
-    excerpt: "Learn how to maximize your household recycling rewards with this easy-to-follow monthly planning guide.",
+    title: "Smart Recycling: The Future is Here",
+    excerpt: "Explore how AI-powered recycling is transforming waste management and creating a more sustainable future.",
     category: "Guide",
     author: {
-      name: "Emma Watson",
-      role: "Sustainability Coach",
-      avatar: "/images/avatars/emma-watson.jpg"
+      name: "Dr. James Martinez",
+      role: "Environmental Scientist",
+      avatar: "/images/avatars/james-martinez.jpg"
     },
-    readTime: "5 min read",
-    date: "Mar 10, 2024",
+    readTime: "6 min read",
+    date: "Mar 25, 2024",
     image: "/images/blog/monthly-guide.jpg"
   }
 ];
