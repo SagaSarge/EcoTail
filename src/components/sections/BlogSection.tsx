@@ -21,7 +21,7 @@ const blogPosts: BlogPost[] = [
     category: "Success Story",
     author: {
       name: "Emily Johnson",
-      role: "EcoTail User",
+      role: "EcoTale User",
       avatar: "/images/avatars/emily-johnson.jpg"
     },
     readTime: "3 min read",

@@ -46,7 +46,7 @@ export const Navbar: React.FC = () => {
                 isScrolled ? 'shadow-[0_4px_12px_rgba(33,150,243,0.2)]' : ''
               }`} />
               <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#2196F3] to-[#1976D2] group-hover:from-[#1976D2] group-hover:to-[#2196F3] transition-all duration-300">
-                EcoTail
+                EcoTale
               </span>
             </Link>
 

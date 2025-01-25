@@ -61,7 +61,7 @@ export const EnvironmentalImpactSection: React.FC = () => {
             <p className="text-gray-600">Only 32% of household waste is currently recycled in America</p>
             <div className="mt-4">
               <div className="text-3xl font-bold text-[#0F9D58]">+75%</div>
-              <div className="text-sm text-gray-500">Achievable recycling rate with EcoTail</div>
+              <div className="text-sm text-gray-500">Achievable recycling rate with EcoTale</div>
             </div>
           </div>
 

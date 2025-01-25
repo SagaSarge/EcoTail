@@ -33,7 +33,7 @@ const TESTIMONIALS = [
   {
     name: "Emma Chen",
     role: "Sustainability Director | Tech Co.",
-    content: "Implemented EcoTail across 5 office locations - 70% waste reduction in 3 months! The AI sorting accuracy is incredible. 🌱 #CorporateSustainability",
+    content: "Implemented EcoTale across 5 office locations - 70% waste reduction in 3 months! The AI sorting accuracy is incredible. 🌱 #CorporateSustainability",
     avatar: "EC",
     stats: { likes: 3242, shares: 892 },
     verified: true,
@@ -45,7 +45,7 @@ const TESTIMONIALS = [
   {
     name: "Marcus Rodriguez",
     role: "Smart City Project Lead",
-    content: "Deployed EcoTail in 50 public spaces. Real-time waste analytics helped optimize collection routes & cut operational costs by 45%. 🏙️ #SmartCities",
+    content: "Deployed EcoTale in 50 public spaces. Real-time waste analytics helped optimize collection routes & cut operational costs by 45%. 🏙️ #SmartCities",
     avatar: "MR",
     stats: { likes: 2897, shares: 645 },
     verified: true,
@@ -57,7 +57,7 @@ const TESTIMONIALS = [
   {
     name: "Dr. Sarah Park",
     role: "Environmental Research Lead",
-    content: "The data insights are revolutionary. We're using EcoTail's analytics to shape waste management policies across the region. 📊 #DataDriven",
+    content: "The data insights are revolutionary. We're using EcoTale's analytics to shape waste management policies across the region. 📊 #DataDriven",
     avatar: "SP",
     stats: { likes: 4211, shares: 967 },
     verified: true,

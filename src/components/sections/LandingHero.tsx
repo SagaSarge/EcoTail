@@ -52,46 +52,35 @@ export const LandingHero: React.FC = () => {
           <div className="absolute -left-20 top-1/2 -translate-y-1/2 w-80 h-[500px] transform -rotate-6 transition-all duration-300 hover:rotate-0">
             <img 
               src="/images/landing/mobile-app.png" 
-              alt="EcoTail Mobile App Interface"
+              alt="EcoTale Mobile App Interface"
               className="w-full h-full object-cover rounded-3xl shadow-xl border border-gray-100"
             />
             <div className="absolute inset-0 rounded-3xl shadow-inner bg-gradient-to-t from-black/20 to-transparent" />
           </div>
           
           {/* Center Image - Smart Bin */}
-          <div className="relative w-full max-w-3xl h-[500px] transition-all duration-300 hover:scale-105">
+          <div className="relative w-full max-w-3xl h-[600px] flex items-center justify-center p-8">
             <img 
-              src="/images/landing/smart-bin.png" 
-              alt="EcoTail Smart Recycling Bin"
-              className="w-full h-full object-cover rounded-3xl shadow-xl border border-gray-100"
+              src="/images/landing/smart-bin.png"
+              alt="Smart Bin"
+              className="max-h-[500px] w-auto object-contain rounded-3xl shadow-xl"
+              onError={(e) => {
+                console.error('Smart bin image failed to load');
+                const img = e.target as HTMLImageElement;
+                img.style.border = '2px solid red';
+                img.style.padding = '2rem';
+              }}
             />
-            <div className="absolute inset-0 rounded-3xl shadow-inner bg-gradient-to-t from-black/20 to-transparent" />
           </div>
           
           {/* Right Image - Analytics Dashboard */}
           <div className="absolute -right-20 top-1/2 -translate-y-1/2 w-80 h-[500px] transform rotate-6 transition-all duration-300 hover:rotate-0">
             <img 
               src="/images/landing/analytics.png" 
-              alt="EcoTail Analytics Dashboard"
+              alt="EcoTale Analytics Dashboard"
               className="w-full h-full object-cover rounded-3xl shadow-xl border border-gray-100"
             />
             <div className="absolute inset-0 rounded-3xl shadow-inner bg-gradient-to-t from-black/20 to-transparent" />
-          </div>
-          
-          {/* Free Resource Popup */}
-          <div className="absolute -top-8 -right-4 bg-white rounded-2xl shadow-lg p-4 w-64 transform rotate-3">
-            <div className="flex items-start">
-              <div className="bg-[#2196F3] text-white rounded-lg p-1 mr-3">
-                <span className="text-lg">+</span>
-              </div>
-              <div>
-                <h3 className="font-medium text-gray-900">Free Resource</h3>
-                <p className="text-sm text-gray-600">Download our Recycling Gov Book.</p>
-                <button className="mt-2 text-sm text-white bg-[#2196F3] px-4 py-1 rounded-lg">
-                  Download
-                </button>
-              </div>
-            </div>
           </div>
         </div>
       </div>
