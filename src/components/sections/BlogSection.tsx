@@ -150,26 +150,6 @@ export const BlogSection = () => {
             </article>
           ))}
         </div>
-
-        {/* View all posts CTA */}
-        <div className="text-center mt-12">
-          <button className="bg-[#4285F4] hover:bg-[#4285F4]/90 text-white text-xl font-semibold px-12 py-4 rounded-full shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl flex items-center justify-center gap-2 mx-auto group">
-            View All Success Stories
-            <svg 
-              className="w-6 h-6 transform transition-transform group-hover:translate-x-1" 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
-            >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={2} 
-                d="M13 7l5 5m0 0l-5 5m5-5H6"
-              />
-            </svg>
-          </button>
-        </div>
       </div>
     </section>
   );
