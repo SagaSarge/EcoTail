@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 interface BlogPost {
   title: string;
@@ -7,12 +8,95 @@ interface BlogPost {
   author: {
     name: string;
     role: string;
-    avatar: string;
+    bgColor: string;
   };
   readTime: string;
   date: string;
-  image: string;
+  visualType: 'stats' | 'tips' | 'future';
 }
+
+const BlogPostVisual: React.FC<{ type: BlogPost['visualType'] }> = ({ type }) => {
+  switch (type) {
+    case 'stats':
+      return (
+        <div className="h-48 bg-gradient-to-br from-[#4285F4]/5 to-[#4285F4]/10 p-4 flex items-center justify-center">
+          <div className="grid grid-cols-3 gap-4 w-full">
+            <motion.div 
+              initial={{ height: '20%' }}
+              animate={{ height: '75%' }}
+              transition={{ duration: 2, repeat: Infinity, repeatType: 'reverse' }}
+              className="bg-[#4285F4] rounded-t-lg self-end"
+            />
+            <motion.div 
+              initial={{ height: '40%' }}
+              animate={{ height: '25%' }}
+              transition={{ duration: 2, repeat: Infinity, repeatType: 'reverse', delay: 0.3 }}
+              className="bg-[#4285F4] rounded-t-lg self-end"
+            />
+            <motion.div 
+              initial={{ height: '60%' }}
+              animate={{ height: '15%' }}
+              transition={{ duration: 2, repeat: Infinity, repeatType: 'reverse', delay: 0.6 }}
+              className="bg-[#4285F4] rounded-t-lg self-end"
+            />
+            <div className="absolute text-[#4285F4] font-bold text-lg">-75%</div>
+          </div>
+        </div>
+      );
+    
+    case 'tips':
+      return (
+        <div className="h-48 bg-gradient-to-br from-[#0F9D58]/5 to-[#0F9D58]/10 p-4 flex items-center justify-center">
+          <div className="grid grid-cols-2 gap-6 w-full">
+            {[...Array(4)].map((_, i) => (
+              <motion.div
+                key={i}
+                initial={{ scale: 0.8, opacity: 0.5 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 1.5, repeat: Infinity, repeatType: 'reverse', delay: i * 0.3 }}
+                className="bg-[#0F9D58] rounded-lg h-16 flex items-center justify-center"
+              >
+                <span className="text-white text-2xl">
+                  {i === 0 ? '♻️' : i === 1 ? '💡' : i === 2 ? '🌱' : '⭐️'}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      );
+    
+    case 'future':
+      return (
+        <div className="h-48 bg-gradient-to-br from-[#F4B400]/5 to-[#F4B400]/10 p-4 flex items-center justify-center relative overflow-hidden">
+          <motion.div 
+            animate={{ 
+              rotate: 360,
+              scale: [1, 1.2, 1],
+            }}
+            transition={{ 
+              duration: 10, 
+              repeat: Infinity,
+              repeatType: 'loop',
+            }}
+            className="absolute w-32 h-32 border-4 border-[#F4B400] rounded-full"
+          />
+          <motion.div 
+            animate={{ 
+              rotate: -360,
+              scale: [1.2, 1, 1.2],
+            }}
+            transition={{ 
+              duration: 8, 
+              repeat: Infinity,
+              repeatType: 'loop',
+            }}
+            className="absolute w-24 h-24 border-4 border-[#F4B400]/60 rounded-full"
+          />
+          <span className="text-4xl">🤖</span>
+        </div>
+      );
+  }
+};
 
 const blogPosts: BlogPost[] = [
   {
@@ -22,11 +106,11 @@ const blogPosts: BlogPost[] = [
     author: {
       name: "David Anderson",
       role: "EcoTale Community Lead",
-      avatar: "/images/avatars/david-anderson.jpg"
+      bgColor: "bg-[#4285F4]"
     },
     readTime: "4 min read",
     date: "Apr 2, 2024",
-    image: "/images/blog/family-recycling.jpg"
+    visualType: 'stats'
   },
   {
     title: "Maximize Your Recycling Rewards: Expert Tips",
@@ -35,11 +119,11 @@ const blogPosts: BlogPost[] = [
     author: {
       name: "Lisa Chen",
       role: "Sustainability Expert",
-      avatar: "/images/avatars/lisa-chen.jpg"
+      bgColor: "bg-[#0F9D58]"
     },
     readTime: "5 min read",
     date: "Mar 28, 2024",
-    image: "/images/blog/recycling-items.jpg"
+    visualType: 'tips'
   },
   {
     title: "Smart Recycling: The Future is Here",
@@ -48,11 +132,11 @@ const blogPosts: BlogPost[] = [
     author: {
       name: "Dr. James Martinez",
       role: "Environmental Scientist",
-      avatar: "/images/avatars/james-martinez.jpg"
+      bgColor: "bg-[#F4B400]"
     },
     readTime: "6 min read",
     date: "Mar 25, 2024",
-    image: "/images/blog/monthly-guide.jpg"
+    visualType: 'future'
   }
 ];
 
@@ -101,12 +185,7 @@ export const BlogSection = () => {
 
               {/* Image */}
               <div className="relative h-48 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-b from-black/0 to-black/60" />
-                <img 
-                  src={post.image} 
-                  alt={post.title}
-                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300"
-                />
+                <BlogPostVisual type={post.visualType} />
               </div>
 
               {/* Content */}
@@ -121,11 +200,11 @@ export const BlogSection = () => {
                 {/* Author info */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
-                    <img 
-                      src={post.author.avatar} 
-                      alt={post.author.name}
-                      className="w-10 h-10 rounded-full object-cover"
-                    />
+                    <div 
+                      className={`w-10 h-10 rounded-full ${post.author.bgColor} flex items-center justify-center text-white font-medium`}
+                    >
+                      {post.author.name.split(' ').map(n => n[0]).join('')}
+                    </div>
                     <div className="ml-3">
                       <p className="text-sm font-medium text-gray-900">{post.author.name}</p>
                       <p className="text-xs text-gray-500">{post.author.role}</p>
