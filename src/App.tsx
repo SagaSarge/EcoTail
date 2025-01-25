@@ -28,6 +28,9 @@ import { BlogSection } from './components/sections/BlogSection';
 import { MobileAppLandingPage } from './components/pages/MobileAppLandingPage';
 import PurchasePage from './components/pages/PurchasePage';
 import { CheckoutPage } from './components/pages/CheckoutPage';
+import { BlogListingPage } from './components/pages/BlogListingPage';
+import { BlogPostPage } from './components/pages/BlogPostPage';
+import { blogPosts } from './components/sections/BlogSection';
 
 function useScrollAnimation() {
   const [scrollY, setScrollY] = useState(0);
@@ -229,6 +232,16 @@ function AppContent() {
             <Route path="/" element={
               <PageTransition>
                 {!user ? <LandingHero /> : <MobileAppLandingPage />}
+              </PageTransition>
+            } />
+            <Route path="/blog" element={
+              <PageTransition>
+                <BlogListingPage posts={blogPosts} />
+              </PageTransition>
+            } />
+            <Route path="/blog/:slug" element={
+              <PageTransition>
+                <BlogPostPage posts={blogPosts} />
               </PageTransition>
             } />
             <Route path="*" element={

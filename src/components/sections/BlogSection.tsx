@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
-interface BlogPost {
+export interface BlogPost {
   title: string;
   excerpt: string;
   category: string;
@@ -15,7 +16,7 @@ interface BlogPost {
   visualType: 'stats' | 'tips' | 'future';
 }
 
-const BlogPostVisual: React.FC<{ type: BlogPost['visualType'] }> = ({ type }) => {
+export const BlogPostVisual: React.FC<{ type: BlogPost['visualType'] }> = ({ type }) => {
   switch (type) {
     case 'stats':
       return (
@@ -98,7 +99,7 @@ const BlogPostVisual: React.FC<{ type: BlogPost['visualType'] }> = ({ type }) =>
   }
 };
 
-const blogPosts: BlogPost[] = [
+export const blogPosts: BlogPost[] = [
   {
     title: "Family Reduces Waste by 75% with Smart Bin",
     excerpt: "Discover how the Anderson family revolutionized their recycling habits and earned substantial rewards with their Smart Bin.",
@@ -141,6 +142,13 @@ const blogPosts: BlogPost[] = [
 ];
 
 export const BlogSection = () => {
+  const navigate = useNavigate();
+
+  const handleReadMore = (post: BlogPost) => {
+    const slug = post.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    navigate(`/blog/${slug}`);
+  };
+
   return (
     <section className="py-24 bg-gradient-to-br from-white to-gray-50 relative overflow-hidden">
       {/* Decorative background elements */}
@@ -219,7 +227,10 @@ export const BlogSection = () => {
 
               {/* Read more link */}
               <div className="px-6 pb-6">
-                <button className="w-full mt-4 inline-flex items-center justify-center px-4 py-2 rounded-xl bg-[#4285F4]/10 text-[#4285F4] font-medium hover:bg-[#4285F4] hover:text-white transition-all duration-300">
+                <button 
+                  onClick={() => handleReadMore(post)}
+                  className="w-full mt-4 inline-flex items-center justify-center px-4 py-2 rounded-xl bg-[#4285F4]/10 text-[#4285F4] font-medium hover:bg-[#4285F4] hover:text-white transition-all duration-300"
+                >
                   Read Full Story
                   <svg className="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
