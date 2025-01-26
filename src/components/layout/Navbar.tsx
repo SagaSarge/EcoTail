@@ -39,7 +39,11 @@ export const Navbar: React.FC = () => {
     navigate('/dashboard');
   };
 
-  const showSignInButton = location.pathname === '/';
+  const handleDemoClick = () => {
+    navigate('/mobile-app');
+  };
+
+  const showDemoButton = location.pathname === '/';
 
   return (
     <>
@@ -74,9 +78,9 @@ export const Navbar: React.FC = () => {
               )}
               {/* Demo/Dashboard Button */}
               {!user ? (
-                showSignInButton && (
+                showDemoButton && (
                   <button
-                    onClick={signIn}
+                    onClick={handleDemoClick}
                     className="px-6 py-2.5 text-sm font-medium text-white bg-gradient-to-r from-[#2196F3] to-[#1976D2] rounded-xl shadow-lg hover:shadow-[0_5px_20px_rgba(33,150,243,0.3)] hover:scale-[1.02] transition-all duration-300"
                   >
                     Demo

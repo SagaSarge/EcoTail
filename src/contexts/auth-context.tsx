@@ -1,22 +1,21 @@
 import React, { createContext, useContext, useState } from 'react';
-
-interface User {
-  email: string;
-}
+import { useNavigate } from 'react-router-dom';
 
 interface AuthContextType {
-  user: User | null;
+  user: { email: string } | null;
   signIn: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<{ email: string } | null>(null);
+  const navigate = useNavigate();
 
   const signIn = () => {
-    // Placeholder for actual Firebase authentication
+    // Demo user
     setUser({ email: 'demo@example.com' });
+    navigate('/auth/loading');
   };
 
   return (

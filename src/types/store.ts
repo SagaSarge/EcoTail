@@ -12,12 +12,12 @@ export interface UserPreferences {
   weeklyDigest: boolean;
 }
 
+export interface User {
+  email: string;
+}
+
 export interface AuthState {
   user: User | null;
-  isLoading: boolean;
-  error: Error | null;
-  signIn: () => Promise<void>;
-  signOut: () => Promise<void>;
   setUser: (user: User | null) => void;
 }
 
