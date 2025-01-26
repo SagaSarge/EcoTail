@@ -4,10 +4,14 @@ import { useAnalytics } from '../../hooks/useAnalytics';
 export const NewsletterSection: React.FC = () => {
   const { trackEvent } = useAnalytics();
   const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setError(null);
     
     trackEvent({
       action: 'newsletter_subscribe',
@@ -16,25 +20,39 @@ export const NewsletterSection: React.FC = () => {
     });
 
     try {
+      // Submit to Netlify Forms
       const formData = new URLSearchParams();
       formData.append('form-name', 'newsletter');
       formData.append('email', email);
 
-      const response = await fetch('/', {
+      const netlifyResponse = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: formData.toString(),
       });
 
-      if (response.ok) {
-        setIsSubmitted(true);
-        setEmail('');
-      } else {
-        throw new Error('Form submission failed');
+      if (!netlifyResponse.ok) {
+        throw new Error('Newsletter submission failed');
       }
+
+      // Send confirmation email via Netlify Function
+      const confirmResponse = await fetch('/.netlify/functions/newsletter-confirm', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      if (!confirmResponse.ok) {
+        throw new Error('Failed to send confirmation email');
+      }
+
+      setIsSubmitted(true);
+      setEmail('');
     } catch (error) {
-      console.error('Error submitting form:', error);
-      alert('There was an error subscribing to the newsletter. Please try again.');
+      console.error('Error:', error);
+      setError('There was an error subscribing to the newsletter. Please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -74,7 +92,8 @@ export const NewsletterSection: React.FC = () => {
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="block w-full px-4 py-3 text-base text-gray-900 placeholder-gray-500 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-[#4285F4] focus:border-transparent"
+                disabled={isSubmitting}
+                className="block w-full px-4 py-3 text-base text-gray-900 placeholder-gray-500 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-[#4285F4] focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
                 placeholder="Enter your email"
                 required
               />
@@ -82,16 +101,23 @@ export const NewsletterSection: React.FC = () => {
             <div className="mt-3 sm:mt-0 sm:ml-3">
               <button
                 type="submit"
-                className="block w-full px-6 py-3 text-base font-medium text-white bg-[#4285F4] border border-transparent rounded-r-lg hover:bg-[#3367D6] focus:outline-none focus:ring-2 focus:ring-[#4285F4] focus:ring-offset-2 sm:px-10"
+                disabled={isSubmitting}
+                className="block w-full px-6 py-3 text-base font-medium text-white bg-[#4285F4] border border-transparent rounded-r-lg hover:bg-[#3367D6] focus:outline-none focus:ring-2 focus:ring-[#4285F4] focus:ring-offset-2 sm:px-10 disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                Subscribe
+                {isSubmitting ? 'Subscribing...' : 'Subscribe'}
               </button>
             </div>
           </form>
 
+          {error && (
+            <div className="mt-4 text-sm text-red-600 text-center">
+              {error}
+            </div>
+          )}
+
           {isSubmitted && (
             <div className="mt-4 text-sm text-green-600 text-center">
-              Thank you for subscribing! We'll keep you updated with the latest news.
+              Thank you for subscribing! Please check your email for confirmation.
             </div>
           )}
 

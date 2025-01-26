@@ -1,6 +1,33 @@
 import React from 'react';
+import { useAnalytics } from '../../hooks/useAnalytics';
 
 export const DashboardPage: React.FC = () => {
+  const { trackRecyclingAction, trackAchievement, trackEngagement } = useAnalytics();
+
+  // Track when user logs new recycling item
+  const handleRecyclingLog = (item: string) => {
+    trackRecyclingAction('log_item', 1);
+    // ... existing logic
+  };
+
+  // Track when user completes a challenge
+  const handleChallengeComplete = (challenge: string) => {
+    trackAchievement(challenge);
+    // ... existing logic
+  };
+
+  // Track when user views impact stats
+  const handleStatsView = () => {
+    trackEngagement('view_impact_stats');
+    // ... existing logic
+  };
+
+  // Track when user shares achievement
+  const handleShare = (platform: string) => {
+    trackEngagement(`share_${platform}`);
+    // ... existing logic
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 py-16">
       <div className="max-w-7xl mx-auto px-4 space-y-8">
