@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/auth-context';
 
 export const Navbar: React.FC = () => {
@@ -7,6 +7,7 @@ export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, signIn } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
   const prevScrollY = useRef(0);
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up');
 
@@ -30,6 +31,14 @@ export const Navbar: React.FC = () => {
 
   const isActive = (path: string) => location.pathname === path;
 
+  const handleLogoClick = () => {
+    navigate('/');
+  };
+
+  const handleDashboardClick = () => {
+    navigate('/dashboard');
+  };
+
   return (
     <>
       {/* Main Navbar */}
@@ -41,11 +50,14 @@ export const Navbar: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link to="/" className="flex items-center space-x-3 group">
+            <button 
+              onClick={handleLogoClick}
+              className="flex items-center space-x-3 group cursor-pointer"
+            >
               <span className="text-2xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#2196F3] to-[#1976D2] group-hover:from-[#1976D2] group-hover:to-[#2196F3] transition-all duration-300">
                 EcoTale
               </span>
-            </Link>
+            </button>
 
             {/* Action Buttons */}
             <div className="flex items-center">
@@ -57,12 +69,12 @@ export const Navbar: React.FC = () => {
                   Sign In
                 </button>
               ) : (
-                <Link
-                  to="/dashboard"
+                <button
+                  onClick={handleDashboardClick}
                   className="px-6 py-2.5 text-sm font-medium text-white bg-gradient-to-r from-[#2196F3] to-[#1976D2] rounded-xl shadow-lg hover:shadow-[0_5px_20px_rgba(33,150,243,0.3)] hover:scale-[1.02] transition-all duration-300"
                 >
                   Dashboard
-                </Link>
+                </button>
               )}
             </div>
           </div>
