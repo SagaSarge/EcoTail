@@ -1,19 +1,11 @@
 import { useEffect, useState } from 'react';
-import { AuthProvider } from './contexts/auth-context';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { Button } from './components/common/Button';
-import { useAuth } from './contexts/auth-context';
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
-import { RouteGuard } from './components/common/RouteGuard';
 import { PageTransition } from './components/common/PageTransition';
 import { TechnologyPage } from './components/pages/TechnologyPage';
-import { MobileAppPage } from './components/pages/MobileAppPage';
-import { AuthPage } from './components/pages/AuthPage';
-import { SignInPage } from './components/pages/SignInPage';
-import { RegisterPage } from './components/pages/RegisterPage';
-import { LoadingPage } from './components/pages/LoadingPage';
 import { NotFoundPage } from './components/pages/NotFoundPage';
 import { TestimonialSection } from './components/sections/TestimonialSection';
 import { SmartWasteSection } from './components/sections/SmartWasteSection';
@@ -24,14 +16,11 @@ import { ProblemSolvingSection } from './components/sections/HowToUseSection';
 import { ProductSection } from './components/sections/ProductSection';
 import { FAQSection } from './components/sections/FAQSection';
 import { BlogSection } from './components/sections/BlogSection';
-import { MobileAppLandingPage } from './components/pages/MobileAppLandingPage';
 import PurchasePage from './components/pages/PurchasePage';
-import { CheckoutPage } from './components/pages/CheckoutPage';
 import { BlogListingPage } from './components/pages/BlogListingPage';
 import { BlogPostPage } from './components/pages/BlogPostPage';
 import { blogPosts } from './components/sections/BlogSection';
 import { EnterpriseContactPage } from './components/pages/EnterpriseContactPage';
-import { DashboardPage } from './components/pages/DashboardPage';
 
 function LandingHero() {
   const [rotatingWord, setRotatingWord] = useState('families');
@@ -112,7 +101,6 @@ function LandingHero() {
 }
 
 function AppContent() {
-  const { user } = useAuth();
   const location = useLocation();
 
   return (
@@ -126,51 +114,14 @@ function AppContent() {
                 <TechnologyPage />
               </PageTransition>
             } />
-            <Route path="/mobile-app" element={
-              <PageTransition>
-                <MobileAppPage />
-              </PageTransition>
-            } />
-            <Route path="/auth" element={
-              <PageTransition>
-                <AuthPage />
-              </PageTransition>
-            } />
-            <Route path="/auth/signin" element={
-              <PageTransition>
-                <SignInPage />
-              </PageTransition>
-            } />
-            <Route path="/auth/register" element={
-              <PageTransition>
-                <RegisterPage />
-              </PageTransition>
-            } />
-            <Route path="/auth/loading" element={
-              <PageTransition>
-                <LoadingPage />
-              </PageTransition>
-            } />
             <Route path="/purchase" element={
               <PageTransition>
                 <PurchasePage />
               </PageTransition>
             } />
-            <Route path="/dashboard" element={
-              <PageTransition>
-                <DashboardPage />
-              </PageTransition>
-            } />
-            <Route path="/checkout" element={
-              <PageTransition>
-                <RouteGuard requiresState>
-                  <CheckoutPage />
-                </RouteGuard>
-              </PageTransition>
-            } />
             <Route path="/" element={
               <PageTransition>
-                {!user ? <LandingHero /> : <MobileAppLandingPage />}
+                <LandingHero />
               </PageTransition>
             } />
             <Route path="/blog" element={
@@ -200,9 +151,7 @@ function AppContent() {
 function App() {
   return (
     <Router>
-      <AuthProvider>
-        <AppContent />
-      </AuthProvider>
+      <AppContent />
     </Router>
   );
 }
