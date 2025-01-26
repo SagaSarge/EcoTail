@@ -91,6 +91,8 @@ const timeframeOptions = [
 export const EnterpriseContactPage: React.FC = () => {
   const { trackEvent } = useAnalytics();
   const [currentStep, setCurrentStep] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     companyName: '',
     industry: '',
@@ -133,21 +135,68 @@ export const EnterpriseContactPage: React.FC = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    trackEvent({
-      action: 'submit_enterprise_form',
-      category: 'enterprise',
-      label: formData.companyName,
-      additionalData: {
-        industry: formData.industry,
-        companySize: formData.companySize,
-        expectedUnits: formData.expectedUnits,
-        timeframe: formData.timeframe
+    setIsSubmitting(true);
+
+    try {
+      // Track the event
+      trackEvent({
+        action: 'submit_enterprise_form',
+        category: 'enterprise',
+        label: formData.companyName,
+        value: currentStep,
+        nonInteraction: false
+      });
+
+      // Encode form data for Netlify
+      const formDataForSubmit = new URLSearchParams();
+      Object.entries(formData).forEach(([key, value]) => {
+        if (Array.isArray(value)) {
+          value.forEach(item => formDataForSubmit.append(key + '[]', item));
+        } else {
+          formDataForSubmit.append(key, value.toString());
+        }
+      });
+
+      // Submit to Netlify
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formDataForSubmit.toString()
+      });
+
+      if (response.ok) {
+        setSubmitSuccess(true);
+        setFormData({
+          companyName: '',
+          industry: '',
+          companySize: '',
+          website: '',
+          contactName: '',
+          jobTitle: '',
+          email: '',
+          phone: '',
+          currentSolution: '',
+          monthlyWasteVolume: '',
+          wasteTypes: [],
+          currentChallenges: [],
+          expectedUnits: '',
+          preferredDeployment: '',
+          timeframe: '',
+          budget: '',
+          integrationNeeds: '',
+          additionalInfo: ''
+        });
+      } else {
+        throw new Error('Form submission failed');
       }
-    });
-    // TODO: Implement form submission logic
-    console.log('Enterprise form submitted:', formData);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('There was an error submitting the form. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const nextStep = () => {
@@ -589,13 +638,28 @@ export const EnterpriseContactPage: React.FC = () => {
               ) : (
                 <button
                   type="submit"
-                  className="w-full sm:w-auto px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-300"
+                  disabled={isSubmitting}
+                  className={`w-full sm:w-auto px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg 
+                    ${isSubmitting ? 'bg-blue-400' : 'bg-blue-600 hover:bg-blue-700'} 
+                    text-white transition-colors duration-300`}
                 >
-                  Submit
+                  {isSubmitting ? 'Submitting...' : 'Submit Request'}
                 </button>
               )}
             </div>
           </form>
+
+          {/* Success Message */}
+          {submitSuccess && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-800"
+            >
+              <h3 className="text-lg font-semibold mb-2">Thank you for your interest!</h3>
+              <p>We've received your enterprise contact request and will get back to you shortly.</p>
+            </motion.div>
+          )}
         </motion.div>
       </div>
     </div>
