@@ -236,7 +236,22 @@ export const PurchasePage: React.FC = () => {
         {selectedTier && (
           <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Complete Your Pre-order</h2>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form 
+              name="purchase-preorder"
+              method="POST"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+              onSubmit={handleSubmit} 
+              className="space-y-6"
+            >
+              {/* Hidden input for Netlify */}
+              <input type="hidden" name="form-name" value="purchase-preorder" />
+              
+              {/* Bot field honeypot */}
+              <div hidden>
+                <input name="bot-field" />
+              </div>
+
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
                   Full Name

@@ -219,7 +219,22 @@ export const EnterpriseContactPage: React.FC = () => {
           transition={{ duration: 0.5 }}
           className="bg-white rounded-xl sm:rounded-2xl shadow-lg border border-gray-100 p-4 sm:p-6 lg:p-8"
         >
-          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+          <form 
+            name="enterprise-contact" 
+            method="POST" 
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+            onSubmit={handleSubmit} 
+            className="space-y-4 sm:space-y-6"
+          >
+            {/* Hidden input for Netlify */}
+            <input type="hidden" name="form-name" value="enterprise-contact" />
+            
+            {/* Bot field honeypot */}
+            <div hidden>
+              <input name="bot-field" />
+            </div>
+
             {/* Step 1: Company Information */}
             {currentStep === 1 && (
               <div className="space-y-6">
