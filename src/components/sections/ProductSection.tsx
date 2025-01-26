@@ -93,26 +93,28 @@ export const ProductSection: React.FC = () => {
         </div>
 
         {/* Comparison Chart */}
-        <div className="mb-16 max-w-4xl mx-auto bg-white rounded-2xl shadow-xl border border-gray-100">
-          <div className="grid grid-cols-3 p-6 gap-4 border-b border-gray-100 bg-gray-50/50 rounded-t-2xl">
-            <div className="font-semibold text-gray-900">Features</div>
-            <div className="font-semibold text-gray-900 text-center">V1</div>
-            <div className="font-semibold text-[#4285F4] text-center">V2</div>
+        <div className="mb-8 sm:mb-16 max-w-4xl mx-auto bg-white rounded-xl sm:rounded-2xl shadow-lg border border-gray-100">
+          {/* Header */}
+          <div className="grid grid-cols-3 p-3 sm:p-6 gap-2 sm:gap-4 border-b border-gray-100 bg-gray-50/50 rounded-t-xl sm:rounded-t-2xl">
+            <div className="text-sm sm:text-base font-semibold text-gray-900">Features</div>
+            <div className="text-sm sm:text-base font-semibold text-gray-900 text-center">V1</div>
+            <div className="text-sm sm:text-base font-semibold text-[#4285F4] text-center">V2</div>
           </div>
+          {/* Features List */}
           {comparisonFeatures.map((item, index) => (
-            <div key={index} className="grid grid-cols-3 p-6 gap-4 border-b border-gray-100 last:border-0 hover:bg-gray-50/50 transition-colors duration-200">
-              <div className="flex items-center gap-3">
-                <span className="text-2xl">{item.icon}</span>
-                <span className="text-gray-900">{item.feature}</span>
+            <div key={index} className="grid grid-cols-3 p-3 sm:p-6 gap-2 sm:gap-4 border-b border-gray-100 last:border-0 hover:bg-gray-50/50 transition-colors duration-200">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <span className="text-lg sm:text-2xl">{item.icon}</span>
+                <span className="text-xs sm:text-base text-gray-900">{item.feature}</span>
               </div>
-              <div className="text-gray-600 text-center">{item.v1}</div>
-              <div className="text-[#4285F4] font-medium text-center">{item.v2}</div>
+              <div className="text-xs sm:text-base text-gray-600 text-center flex items-center justify-center">{item.v1}</div>
+              <div className="text-xs sm:text-base text-[#4285F4] font-medium text-center flex items-center justify-center">{item.v2}</div>
             </div>
           ))}
         </div>
 
         {/* Product Cards */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
           {/* V1 Card */}
           <div className="relative bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden group transition-all duration-300">
             {/* Stock Count Label */}
