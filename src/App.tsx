@@ -4,7 +4,6 @@ import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { Button } from './components/common/Button';
 import { useAuth } from './contexts/auth-context';
-import { StickyProductCard } from './components/common/StickyProductCard';
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { RouteGuard } from './components/common/RouteGuard';
@@ -32,49 +31,7 @@ import { BlogListingPage } from './components/pages/BlogListingPage';
 import { BlogPostPage } from './components/pages/BlogPostPage';
 import { blogPosts } from './components/sections/BlogSection';
 
-function useScrollAnimation() {
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const calculateTransform = (scrollY: number) => {
-    const maxScroll = 600;
-    const progress = Math.min(scrollY / maxScroll, 1);
-    
-    return {
-      // First image moves down and left
-      firstMoveDown: progress * 100,
-      firstMoveLeft: progress * 300,
-      
-      // Center image moves slightly right and up
-      centerMoveUp: progress * 50,
-      centerMoveRight: progress * 200,
-      
-      // Third image moves down diagonally
-      thirdMoveDown: progress * 200,
-      thirdMoveLeft: progress * 100,
-      
-      // Fourth image moves up and left
-      fourthMoveUp: progress * 150,
-      fourthMoveLeft: progress * 75,
-      
-      // Scale effect
-      scale: 1 - (progress * 0.1)
-    };
-  };
-
-  return calculateTransform(scrollY);
-}
-
 function LandingHero() {
-  const transforms = useScrollAnimation();
   const [rotatingWord, setRotatingWord] = useState('families');
   const navigate = useNavigate();
   
@@ -93,33 +50,7 @@ function LandingHero() {
   return (
     <>
       <div className="relative bg-white overflow-hidden">
-        <div className="max-w-7xl mx-auto min-h-[90vh] flex items-start justify-center pt-52">
-          {/* First Image */}
-          <div className="absolute left-0 w-[814px] h-[450px] bg-gray-300 rounded-r-3xl shadow-xl border-2 border-gray-400 transition-all duration-700"
-               style={{ 
-                 top: `calc(32rem + ${transforms.firstMoveDown}px)`,
-                 transform: `translateX(-50%) translateX(-${transforms.firstMoveLeft}px) scale(${transforms.scale})`
-               }}
-          />
-
-          {/* Third Image (iPhone-shaped) */}
-          <div className="absolute w-[275px] h-[450px] bg-gray-300 rounded-3xl shadow-xl border-2 border-gray-400 transition-all duration-700"
-               style={{ 
-                 top: `calc(20rem + ${transforms.thirdMoveDown}px)`,
-                 left: `calc(50% + 450px - ${transforms.thirdMoveLeft}px)`,
-                 transform: `scale(${transforms.scale})`
-               }}
-          />
-          
-          {/* Fourth Image */}
-          <div className="absolute w-[275px] h-[450px] bg-gray-300 rounded-l-3xl shadow-xl border-2 border-gray-400 transition-all duration-700"
-               style={{ 
-                 top: `calc(52rem - ${transforms.fourthMoveUp}px)`,
-                 right: `calc(0px + ${transforms.fourthMoveLeft}px)`,
-                 transform: `scale(${transforms.scale})`
-               }}
-          />
-          
+        <div className="max-w-7xl mx-auto min-h-[90vh] flex items-center justify-center">
           <div className="text-center px-4 sm:px-6 lg:px-8 max-w-3xl">
             <h1 className="text-5xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl mb-4">
               <span className="text-gray-900">Sustainable </span>
@@ -150,17 +81,6 @@ function LandingHero() {
             <p className="mt-8 text-sm text-gray-500 sm:text-base max-w-2xl mx-auto">
               What story does your <span className="text-primary-600 transition-all duration-300">{rotatingWord}</span> recycling habits tell?
             </p>
-
-            {/* Center Image */}
-            <div 
-              className="mt-32 bg-gray-300 rounded-xl shadow-lg border-2 border-gray-400 transition-all duration-700"
-              style={{
-                transform: `translateY(-${transforms.centerMoveUp}px) translateX(${transforms.centerMoveRight}px) scale(${transforms.scale})`,
-                marginLeft: '-100px',
-                width: '800px',
-                height: '400px'
-              }}
-            />
           </div>
         </div>
       </div>
@@ -252,7 +172,6 @@ function AppContent() {
           </Routes>
         </AnimatePresence>
       </main>
-      <StickyProductCard />
       <Footer />
     </div>
   );
