@@ -39,6 +39,8 @@ export const Navbar: React.FC = () => {
     navigate('/dashboard');
   };
 
+  const showSignInButton = location.pathname === '/';
+
   return (
     <>
       {/* Main Navbar */}
@@ -49,10 +51,10 @@ export const Navbar: React.FC = () => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            {/* Logo */}
+            {/* Logo - Always clickable */}
             <button 
               onClick={handleLogoClick}
-              className="flex items-center space-x-3 group cursor-pointer"
+              className="flex items-center space-x-3 group cursor-pointer hover:opacity-80 transition-opacity"
             >
               <span className="text-2xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#2196F3] to-[#1976D2] group-hover:from-[#1976D2] group-hover:to-[#2196F3] transition-all duration-300">
                 EcoTale
@@ -60,14 +62,26 @@ export const Navbar: React.FC = () => {
             </button>
 
             {/* Action Buttons */}
-            <div className="flex items-center">
-              {!user ? (
+            <div className="flex items-center gap-4">
+              {/* Home Button - Show when signed in and not on landing page */}
+              {user && location.pathname !== '/' && (
                 <button
-                  onClick={signIn}
-                  className="px-6 py-2.5 text-sm font-medium text-white bg-gradient-to-r from-[#2196F3] to-[#1976D2] rounded-xl shadow-lg hover:shadow-[0_5px_20px_rgba(33,150,243,0.3)] hover:scale-[1.02] transition-all duration-300"
+                  onClick={handleLogoClick}
+                  className="px-6 py-2.5 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
                 >
-                  Sign In
+                  Home
                 </button>
+              )}
+              {/* Demo/Dashboard Button */}
+              {!user ? (
+                showSignInButton && (
+                  <button
+                    onClick={signIn}
+                    className="px-6 py-2.5 text-sm font-medium text-white bg-gradient-to-r from-[#2196F3] to-[#1976D2] rounded-xl shadow-lg hover:shadow-[0_5px_20px_rgba(33,150,243,0.3)] hover:scale-[1.02] transition-all duration-300"
+                  >
+                    Demo
+                  </button>
+                )
               ) : (
                 <button
                   onClick={handleDashboardClick}

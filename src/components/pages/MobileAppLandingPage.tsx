@@ -1,6 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const MobileAppLandingPage: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleLogoClick = () => {
+    navigate('/');
+  };
+
   return (
     <section className="py-16 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
       <div className="max-w-4xl mx-auto px-4 space-y-8">
@@ -8,7 +15,10 @@ export const MobileAppLandingPage: React.FC = () => {
         <div className="bg-gradient-to-br from-white/90 to-gray-100/90 backdrop-blur-xl rounded-3xl p-8 border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.1)] backdrop-saturate-200">
           {/* Header */}
           <div className="flex items-center justify-between mb-12">
-            <div className="flex items-center gap-4">
+            <button 
+              onClick={handleLogoClick}
+              className="flex items-center gap-4 group cursor-pointer hover:opacity-80 transition-opacity"
+            >
               <div className="w-14 h-14 bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl flex items-center justify-center shadow-lg">
                 <span className="text-white font-bold text-2xl">E</span>
               </div>
@@ -18,7 +28,7 @@ export const MobileAppLandingPage: React.FC = () => {
                 </div>
                 <div className="text-sm text-gray-600">by Self Labs</div>
               </div>
-            </div>
+            </button>
             <div className="flex items-center gap-4">
               <div className="px-5 py-2.5 bg-gradient-to-r from-gray-100 to-gray-50 rounded-xl text-gray-900 text-sm font-medium border border-gray-200">
                 Level 5
@@ -131,7 +141,10 @@ export const MobileAppLandingPage: React.FC = () => {
         <div className="bg-gradient-to-br from-white/90 to-gray-100/90 backdrop-blur-xl rounded-3xl p-8 border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.1)] backdrop-saturate-200">
           {/* Header */}
           <div className="flex items-center justify-between mb-12">
-            <div className="flex items-center gap-4">
+            <button 
+              onClick={handleLogoClick}
+              className="flex items-center gap-4 group cursor-pointer hover:opacity-80 transition-opacity"
+            >
               <div className="w-14 h-14 bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl flex items-center justify-center shadow-lg">
                 <span className="text-white font-bold text-2xl">E</span>
               </div>
@@ -141,7 +154,7 @@ export const MobileAppLandingPage: React.FC = () => {
                 </div>
                 <div className="text-sm text-gray-600">Activity Overview</div>
               </div>
-            </div>
+            </button>
             <div className="flex items-center gap-4">
               <div className="px-5 py-2.5 bg-gradient-to-r from-gray-100 to-gray-50 rounded-xl text-gray-900 text-sm font-medium border border-gray-200">
                 Today
@@ -303,7 +316,10 @@ export const MobileAppLandingPage: React.FC = () => {
         <div className="bg-gradient-to-br from-white/90 to-gray-100/90 backdrop-blur-xl rounded-3xl p-8 border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.1)] backdrop-saturate-200">
           {/* Header */}
           <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center gap-4">
+            <button 
+              onClick={handleLogoClick}
+              className="flex items-center gap-4 group cursor-pointer hover:opacity-80 transition-opacity"
+            >
               <div className="w-14 h-14 bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl flex items-center justify-center shadow-lg">
                 <span className="text-white font-bold text-2xl">E</span>
               </div>
@@ -313,7 +329,7 @@ export const MobileAppLandingPage: React.FC = () => {
                 </div>
                 <div className="text-sm text-gray-600">Your Recycling Journey</div>
               </div>
-            </div>
+            </button>
             <div className="flex items-center gap-4">
               <div className="px-3 py-1 bg-green-100 rounded-lg text-green-600 text-sm font-medium">
                 Level 5 • Top 5%
@@ -435,7 +451,10 @@ export const MobileAppLandingPage: React.FC = () => {
         <div className="bg-gradient-to-br from-white/90 to-gray-100/90 backdrop-blur-xl rounded-3xl p-8 border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.1)] backdrop-saturate-200">
           {/* Header */}
           <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center gap-4">
+            <button 
+              onClick={handleLogoClick}
+              className="flex items-center gap-4 group cursor-pointer hover:opacity-80 transition-opacity"
+            >
               <div className="w-14 h-14 bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl flex items-center justify-center shadow-lg">
                 <span className="text-white font-bold text-2xl">E</span>
               </div>
@@ -445,7 +464,7 @@ export const MobileAppLandingPage: React.FC = () => {
                 </div>
                 <div className="text-sm text-gray-600">Recycling Insights & Alternatives</div>
               </div>
-            </div>
+            </button>
             <div className="flex items-center gap-4">
               <div className="relative">
                 <input
