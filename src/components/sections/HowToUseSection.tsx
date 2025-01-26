@@ -1,10 +1,10 @@
 export const ProblemSolvingSection = () => {
   return (
-    <section className="py-24 bg-gradient-to-br from-white to-gray-50 relative overflow-hidden">
-      {/* Decorative background elements */}
+    <section className="py-24 relative overflow-hidden">
+      {/* Decorative background elements - adjusted opacity and blur for better blending */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-[#4285F4]/10 to-[#4285F4]/5 blur-3xl opacity-70" />
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-gradient-to-tr from-[#0F9D58]/10 to-[#0F9D58]/5 blur-3xl opacity-70" />
+        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gradient-to-br from-[#4285F4]/5 to-[#4285F4]/2 blur-3xl opacity-50" />
+        <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-gradient-to-tr from-[#0F9D58]/5 to-[#0F9D58]/2 blur-3xl opacity-50" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">

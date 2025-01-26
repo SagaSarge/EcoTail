@@ -29,7 +29,7 @@ export const Header: React.FC = () => {
             </div>
           ) : (
             <Button variant="primary">
-              Sign In
+              Demo App
             </Button>
           )}
         </div>

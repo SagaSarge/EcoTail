@@ -42,10 +42,7 @@ export const Navbar: React.FC = () => {
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-3 group">
-              <div className={`w-10 h-10 rounded-2xl bg-gradient-to-br from-[#2196F3] to-[#1976D2] shadow-lg group-hover:shadow-[#2196F3]/30 transition-all duration-300 ${
-                isScrolled ? 'shadow-[0_4px_12px_rgba(33,150,243,0.2)]' : ''
-              }`} />
-              <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#2196F3] to-[#1976D2] group-hover:from-[#1976D2] group-hover:to-[#2196F3] transition-all duration-300">
+              <span className="text-2xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#2196F3] to-[#1976D2] group-hover:from-[#1976D2] group-hover:to-[#2196F3] transition-all duration-300">
                 EcoTale
               </span>
             </Link>

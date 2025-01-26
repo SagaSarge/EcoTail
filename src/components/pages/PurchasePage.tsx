@@ -88,34 +88,31 @@ export const PurchasePage: React.FC = () => {
   }, []);
 
   const handleTierSelect = (tier: PricingTier) => {
+    setSelectedTier(tier.name);
+    
     trackEvent({
       action: 'select_pricing_tier',
       category: 'purchase',
       label: tier.name,
       additionalData: {
-        page: 'purchase_page',
-        section: 'pricing_selection',
         price: tier.price,
-        totalPrice: tier.totalPrice,
         isPreOrder: tier.name.includes('V2') && !tier.name.includes('Enterprise')
       }
     });
 
-    // For enterprise tier, show contact form
     if (tier.name.includes('Enterprise')) {
-      setSelectedTier(tier.name);
-      return;
+      navigate('/enterprise-contact');
+    } else {
+      // Navigate to checkout with appropriate state
+      navigate('/checkout', {
+        state: {
+          productType: tier.name.includes('V2') ? 'v2' : 'v1',
+          price: tier.price,
+          totalPrice: tier.totalPrice,
+          isPreOrder: tier.name.includes('V2') && !tier.name.includes('Enterprise')
+        }
+      });
     }
-
-    // Navigate to checkout with appropriate state
-    navigate('/checkout', {
-      state: {
-        productType: tier.name.includes('V2') ? 'v2' : 'v1',
-        price: tier.price,
-        totalPrice: tier.totalPrice,
-        isPreOrder: tier.name.includes('V2') && !tier.name.includes('Enterprise')
-      }
-    });
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
