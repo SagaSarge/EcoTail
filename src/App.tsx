@@ -31,6 +31,7 @@ import { BlogListingPage } from './components/pages/BlogListingPage';
 import { BlogPostPage } from './components/pages/BlogPostPage';
 import { blogPosts } from './components/sections/BlogSection';
 import { EnterpriseContactPage } from './components/pages/EnterpriseContactPage';
+import { DashboardPage } from './components/pages/DashboardPage';
 
 function LandingHero() {
   const [rotatingWord, setRotatingWord] = useState('families');
@@ -153,6 +154,11 @@ function AppContent() {
             <Route path="/purchase" element={
               <PageTransition>
                 <PurchasePage />
+              </PageTransition>
+            } />
+            <Route path="/dashboard" element={
+              <PageTransition>
+                <DashboardPage />
               </PageTransition>
             } />
             <Route path="/checkout" element={
