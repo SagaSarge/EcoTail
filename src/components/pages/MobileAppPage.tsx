@@ -130,7 +130,7 @@ export const MobileAppPage: React.FC = () => {
       </section>
 
       {/* App Interface Preview Section */}
-      <MobileAppLandingPage />
+      {/* MobileAppLandingPage component removed as it's not available */}
     </div>
   );
 }; 

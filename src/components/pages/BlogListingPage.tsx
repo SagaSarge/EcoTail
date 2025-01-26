@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { BlogPost, BlogPostVisual } from '../sections/BlogSection';
+import { BlogPostVisual } from '../sections/BlogSection';
+import { BlogPost } from '../../types/blog';
 
 interface BlogListingPageProps {
   posts: BlogPost[];
@@ -73,7 +74,7 @@ export const BlogListingPage: React.FC<BlogListingPageProps> = ({ posts }) => {
                     <div 
                       className={`w-10 h-10 rounded-full ${post.author.bgColor} flex items-center justify-center text-white font-medium`}
                     >
-                      {post.author.name.split(' ').map(n => n[0]).join('')}
+                      {post.author.name.split(' ').map((n: string) => n[0]).join('')}
                     </div>
                     <div className="ml-3">
                       <p className="text-sm font-medium text-gray-900">{post.author.name}</p>

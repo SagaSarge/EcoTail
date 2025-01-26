@@ -36,8 +36,6 @@ export const Navbar: React.FC = () => {
     navigate('/dashboard');
   };
 
-  const isActive = (path: string) => location.pathname === path;
-
   const showSignInButton = location.pathname === '/';
 
   return (
