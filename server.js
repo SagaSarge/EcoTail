@@ -1,6 +1,11 @@
-const express = require('express');
-const path = require('path');
-const serverless = require('serverless-http');
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import serverless from 'serverless-http';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -26,5 +31,4 @@ if (process.env.NETLIFY !== 'true') {
 }
 
 // Export handler for Netlify Functions
-module.exports = app;
-module.exports.handler = serverless(app); 
+export const handler = serverless(app); 
