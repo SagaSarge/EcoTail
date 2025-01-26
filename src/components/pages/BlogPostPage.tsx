@@ -1,8 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { BlogPost } from '../../types/blog';
 
-export const BlogPostPage: React.FC = () => {
+interface BlogPostPageProps {
+  posts: BlogPost[];
+}
+
+export const BlogPostPage: React.FC<BlogPostPageProps> = ({ posts }) => {
   const navigate = useNavigate();
 
   return (
