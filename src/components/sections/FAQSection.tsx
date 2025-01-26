@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 interface FAQItem {
   question: string;
@@ -36,7 +36,6 @@ const faqs: FAQItem[] = [
 ];
 
 export const FAQSection: React.FC = () => {
-  const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState<'all' | 'rewards' | 'usage' | 'savings'>('all');
   const [openQuestion, setOpenQuestion] = useState<number | null>(null);
 

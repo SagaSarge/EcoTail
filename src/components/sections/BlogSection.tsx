@@ -1,20 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-
-export interface BlogPost {
-  title: string;
-  excerpt: string;
-  category: string;
-  author: {
-    name: string;
-    role: string;
-    bgColor: string;
-  };
-  readTime: string;
-  date: string;
-  visualType: 'stats' | 'tips' | 'future';
-}
+import { BlogPost } from '../../types/blog';
 
 export const BlogPostVisual: React.FC<{ type: BlogPost['visualType'] }> = ({ type }) => {
   switch (type) {
@@ -101,8 +88,11 @@ export const BlogPostVisual: React.FC<{ type: BlogPost['visualType'] }> = ({ typ
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '1',
     title: "Family Reduces Waste by 75% with Smart Bin",
+    slug: "family-reduces-waste-by-75-with-smart-bin",
     excerpt: "Discover how the Anderson family revolutionized their recycling habits and earned substantial rewards with their Smart Bin.",
+    content: "Full article content about the Anderson family's journey to reduce waste...",
     category: "Success Story",
     author: {
       name: "David Anderson",
@@ -114,8 +104,11 @@ export const blogPosts: BlogPost[] = [
     visualType: 'stats'
   },
   {
+    id: '2',
     title: "Maximize Your Recycling Rewards: Expert Tips",
+    slug: "maximize-your-recycling-rewards-expert-tips",
     excerpt: "Learn insider tips from recycling experts on how to get the most value from your recyclable items.",
+    content: "Full article content about maximizing recycling rewards...",
     category: "Tips & Tricks",
     author: {
       name: "Lisa Chen",
@@ -127,8 +120,11 @@ export const blogPosts: BlogPost[] = [
     visualType: 'tips'
   },
   {
+    id: '3',
     title: "Smart Recycling: The Future is Here",
+    slug: "smart-recycling-the-future-is-here",
     excerpt: "Explore how AI-powered recycling is transforming waste management and creating a more sustainable future.",
+    content: "Full article content about smart recycling and AI technology...",
     category: "Guide",
     author: {
       name: "Dr. James Martinez",

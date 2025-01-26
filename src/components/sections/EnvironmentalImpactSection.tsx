@@ -1,9 +1,7 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 export const EnvironmentalImpactSection: React.FC = () => {
-  const navigate = useNavigate();
-
   return (
     <section className="py-24 bg-gradient-to-br from-white to-gray-50 relative overflow-hidden">
       {/* Decorative background elements */}

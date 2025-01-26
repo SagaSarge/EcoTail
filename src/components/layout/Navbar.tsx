@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/auth-context';
 
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
   const { user, signIn } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
@@ -29,8 +28,6 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const isActive = (path: string) => location.pathname === path;
-
   const handleLogoClick = () => {
     navigate('/');
   };
@@ -38,6 +35,8 @@ export const Navbar: React.FC = () => {
   const handleDashboardClick = () => {
     navigate('/dashboard');
   };
+
+  const isActive = (path: string) => location.pathname === path;
 
   const showSignInButton = location.pathname === '/';
 

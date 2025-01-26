@@ -1,6 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { MobileAppLandingPage } from './MobileAppLandingPage';
 
 interface AppFeature {
   title: string;
@@ -32,8 +30,6 @@ const appFeatures: AppFeature[] = [
 ];
 
 export const MobileAppPage: React.FC = () => {
-  const navigate = useNavigate();
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
       {/* Hero Section */}

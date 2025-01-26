@@ -15,8 +15,7 @@ export const BlogListingPage: React.FC<BlogListingPageProps> = ({ posts }) => {
   }, []);
 
   const handleReadMore = (post: BlogPost) => {
-    // For now, all blog post links will go to 404
-    navigate(`/blog/404`);
+    navigate(`/blog/${post.slug}`);
   };
 
   return (

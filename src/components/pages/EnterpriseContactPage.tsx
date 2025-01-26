@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useAnalytics } from '../../hooks/useAnalytics';
 import { motion } from 'framer-motion';
 
@@ -90,7 +89,6 @@ const timeframeOptions = [
 ];
 
 export const EnterpriseContactPage: React.FC = () => {
-  const navigate = useNavigate();
   const { trackEvent } = useAnalytics();
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({
