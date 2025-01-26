@@ -6,7 +6,7 @@ export const LoadingPage: React.FC = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate('/mobile-app');
+      navigate('/mobile-app', { replace: true });
     }, 2000);
 
     return () => clearTimeout(timer);

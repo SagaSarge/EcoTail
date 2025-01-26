@@ -1,11 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../contexts/auth-context';
 
 export const MobileAppLandingPage: React.FC = () => {
   const navigate = useNavigate();
+  const { signOut } = useAuth();
 
   const handleLogoClick = () => {
-    navigate('/');
+    signOut();
+    navigate('/', { replace: true });
   };
 
   return (

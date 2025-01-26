@@ -1,17 +1,8 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { useAuth } from '../../contexts/auth-context';
 
 export const SignInPage: React.FC = () => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    // Automatically navigate to loading page after a short delay
-    const timer = setTimeout(() => {
-      navigate('/auth/loading');
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, [navigate]);
+  const { signIn } = useAuth();
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-gray-50 px-4">
