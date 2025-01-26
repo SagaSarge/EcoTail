@@ -133,8 +133,10 @@ export const EnterpriseContactPage: React.FC = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Track the event
     trackEvent({
       action: 'submit_enterprise_form',
       category: 'enterprise',
@@ -146,8 +148,58 @@ export const EnterpriseContactPage: React.FC = () => {
         timeframe: formData.timeframe
       }
     });
-    // TODO: Implement form submission logic
-    console.log('Enterprise form submitted:', formData);
+
+    try {
+      // Encode the form data for Netlify
+      const encodedData = new URLSearchParams();
+      Object.entries(formData).forEach(([key, value]) => {
+        if (Array.isArray(value)) {
+          encodedData.append(key, value.join(', '));
+        } else {
+          encodedData.append(key, value.toString());
+        }
+      });
+
+      // Submit to Netlify Forms
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encodedData.toString(),
+      });
+
+      if (response.ok) {
+        // Reset form
+        setFormData({
+          companyName: '',
+          industry: '',
+          companySize: '',
+          website: '',
+          contactName: '',
+          jobTitle: '',
+          email: '',
+          phone: '',
+          currentSolution: '',
+          monthlyWasteVolume: '',
+          wasteTypes: [],
+          currentChallenges: [],
+          expectedUnits: '',
+          preferredDeployment: '',
+          timeframe: '',
+          budget: '',
+          integrationNeeds: '',
+          additionalInfo: ''
+        });
+        setCurrentStep(1);
+        
+        // Show success message (you can implement this using a toast or alert)
+        alert('Thank you for your submission! We will contact you soon.');
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('There was an error submitting the form. Please try again.');
+    }
   };
 
   const nextStep = () => {
@@ -219,7 +271,21 @@ export const EnterpriseContactPage: React.FC = () => {
           transition={{ duration: 0.5 }}
           className="bg-white rounded-xl sm:rounded-2xl shadow-lg border border-gray-100 p-4 sm:p-6 lg:p-8"
         >
-          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+          <form 
+            name="enterprise-contact"
+            method="POST"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+            onSubmit={handleSubmit} 
+            className="space-y-4 sm:space-y-6"
+          >
+            {/* Netlify Form Detection */}
+            <input type="hidden" name="form-name" value="enterprise-contact" />
+            {/* Bot Field */}
+            <div hidden>
+              <input name="bot-field" />
+            </div>
+
             {/* Step 1: Company Information */}
             {currentStep === 1 && (
               <div className="space-y-6">
@@ -550,33 +616,32 @@ export const EnterpriseContactPage: React.FC = () => {
               </div>
             )}
 
-            {/* Navigation Buttons */}
-            <div className="mt-6 sm:mt-8 flex flex-col-reverse sm:flex-row gap-2 sm:gap-4 sm:justify-between">
-              <button
-                type="button"
-                onClick={prevStep}
-                className={`w-full sm:w-auto px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors duration-300 ${
-                  currentStep === 1 ? 'opacity-50 cursor-not-allowed' : ''
-                }`}
-                disabled={currentStep === 1}
-              >
-                Previous
-              </button>
+            {/* Update the submit button section */}
+            <div className="flex justify-between items-center mt-8">
+              {currentStep > 1 && (
+                <button
+                  type="button"
+                  onClick={() => setCurrentStep(prev => prev - 1)}
+                  className="px-6 py-2 text-gray-600 hover:text-gray-900 transition-colors"
+                >
+                  ← Back
+                </button>
+              )}
               
               {currentStep < 5 ? (
                 <button
                   type="button"
-                  onClick={nextStep}
-                  className="w-full sm:w-auto px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-300"
+                  onClick={() => setCurrentStep(prev => prev + 1)}
+                  className="ml-auto px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                 >
-                  Next
+                  Next →
                 </button>
               ) : (
                 <button
                   type="submit"
-                  className="w-full sm:w-auto px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-300"
+                  className="ml-auto px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                 >
-                  Submit
+                  Submit Request
                 </button>
               )}
             </div>
