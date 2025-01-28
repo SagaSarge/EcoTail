@@ -22,6 +22,12 @@ import { BlogPostPage } from './components/pages/BlogPostPage';
 import { blogPosts } from './components/sections/BlogSection';
 import { EnterpriseContactPage } from './components/pages/EnterpriseContactPage';
 import { MobileLandingPage } from './components/pages/MobileLandingPage';
+import { DashboardPage } from './components/pages/DashboardPage';
+import { AnalyticsPage } from './components/pages/AnalyticsPage';
+import { GamificationPage } from './components/pages/GamificationPage';
+import { RecommendationsPage } from './components/pages/RecommendationsPage';
+import { CommunityPage } from './components/pages/CommunityPage';
+import { ProfilePage } from './components/pages/ProfilePage';
 
 function LandingHero() {
   const [rotatingWord, setRotatingWord] = useState('families');
@@ -113,23 +119,46 @@ function AppContent() {
             <PageTransition>
               <div className="flex-grow">
                 <LandingHero />
-                <SmartWasteSection />
-                <EnvironmentalImpactSection />
-                <CostSavingsSection />
-                <HowSavingsSection />
-                <ProblemSolvingSection />
-                <ProductSection />
-                <TestimonialSection />
-                <FAQSection />
-                <BlogSection />
               </div>
             </PageTransition>
           } />
+          {/* Mobile App Routes */}
           <Route path="/mobile" element={
             <PageTransition>
               <MobileLandingPage />
             </PageTransition>
           } />
+          <Route path="/mobile/dashboard" element={
+            <PageTransition>
+              <DashboardPage />
+            </PageTransition>
+          } />
+          <Route path="/mobile/analytics" element={
+            <PageTransition>
+              <AnalyticsPage />
+            </PageTransition>
+          } />
+          <Route path="/mobile/gamification" element={
+            <PageTransition>
+              <GamificationPage />
+            </PageTransition>
+          } />
+          <Route path="/mobile/recommendations" element={
+            <PageTransition>
+              <RecommendationsPage />
+            </PageTransition>
+          } />
+          <Route path="/mobile/community" element={
+            <PageTransition>
+              <CommunityPage />
+            </PageTransition>
+          } />
+          <Route path="/mobile/profile" element={
+            <PageTransition>
+              <ProfilePage />
+            </PageTransition>
+          } />
+          {/* Other Routes */}
           <Route path="/technology" element={
             <PageTransition>
               <TechnologyPage />
