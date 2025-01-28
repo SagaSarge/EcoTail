@@ -1,15 +1,17 @@
 import React, { Suspense } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useNavigationStore, AppRoute } from '../../stores/appNavigationStore';
-import { Dashboard } from './pages/Dashboard';
 import { Card } from './ui/Card';
 
+// Import Dashboard directly since it's the initial route
+import { Dashboard } from './pages/Dashboard';
+
 // Lazy load other pages for better initial load performance
-const Analytics = React.lazy(() => import('./pages/Analytics'));
-const Gamification = React.lazy(() => import('./pages/Gamification'));
-const Recommendations = React.lazy(() => import('./pages/Recommendations'));
-const Community = React.lazy(() => import('./pages/Community'));
-const Profile = React.lazy(() => import('./pages/Profile'));
+const Analytics = React.lazy(() => import('./pages/Analytics').then(module => ({ default: module.default })));
+const Gamification = React.lazy(() => import('./pages/Gamification').then(module => ({ default: module.default })));
+const Recommendations = React.lazy(() => import('./pages/Recommendations').then(module => ({ default: module.default })));
+const Community = React.lazy(() => import('./pages/Community').then(module => ({ default: module.default })));
+const Profile = React.lazy(() => import('./pages/Profile').then(module => ({ default: module.default })));
 
 const LoadingFallback = () => (
   <div className="h-full flex items-center justify-center">
