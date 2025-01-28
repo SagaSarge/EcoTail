@@ -21,6 +21,7 @@ import { BlogListingPage } from './components/pages/BlogListingPage';
 import { BlogPostPage } from './components/pages/BlogPostPage';
 import { blogPosts } from './components/sections/BlogSection';
 import { EnterpriseContactPage } from './components/pages/EnterpriseContactPage';
+import { MobileLandingPage } from './components/pages/MobileLandingPage';
 
 function LandingHero() {
   const [rotatingWord, setRotatingWord] = useState('families');
@@ -104,45 +105,59 @@ function AppContent() {
   const location = useLocation();
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="flex flex-col min-h-screen">
       <Navbar />
-      <main className="flex-grow">
-        <AnimatePresence mode="wait">
-          <Routes location={location} key={location.pathname}>
-            <Route path="/technology" element={
-              <PageTransition>
-                <TechnologyPage />
-              </PageTransition>
-            } />
-            <Route path="/purchase" element={
-              <PageTransition>
-                <PurchasePage />
-              </PageTransition>
-            } />
-            <Route path="/" element={
-              <PageTransition>
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={
+            <PageTransition>
+              <div className="flex-grow">
                 <LandingHero />
-              </PageTransition>
-            } />
-            <Route path="/blog" element={
-              <PageTransition>
-                <BlogListingPage posts={blogPosts} />
-              </PageTransition>
-            } />
-            <Route path="/blog/:slug" element={
-              <PageTransition>
-                <BlogPostPage posts={blogPosts} />
-              </PageTransition>
-            } />
-            <Route path="/enterprise-contact" element={<EnterpriseContactPage />} />
-            <Route path="*" element={
-              <PageTransition>
-                <NotFoundPage />
-              </PageTransition>
-            } />
-          </Routes>
-        </AnimatePresence>
-      </main>
+                <SmartWasteSection />
+                <EnvironmentalImpactSection />
+                <CostSavingsSection />
+                <HowSavingsSection />
+                <ProblemSolvingSection />
+                <ProductSection />
+                <TestimonialSection />
+                <FAQSection />
+                <BlogSection />
+              </div>
+            </PageTransition>
+          } />
+          <Route path="/mobile" element={
+            <PageTransition>
+              <MobileLandingPage />
+            </PageTransition>
+          } />
+          <Route path="/technology" element={
+            <PageTransition>
+              <TechnologyPage />
+            </PageTransition>
+          } />
+          <Route path="/purchase" element={
+            <PageTransition>
+              <PurchasePage />
+            </PageTransition>
+          } />
+          <Route path="/blog" element={
+            <PageTransition>
+              <BlogListingPage posts={blogPosts} />
+            </PageTransition>
+          } />
+          <Route path="/blog/:slug" element={
+            <PageTransition>
+              <BlogPostPage posts={blogPosts} />
+            </PageTransition>
+          } />
+          <Route path="/enterprise-contact" element={<EnterpriseContactPage />} />
+          <Route path="*" element={
+            <PageTransition>
+              <NotFoundPage />
+            </PageTransition>
+          } />
+        </Routes>
+      </AnimatePresence>
       <Footer />
     </div>
   );

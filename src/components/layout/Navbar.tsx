@@ -30,6 +30,10 @@ export const Navbar: React.FC = () => {
     navigate('/');
   };
 
+  const handleMobileClick = () => {
+    navigate('/mobile');
+  };
+
   return (
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 transform
@@ -49,20 +53,15 @@ export const Navbar: React.FC = () => {
           </button>
 
           {/* Navigation Links */}
-          <div className="flex items-center gap-4">
-            {location.pathname !== '/' && (
-              <button
-                onClick={handleLogoClick}
-                className="px-6 py-2.5 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
-              >
-                Home
-              </button>
-            )}
+          <div className="hidden md:flex items-center space-x-8">
             <button
-              onClick={() => navigate('/purchase')}
-              className="px-6 py-2.5 text-sm font-medium text-white bg-gradient-to-r from-[#2196F3] to-[#1976D2] rounded-xl shadow-lg hover:shadow-[0_5px_20px_rgba(33,150,243,0.3)] hover:scale-[1.02] transition-all duration-300"
+              onClick={handleMobileClick}
+              className={`text-sm font-medium transition-colors duration-200 
+                ${location.pathname === '/mobile' 
+                  ? 'text-green-600' 
+                  : 'text-gray-600 hover:text-green-600'}`}
             >
-              Buy Now
+              Mobile App
             </button>
           </div>
         </div>
