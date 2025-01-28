@@ -58,17 +58,28 @@ interface UserStats {
   impact: number;
 }
 
+interface Recommendation {
+  id: string;
+  title: string;
+  description: string;
+  difficulty: string;
+  impact: number;
+  category: string;
+}
+
 interface AppDataStore {
   wasteData: WasteData[];
   challenges: Challenge[];
   achievements: Achievement[];
   communityPosts: CommunityPost[];
+  recommendations: Recommendation[];
   userProfile: UserProfile;
   userStats: UserStats;
   setWasteData: (data: WasteData[]) => void;
   setChallenges: (challenges: Challenge[]) => void;
   setAchievements: (achievements: Achievement[]) => void;
   setCommunityPosts: (posts: CommunityPost[]) => void;
+  setRecommendations: (recommendations: Recommendation[]) => void;
   setUserProfile: (profile: UserProfile) => void;
   setUserStats: (stats: UserStats) => void;
   addWasteEntry: (entry: WasteData) => void;
@@ -147,6 +158,24 @@ export const useAppDataStore = create<AppDataStore>((set) => ({
       shares: 12,
     },
   ],
+  recommendations: [
+    {
+      id: '1',
+      title: 'Switch to Reusable Bags',
+      description: 'Replace plastic bags with reusable alternatives for shopping',
+      difficulty: 'Easy',
+      impact: 85,
+      category: 'Plastic Reduction'
+    },
+    {
+      id: '2',
+      title: 'Start Composting',
+      description: 'Reduce food waste by starting a home composting system',
+      difficulty: 'Medium',
+      impact: 75,
+      category: 'Food Waste'
+    }
+  ],
   userProfile: {
     name: 'Alex Green',
     bio: 'Passionate about sustainability and zero waste living',
@@ -165,6 +194,7 @@ export const useAppDataStore = create<AppDataStore>((set) => ({
   setChallenges: (challenges) => set({ challenges }),
   setAchievements: (achievements) => set({ achievements }),
   setCommunityPosts: (posts) => set({ communityPosts: posts }),
+  setRecommendations: (recommendations) => set({ recommendations }),
   setUserProfile: (profile) => set({ userProfile: profile }),
   setUserStats: (stats) => set({ userStats: stats }),
   addWasteEntry: (entry) =>

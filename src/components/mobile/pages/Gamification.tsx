@@ -4,7 +4,7 @@ import { Card } from '../ui/Card';
 import { useAppDataStore } from '../../../stores/appDataStore';
 
 const Gamification: React.FC = () => {
-  const { challenges, userStats } = useAppDataStore();
+  const { achievements, challenges, userStats } = useAppDataStore();
 
   return (
     <div className="min-h-full p-4 space-y-6">

@@ -4,7 +4,7 @@ import { Card } from '../ui/Card';
 import { useAppDataStore } from '../../../stores/appDataStore';
 
 const Recommendations: React.FC = () => {
-  const { wasteData, userStats } = useAppDataStore();
+  const { wasteData, userStats, recommendations } = useAppDataStore();
 
   return (
     <div className="min-h-full p-4 space-y-6">
